@@ -1,0 +1,1023 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" href="files/image/apple-touch-icon.png" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
+<title>v2.1.7</title>
+<style>
+<style>
+  .outer{fill:transparent;stroke:#fff;stroke-width:2;transition:stroke-dashoffset 1s;-webkit-animation-play-state:running}.outer-clock{fill:transparent;stroke-width:1;stroke:#3b3a3a;opacity:.95}.outer-minutes{opacity:.75}.outer-hours{opacity:.95}.outer-seconds{opacity:.95}.clock{position:relative;height:365px}.clock svg{position:absolute;left:0;right:0;margin:auto}.container-header{position:relative;background-color:black;color:#333;font-family:roboto,Helvetica,arial;font-weight:600;margin:0;padding:0;background-size:cover;background-repeat:no-repeat;height:100vh;overflow:hidden}.container-header:before{content:'';position:absolute;top:0;left:0;bottom:0;right:0;width:100%;height:100%;background-color:#000;opacity:.75;background:red;background:-webkit-radial-gradient(rgba(0,0,0,0.83),rgba(5,5,5,0.95),black);background:-o-radial-gradient(rgba(0,0,0,0.83),rgba(5,5,5,0.95),black);background:-moz-radial-gradient(rgba(0,0,0,0.83),rgba(5,5,5,0.95),black);background:radial-gradient(rgba(0,0,0,0.83),rgba(5,5,5,0.95),black)}.container-header .content{width:50%;height:50%;overflow:visible;margin:auto;position:absolute;top:0;left:0;bottom:0;right:0}.container-header h2{color:#fff;text-align:center;font-weight:100}.container-header h2 span{font-weight:600}.container{height:50vh}.container h3{text-align:center;color:#333;font-weight:100}.container h3 span{font-weight:600}.container .content-analog{box-shadow:0 4px 17px #888;width:50%;max-width:500px;min-width:300px;margin:auto;margin-top:112px;padding:2px 10px;background-color:#fff}.container .content-analog h3{text-transform:uppercase;font-weight:100}.container .content-analog h3 span{font-weight:600}.container .content-analog .time{font-size:3.8em;margin:0;margin-top:20px;font-weight:100}.container .content-analog .time span#text-hours{font-weight:600}.container .content-analog .time span#text-ampm{font-weight:600;font-size:.7em}.container .content-analog .date{font-size:1.5em;margin:0;font-weight:100}.container .content-analog .region{font-size:1.1em;margin:0;font-weight:100;margin-top:5px;margin-bottom:50px}.container .content-analog .region span{font-weight:600}body{background-color:#f2f2f2;color:#333;font-family:roboto,Helvetica,arial;font-weight:600;margin:0;padding:0}body a{color:inherit;text-decoration:none}
+  
+  </style>
+</style>
+<style>
+body, html {
+background-color: black;
+color:black;
+overflow:hidden;
+font-size:20px;
+font-family: 'Courier Prime';
+overflow:hidden;
+overflow-x:hidden;
+overflow-y:hidden;
+}
+
+#wifi, #location, #system, #time{
+background-color:Transparent;
+opacity:95%;
+color:white;
+position:fixed;
+padding:20px 30px 30px 40px;
+margin:10px;
+width: 100px;
+height:100px;
+overflow:hidden;
+border:none;
+border-radius: 25px;
+}
+
+
+#face {
+overflow:hidden;
+filter:grayscale(60%);
+}
+.app {
+overflow:hidden;
+z-index:2;
+}
+
+</style>
+
+</head>
+
+<body>
+<img id = "face" width = "80%" height = "150%" style = "position:fixed;top:-26%;left:20%;" src = "files/image/face.gif"></img>
+
+<div class = "app"onclick = "wificlicked = true; wifi()" style = "top:0%;left:0%;" id = "wifi">
+<img id = "wifipic" src = "files/image/wifi.gif" style = "overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);" width = "50%" height = "50%"></img>
+<p id = "wifiword4"style = "opacity:0%;background-color:black;border-radius:10px;padding:10px;padding-left:320px;position:fixed;top:10%;left:-10%;">xxxx xx</p>
+<p id = "wifiword"style = "opacity:0%;background-color:black;border-radius:10px;padding:10px;padding-left:320px;position:fixed;top:30%;left:-10%;">xxxx xx</p>
+<p id = "wifiword2"style = "opacity:0%;background-color:black;border-radius:10px;padding:10px;padding-left:320px;position:fixed;top:50%;left:-10%;">xx.xx xxxx</p>
+<iframe id = "rtt" scrolling = "no"style = "opacity:0%;border:none;position:fixed;top:56%;left:1%;" width = "20%" height = "20%"src = "files/frame/rtt.html"></iframe>
+<img id = "vis1" style = "opacity:0%;position:fixed;top:20%;left:4%;opacity:0%;" width = "40%" height = "7.5%" src = "files/image/vis1.gif"></img>
+<img id = "vis2" style = "opacity:0%;position:fixed;top:37.5%;left:-100%" width = "40%" height = "10%" src = "files/image/vis2.gif"></img>
+<img id = "vis3" style = "opacity:0%;position:fixed;top:49%;left:-100%" width = "45%" height = "30%" src = "files/image/vis3.gif"></img>
+<iframe id = "ip" scrolling = "no"style = "opacity:0%;border:none;position:absolute;top:-20%;left:60%;" width = "100%" height = "20%"src = "files/frame/ip.html"></iframe>
+<iframe id = "ping" scrolling = "no"style = "border-radius:10px;opacity:0%;border:none;position:absolute;top:150%;left:2.5%;" width = "22%" height = "40%"src = "files/frame/ping.html"></iframe>
+<img id = "wifiword3"src = "files/image/good.gif" style = "opacity:0%;position:fixed;top:5%;left:3.5%" width = "5%" height = "8%"></img>
+<iframe id = "cpu" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:30%;left:57%;" width = "40%" height = "35%"src = "files/frame/cputest.html"></iframe>
+<iframe id = "cpu2" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:30%;left:64.5%;" width = "40%" height = "35%"src = "files/frame/cputest2.html"></iframe>
+<iframe id = "resource" scrolling = "yes"style = "overflow-y:scroll;overflow-x:hidden;border-radius:10px;opacity:0%;border:none;position:absolute;top:60%;left:27%;" width = "30%" height = "30%"src = "files/frame/resource.html"></iframe>
+</div>
+
+<div class = "app"onclick = "locationclicked = true; locationX()" style = "opacity:90%;top:22.5%;left:0%;" id = "location">
+<img id = "locationpic" src = "files/image/location.gif"style = "opacity:60%;overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);"width = "50%" height = "50%"></img>
+<iframe id = "map"style = "opacity:0%;border-radius:20px;position:fixed;top:1%;left:-100%;padding:2.5%;"width="60%" height="91.5%" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+<iframe id = "weather" scrolling = "no" src = "files/frame/weather.html" style = "opacity:0%;padding:-10px;border-radius:0px 0px 10px 0px;border-top-right-radius:10px;filter:grayscale(100%);border:none;position:fixed;top:60%;left:-100%;opacity:100%" width = "52.5%" height = "35%"></iframe>
+<p id = "lat"style = "opacity:0%;font-size:30px;position:fixed;top:-25%;left:6%;">Location</p>
+<p id = "long"style = "opacity:0%;font-size:30px;position:fixed;top:-13%;left:6%;">Services</p>
+<p id = "altitude"style = "opacity:0%;font-size:10px;position:fixed;top:-50%;left:6%;">are currently not available. Please</p>
+<p id = "accuracy"style = "opacity:0%;font-size:10px;position:fixed;top:-45%;left:6%;"></p>
+<p id = "altaccuracy"style = "opacity:1%;font-size:10px;position:fixed;top:-40%;left:6%;">check your Internet connection, or</p>
+<p id = "heading"style = "opacity:0%;font-size:10px;position:fixed;top:-35%;left:6%;"></p>
+<p id = "speed"style = "opacity:0%;font-size:10px;position:fixed;top:-30%;left:6%;">reload the page.</p>
+<img id = "locationword"src = "files/image/google.gif" style = "filter:grayscale(75%);opacity:0%;position:fixed;top:33%;left:45%" width = "5%" height = "8%"></img>
+<img id = "locationword3"src = "files/image/good.gif" style = "display:inline;opacity:0%;position:fixed;top:5%;left:45%" width = "5%" height = "8%"></img>
+<img id = "locationword2"src = "files/image/percise.gif" style = "display:inline;opacity:0%;position:fixed;top:19%;left:44.5%" width = "6%" height = "10%"></img>
+<img id = "locationword4"src = "files/image/warning.gif" style = "display:none;filter:grayscale(50%);display:inline;opacity:0%;position:fixed;top:47%;left:44.5%" width = "6%" height = "10%"></img>
+
+</div>
+
+<div class = "app"onclick = "systemclicked = true; system()" style = "opacity:90%;top:45%;left:0%;" id = "system">
+<img id = "systempic" src = "files/image/system.gif" style = "filter: contrast(150%) brightness(100%); opacity:60%;overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);"width = "50%" height = "50%"></img>
+</div>
+
+<div class = "app"onclick = "timeclicked = true; time()" style = "opacity:98%;top:67.5%;left:0%;" id = "time">
+<img id = "timepic" src = "files/image/time.gif"style = "opacity:60%;overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);"width = "50%" height = "50%"></img>
+<p id = "timeword" style = "opacity:0%;position:fixed;top:0%;left:0%;">Wednesday, December 29th, 2020</p>
+<iframe width = "50%" height = "20%" id = "stock" scrolling = "no" style = "border-radius:10px;filter: grayscale(100%);border:none;position:fixed;left:-100%;top:70%;opacity:100%;" src = "files/frame/stock.html"></iframe>
+        <div class="clock" id = "clock" style = "position:absolute;top:-135%;left:-125%;"></div>
+       
+</div>
+
+<div id = "app_detect" style = "z-index:1;padding:500px 100px 100px 100px;background-color:Transparent;position:fixed;top:0%;left:0%;" width = "25%" height = "200%">
+</div>
+
+
+<script>
+
+var pkClock = {
+    id: 152,
+    className: 'clock',
+
+    //Clock display
+    displayHouresMinutes: false,
+    displayHouresMinutesSeconds: false,
+
+    //Graphical settings
+    size: 200
+  };
+  var pkTxtClock = {
+    id: 154,
+    className: 'clock-txt',
+    //Text time
+    TextTime: true,
+    region: 'Eureka',
+    displayTextTime: "hh-mm-ss-date-region"
+  };
+
+(function(){this.domElement;this.errMessage="Clock.js err: Please check again your settings in pkClock variable / variable = "
+this.flag=1;this.flagMinutes;this.perimeter;this.timeLoop=function(){var clockObject=this;this.calcTime();setTimeout(function(){clockObject.timeLoop();},1000);};this.DOMconstructor=function(){var settings=true;var textTimer=false;if(this.className&&this.size){this.domElement=document.getElementsByClassName(this.className)[0];this.perimeter=this.culcPerimeter(this.size/2);}else{settings=false;console.log(this.errMessage);}
+if(settings){this.svgConstructor();}};this.culcPerimeter=function(radius){var perimeter=0;perimeter=2*radius*3.14;return perimeter;}
+this.svgConstructor=function(){this.domElement.innerHTML="<svg width='"+this.size*2+"' height='"+this.size*2+"' > <title>Clock</title> <desc>SVG clock</desc><circle style='  stroke-dasharray: "+this.perimeter+"; stroke-dashoffset: 0;' class='outer-clock' cx='"+this.size+"' cy='"+this.size+"' r='"+(this.size/2)+"'/> <circle style='  stroke-dasharray: "+this.perimeter+"; stroke-dashoffset: 0;' class='outer outer-seconds' cx='"+this.size+"' cy='"+this.size+"' r='"+(this.size/2)+"' transform='rotate(-90,"+this.size+", "+this.size+")' /><line class='outer outer-minutes' x1='"+(this.size)+"' y1='"+(this.size)+"' x2='"+(this.size)+"' y2='"+(this.size/2)+"' /> <line class='outer outer-hours' x1='"+(this.size)+"' y1='"+(this.size)+"' x2='"+(this.size)+"' y2='"+(this.size/1.35)+"' /> </svg></div>";}
+this.twenTotwo=function(hours){if(hours>12){hours=hours-12;}
+return hours;}
+this.circleAction=function(s){var per_s=-(this.perimeter*this.flag)-(this.perimeter/60*s);object=this.domElement.getElementsByClassName("outer")[0];object.setAttribute("style","stroke-dasharray: "+this.perimeter+"; stroke-dashoffset: "+per_s+";");}
+this.MinutesAction=function(time){var size=this.size;object=this.domElement.getElementsByClassName("outer")[1];var per_time=360/60*time;object.setAttribute("transform","rotate("+(per_time)+","+size+", "+size+")");}
+this.hourAction=function(time){var size=this.size;object=this.domElement.getElementsByClassName("outer")[2];var per_time=360/12*time;object.setAttribute("transform","rotate("+(per_time)+","+size+", "+size+")");}
+this.calcTime=function(){var today=new Date();var h=today.getHours();var m=today.getMinutes();var s=today.getSeconds();if(this.flagMinutes!=m){this.flagMinutes=m;this.flag++;}
+this.circleAction(s);this.MinutesAction(m);this.hourAction(this.twenTotwo(h));}
+this.DOMconstructor();this.timeLoop();}).apply(pkClock);(function(){this.domElement;this.errMessage="Clock.js err: Please check again your settings in pkTxtClock variable / variable = "
+this.flag=1;this.flagMinutes;this.perimeter;this.timeLoop=function(){var clockObject=this;this.calcTextTimeHMSDR();setTimeout(function(){clockObject.timeLoop();},1000);};this.DOMconstructor=function(){var settings=true;var textTimer=false;if(this.className&&this.TextTime&&this.region){this.domElement=document.getElementsByClassName(this.className)[0];}else{settings=false;console.log(this.errMessage);}
+if(settings){this.textTimeConstructor();this.timeLoop();}};this.textTimeConstructor=function(){var newDom="<div><p class='time'><span id='text-hours'>04</span> : <span id='text-minutes'>24</span> <span id='text-ampm'>PM</span></p> <p class='date'><span id='text-date'>Monday</span>, <span id='text-month'>Apr</span> <span id='text-month-date'>04</span>, <span id='text-year'>04</span></p> <p class='region'><span id='text-region'>24</span></p></div>";this.domElement.innerHTML=newDom;var region=document.getElementById("text-region");region.innerHTML="Time in "+this.region;}
+this.calcTextTimeHMSDR=function(){var today=new Date();var hour=document.getElementById("text-hours");hour.innerHTML=this.toTwelveHours(today.getHours());var minutes=document.getElementById("text-minutes");minutes.innerHTML=today.getMinutes();var ampm=document.getElementById("text-ampm");ampm.innerHTML=this.getAmPm(today.getHours());var date=document.getElementById("text-date");date.innerHTML=this.getDayOfWeek(today.getDay());var month=document.getElementById("text-month");month.innerHTML=this.getMonthName(today.getMonth());var day=document.getElementById("text-month-date");day.innerHTML=today.getDate();var year=document.getElementById("text-year");year.innerHTML=today.getFullYear();}
+this.getDayOfWeek=function(day){return["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][day];};this.getMonthName=function(month){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][month];};this.toTwelveHours=function(hours){if(hours>12){return hours-12;}
+else{return hours;}}
+this.getAmPm=function(hours){if(hours>12){return 'PM';}
+else{return 'AM';}};this.DOMconstructor();}).apply(pkTxtClock);
+
+
+
+const perfData = window.performance.timing; 
+const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+const connectTime = perfData.responseEnd - perfData.requestStart;
+const renderTime = perfData.domComplete - perfData.domLoading;
+
+if (connectTime>0&&connectTime<5){
+document.getElementById("vis1").style.filter = "hue-rotate(310deg)";
+} else if (connectTime>5&&connectTime<10) {
+document.getElementById("vis1").style.filter = "hue-rotate(250deg)";
+} else if (connectTime>15&&connectTime<25) {
+document.getElementById("vis1").style.filter = "hue-rotate(190deg)";
+} else if (connectTime>25) {
+document.getElementById("vis1").style.filter = "hue-rotate(130deg)";
+}else {
+
+}
+var firstVar = (connectTime/1000);
+if (firstVar<0){
+document.getElementById("wifiword4").innerHTML = "0.000 s";
+}else {
+document.getElementById("wifiword4").innerHTML = parseFloat((firstVar).toFixed(3))+ " s";
+}
+
+if (navigator.onLine === false){
+document.getElementById("wifiword3").style.transition = "all 1.5s";
+document.getElementById("wifiword3").style.filter= "hue-rotate(190deg)";
+} else {
+document.getElementById("wifiword3").style.transition = "all 1.5s";
+document.getElementById("wifiword3").style.filter= "hue-rotate(0deg)";
+}
+
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function success(pos) {
+  var crd = pos.coords;
+
+  document.getElementById("lat").innerHTML = parseFloat(`${crd.latitude}`).toFixed(4)+ ",";
+ document.getElementById("long").innerHTML = parseFloat(`${crd.longitude}`).toFixed(4);
+ document.getElementById("altitude").innerHTML = "alt: "+(`${crd.altitude}`);
+ document.getElementById("accuracy").innerHTML = "acc: "+(`${crd.accuracy}`);
+ document.getElementById("altaccuracy").innerHTML = "alt/acc: "+(`${crd.altitudeAccuracy}`);
+ document.getElementById("heading").innerHTML ="head: "+ (`${crd.heading}`);
+  document.getElementById("speed").innerHTML = "speed: "+(`${crd.speed}`);
+  
+ 
+  
+  
+
+}
+
+function error(err) {
+    document.getElementById("accuracy").innerHTML = (`ERROR(${err.code}): ${err.message}`);
+document.getElementById("locationword").style.display = "none";
+document.getElementById("locationword2").style.display = "none";
+
+}
+
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+function ping(host, port, pong) {
+
+  var started = new Date().getTime();
+
+  var http = new XMLHttpRequest();
+
+  http.open("GET", "https://" + host + ":" + port, /*async*/true);
+  http.onreadystatechange = function() {
+    if (http.readyState == 4) {
+      var ended = new Date().getTime();
+
+      var milliseconds = ended - started;
+      if (pong != null) {
+        pong(milliseconds);
+      }
+    }
+  };
+  try {
+    http.send(null);
+  } catch(exception) {
+    // this is expected
+  }
+}
+ping("8.8.8.8", "77", function(m){ 
+
+
+document.getElementById("wifiword").innerHTML =m+" ms";
+
+if (m>250){
+document.getElementById("vis2").style.filter = "hue-rotate(100deg)";
+} else if (m<250&&m>200){
+	document.getElementById("vis2").style.transition = "all 1.5s";
+		document.getElementById("vis2").style.filter = "hue-rotate(180deg)";
+} else if (m<200&&m>150){
+
+		document.getElementById("vis2").style.transition = "all 1.5s";
+		document.getElementById("vis2").style.filter = "hue-rotate(200deg)";
+} else if (m<150&&m>50){
+	document.getElementById("vis2").style.transition = "all 1.5s";
+		document.getElementById("vis2").style.filter = "hue-rotate(300deg)";
+} else if (m<50){
+document.getElementById("vis2").style.transition = "all 1.5s";
+			document.getElementById("vis2").style.filter = "hue-rotate(300deg)";
+}else {
+	document.getElementById("vis2").style.filter = "hue-rotate(0deg)";
+}
+
+ })
+
+
+
+	
+		
+
+	
+		
+			
+
+
+
+
+var isIOS = false;
+if(navigator.vendor != null && navigator.vendor.match(/Apple Computer, Inc./) && navigator.userAgent.match(/iPhone/i) || (navigator.userAgent.match(/iPod/i))) 
+
+    {
+
+        
+		isIOS = true;
+
+    }
+
+else if (navigator.vendor != null && navigator.vendor.match(/Apple Computer, Inc./) && navigator.userAgent.match(/iPad/i))  
+
+    {
+
+     
+isIOS = true;
+    }
+
+else if (navigator.vendor != null && navigator.vendor.match(/Apple Computer, Inc./) && navigator.userAgent.indexOf('Safari') != -1)
+
+    {
+
+        
+isIOS = true;
+    }
+
+else if (navigator.vendor == null || navigator.vendor != null)
+
+    {
+
+     
+isIOS = false;
+    }
+	
+	if (isIOS === true){
+	document.getElementById("vis2").style.transition = "all 1.5s";
+	document.getElementById("vis2").style.filter = "hue-rotate(150deg)";
+	document.getElementById("wifiword").innerHTML = "⊗";
+	}
+	
+	
+//JUST AN EXAMPLE, PLEASE USE YOUR OWN PICTURE!
+var imageAddr = "https://i.pinimg.com/564x/e2/0c/ce/e20ccebbf6562b93ff82ffc7d2c163f1.jpg"; 
+var downloadSize = 4995374; //bytes
+
+function ShowProgressMessage(msg) {
+    if (console) {
+        if (typeof msg == "string") {
+            console.log(msg);
+        } else {
+            for (var i = 0; i < msg.length; i++) {
+                console.log(msg[i]);
+            }
+        }
+    }
+    
+    var oProgress = document.getElementById("wifiword2");
+    if (oProgress) {
+        var actualHTML = (typeof msg == "string") ? msg : msg.join("<br />");
+        oProgress.innerHTML = actualHTML;
+    }
+}
+
+function InitiateSpeedDetection() {
+   
+    window.setTimeout(MeasureConnectionSpeed, 1);
+};    
+
+if (window.addEventListener) {
+    window.addEventListener('load', InitiateSpeedDetection, false);
+} else if (window.attachEvent) {
+    window.attachEvent('onload', InitiateSpeedDetection);
+}
+
+function MeasureConnectionSpeed() {
+   
+	var startTime, endTime;
+    var download = new Image();
+    download.onload = function () {
+        endTime = (new Date()).getTime();
+        showResults();
+    }
+    
+    download.onerror = function (err, msg) {
+        
+    }
+    
+    startTime = (new Date()).getTime();
+    var cacheBuster = "?nnn=" + startTime;
+    download.src = imageAddr + cacheBuster;
+    
+    function showResults() {
+	document.getElementById("vis2").style.transition = "all 1.5s";
+        var duration = (endTime - startTime) / 1000;
+        var bitsLoaded = downloadSize * 8;
+        var speedBps = (bitsLoaded / duration).toFixed(2);
+        var speedKbps = (speedBps / 1024).toFixed(2);
+        var speedMbps = (speedKbps / 1024).toFixed(2);
+		if (speedMbps>0&&speedMbps<50){
+		document.getElementById("vis3").style.filter = "hue-rotate(100deg)";
+
+		} else if (speedMbps>50&&speedMbps<75){
+		document.getElementById("vis3").style.transition = "all 1.5s";
+		document.getElementById("vis3").style.filter = "hue-rotate(180deg)";
+		} else if (speedMbps>75&&speedMbps<100){
+		document.getElementById("vis3").style.transition = "all 1.5s";
+		document.getElementById("vis3").style.filter = "hue-rotate(200deg)";
+		} else if (speedMbps>100&&speedMbps<200){
+		document.getElementById("vis3").style.transition = "all 1.5s";
+		document.getElementById("vis3").style.filter = "hue-rotate(300deg)";
+			} else if (speedMbps>200&&speedMbps<300){
+			document.getElementById("vis3").style.transition = "all 1.5s";
+			document.getElementById("vis3").style.filter = "hue-rotate(300deg)";
+				} else if (speedMbps>300){
+				document.getElementById("vis3").style.transition = "all 1.5s";
+				} else {
+				
+				}
+        ShowProgressMessage([
+            speedMbps + " mb/s", 
+            
+        ]);
+    }
+}
+
+var elem = document.body;
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+  elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+  elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+  elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+  elem.msRequestFullscreen();
+  }
+}
+var wifiapp = document.getElementById("wifi");
+var wifipic = document.getElementById("wifipic");
+var wifiword = document.getElementById("wifiword");
+var wifiword2 = document.getElementById("wifiword2");
+var wifiword3 = document.getElementById("wifiword3");
+var wifiword4 = document.getElementById("wifiword4");
+var rttframe = document.getElementById("rtt");
+var clock = document.getElementById("clock");
+var stock = document.getElementById("stock");
+var cpu = document.getElementById("cpu");
+var cpu2 = document.getElementById("cpu2");
+var ipframe = document.getElementById("ip");
+var vis1 = document.getElementById("vis1");
+var vis2 = document.getElementById("vis2");
+var vis3 = document.getElementById("vis3");
+var ping = document.getElementById("ping");
+var resource = document.getElementById("resource");
+var locationapp = document.getElementById("location");
+var locationpic = document.getElementById("locationpic");
+var map= document.getElementById("map");
+var weather = document.getElementById("weather");
+var latitude = document.getElementById("lat");
+var longitude = document.getElementById("long");
+var speed = document.getElementById("speed");
+var alti = document.getElementById("altitude");
+var altac = document.getElementById("altaccuracy");
+var accuracy = document.getElementById("accuracy");
+var heading = document.getElementById("heading");
+var systemapp = document.getElementById("system");
+var timeapp = document.getElementById("time");
+var hiden = document.getElementById("app_detect");
+var locationword = document.getElementById("locationword");
+var locationword2 = document.getElementById("locationword2");
+var locationword3 = document.getElementById("locationword3");
+var locationword4 = document.getElementById("locationword4");
+
+
+
+
+
+wifiapp.addEventListener('touchstart', handleWifiStart, false);        
+wifiapp.addEventListener('touchmove', handleWifiMove, false);
+locationapp.addEventListener('touchstart', handleLocationStart, false);        
+locationapp.addEventListener('touchmove', handleLocationMove, false);
+systemapp.addEventListener('touchstart', handleSystemStart, false);        
+systemapp.addEventListener('touchmove', handleSystemMove, false);
+timeapp.addEventListener('touchstart', handleTimeStart, false);        
+timeapp.addEventListener('touchmove', handleTimeMove, false);
+hiden.addEventListener('touchstart', handleHIDEStart, false);       
+hiden.addEventListener('touchmove', handleHIDEMove, false);
+
+var wificlicked = false;
+var locationclicked = false;
+var systemclicked = false;
+var timeclicked = false;
+
+var xDownWifi = null;                                                        
+var yDownWifi = null;
+var xDownLocation = null;                                                        
+var yDownLocation = null;
+var xDownSystem = null;                                                        
+var yDownSystem = null;
+var xDownTime = null;                                                        
+var yDownTime = null;
+var xDownHIDE = null;                                                        
+var yDownHIDE = null;
+
+function getTouchesHIDE(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}           
+
+function handleHIDEStart(evt) {
+    const firstTouch = getTouchesHIDE(evt)[0];                                      
+    xDownHIDE = firstTouch.clientX;                                      
+    yDownHIDE = firstTouch.clientY;                                      
+};                                           
+                                              
+
+function handleHIDEMove(evt) {
+    if ( ! xDownHIDE || ! yDownHIDE ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDownHIDE - xUp;
+    var yDiff = yDownHIDE - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+    
+		
+        } else {
+
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            
+			unhide();
+			
+        } else { 
+            hide();
+        }                                                                 
+    }
+    /* reset values */
+    xDownHIDE = null;
+    yDownHIDE = null;                                             
+};
+
+
+
+function getTouchesTime(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}    
+
+function handleTimeStart(evt) {
+    const firstTouch = getTouchesTime(evt)[0];                                      
+    xDownTime = firstTouch.clientX;                                      
+    yDownTime = firstTouch.clientY;                                      
+};                                                  
+                                              
+
+function handleTimeMove(evt) {
+    if ( ! xDownTime || ! yDownTime ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDownTime - xUp;
+    var yDiff = yDownTime - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+    timeclicked = false;
+		time();
+        } else {
+		
+		timeclicked = true;
+time();
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            
+        } else { 
+            hide();
+        }                                                                 
+    }
+    /* reset values */
+    xDownTime = null;
+    yDownTime = null;                                             
+};
+
+
+
+function getTouchesSystem(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}                                                     
+
+function handleSystemStart(evt) {
+    const firstTouch = getTouchesSystem(evt)[0];                                      
+    xDownSystem = firstTouch.clientX;                                      
+    yDownSystem = firstTouch.clientY;                                      
+};          
+		 
+
+function handleSystemMove(evt) {
+    if ( ! xDownSystem || ! yDownSystem ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDownSystem - xUp;
+    var yDiff = yDownSystem - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+    systemclicked = false;
+		system();
+        } else {
+		systemclicked = true;
+system();
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            
+        } else { 
+            hide();
+        }                                                                 
+    }
+    /* reset values */
+    xDownSystem = null;
+    yDownSystem = null;                                             
+};
+
+
+
+function getTouchesLocation(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}                                                     
+                 
+function handleLocationStart(evt) {
+    const firstTouch = getTouchesLocation(evt)[0];                                      
+    xDownLocation = firstTouch.clientX;                                      
+    yDownLocation = firstTouch.clientY;                                      
+}; 				 
+
+function handleLocationMove(evt) {
+    if ( ! xDownLocation || ! yDownLocation ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDownLocation - xUp;
+    var yDiff = yDownLocation - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+    locationclicked = false;
+		locationX();
+        } else {
+		locationclicked = true;
+locationX();
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            
+        } else { 
+            hide();
+        }                                                                 
+    }
+    /* reset values */
+    xDownLocation = null;
+    yDownLocation = null;                                             
+};
+
+
+
+function getTouchesWifi(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}                                                     
+
+function handleWifiStart(evt) {
+    const firstTouch = getTouchesWifi(evt)[0];                                      
+    xDownWifi = firstTouch.clientX;                                      
+    yDownWifi = firstTouch.clientY;                                      
+};                                                
+
+function handleWifiMove(evt) {
+    if ( ! xDownWifi || ! yDownWifi ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDownWifi - xUp;
+    var yDiff = yDownWifi - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+            wificlicked = false;
+			wifi();
+        } else {
+	wificlicked = true;
+            wifi();
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            
+        } else { 
+            hide();
+        }                                                                 
+    }
+    /* reset values */
+    xDownWifi = null;
+    yDownWifi = null;                                             
+};
+
+var unhide = function(){
+
+wifiapp.style.transition = "all 1s";
+locationapp.style.transition = "all 1s";
+timeapp.style.transition = "all 1s";
+systemapp.style.transition = "all 1s";
+
+wifiapp.style.top = "0%";
+locationapp.style.top = "22.5%";
+timeapp.style.top = "67.5%";
+systemapp.style.top = "45%";
+
+};
+
+var hide = function(){
+
+wifiapp.style.transition = "all 1s";
+locationapp.style.transition = "all 1s";
+timeapp.style.transition = "all 1s";
+systemapp.style.transition = "all 1s";
+
+wifiapp.style.top = "150%";
+locationapp.style.top = "180%";
+timeapp.style.top = "210%";
+systemapp.style.top = "240%";
+
+};
+
+var locationX = function(){
+if (locationclicked === true){
+locationword2.style.transition = "all 0.2s";
+locationword2.style.transitionDelay = "0.5s";
+locationword2.style.opacity = "60%";
+locationword.style.transition = "all 0.2s";
+locationword.style.transitionDelay = "0.5s";
+locationword.style.opacity = "100%";
+locationword3.style.transition = "all 0.2s";
+locationword3.style.transitionDelay = "0.5s";
+locationword3.style.opacity = "100%";
+locationword4.style.transition = "all 0.2s";
+locationword4.style.transitionDelay = "0.5s";
+locationword4.style.opacity = "100%";
+latitude.style.transition = "all 0.75s, top 0.2s";
+latitude.style.opacity = "100%";
+latitude.style.top = "0%";
+longitude.style.transition = "all 0.75s, top 0.2s";
+longitude.style.opacity = "100%";
+longitude.style.top = "12%";
+alti.style.transition = "all 0.5s, top 0.2s";
+alti.style.opacity = "100%";
+alti.style.top = "30%";
+altac.style.transition = "all 0.5s, top 0.2s";
+altac.style.opacity = "100%";
+altac.style.top = "35%";
+speed.style.transition = "all 0.5s, top 0.2s";
+speed.style.opacity = "100%";
+speed.style.top = "40%";
+heading.style.transition = "all 0.5s, top 0.2s";
+heading.style.opacity = "100%";
+heading.style.top = "45%";
+accuracy.style.transition = "all 0.5s, top 0.2s";
+accuracy.style.opacity = "100%";
+accuracy.style.top = "50%";
+map.style.transition = "all 0.2s, opacity 2s";
+map.style.opacity = "100%";
+map.style.left = "50%";
+weather.style.transition = "all 0.3s";
+weather.style.opacity = "100%";
+weather.style.left = "-2.5%";
+locationapp.style.zIndex = 99999;
+locationpic.style.transition = "opacity 0.15s";
+locationapp.style.transition = "all 0.3s";
+locationapp.style.backgroundColor = "#1a1a1a";
+locationapp.style.top = "0%";
+locationpic.style.opacity = "0%";
+locationpic.style.top = "0%";
+locationapp.style.width = "100%";
+locationapp.style.height = "100%";
+locationclicked = true;
+} else {
+locationapp.style.zIndex = 2;
+locationword2.style.transition = "all 0.2s";
+locationword2.style.opacity = "0%";
+locationword3.style.transition = "all 0.2s";
+locationword3.style.opacity = "0%";
+locationword4.style.transition = "all 0.2s";
+locationword4.style.opacity = "0%";
+locationword.style.transition = "all 0.2s";
+locationword.style.opacity = "0%";
+latitude.style.transition = "all 0.2s, top 0.2s";
+latitude.style.opacity = "0%";
+latitude.style.top = "-25%";
+longitude.style.transition = "all 0.2s, top 0.2s";
+longitude.style.opacity = "0%";
+longitude.style.top = "-13%";
+alti.style.transition = "all 0.75s, top 0.2s";
+alti.style.opacity = "0%";
+alti.style.top = "-50%";
+altac.style.transition = "all 0.75s, top 0.2s";
+altac.style.opacity = "0%";
+altac.style.top = "-45%";
+speed.style.transition = "all 0.75s, top 0.2s";
+speed.style.opacity = "0%";
+speed.style.top = "-40%";
+heading.style.transition = "all 0.75s, top 0.2s";
+heading.style.opacity = "0%";
+heading.style.top = "-35%";
+accuracy.style.transition = "all 0.75s, top 0.2s";
+accuracy.style.opacity = "0%";
+accuracy.style.top = "-30%";
+map.style.transition = "all 0.2s";
+map.style.opacity = "0%";
+map.style.left = "-100%";
+weather.style.transition = "all 0.3s";
+weather.style.opacity = "0%";
+weather.style.left = "-10%";
+locationapp.style.zIndex = 2;
+locationapp.style.transition = "all 0.3s";
+locationapp.style.backgroundColor = "Transparent";
+locationapp.style.top = "22.5%";
+locationpic.style.transition = "opacity 1.5s";
+locationpic.style.opacity = "60%";
+locationpic.style.top = "0%";
+locationapp.style.width = "100px";
+locationapp.style.height = "100px";
+locationclicked = false;
+}
+};
+
+
+var system = function(){
+if (systemclicked === true){
+systemapp.style.transition = "all 0.3s";
+systemapp.style.backgroundColor = "#1a1a1a";
+systemapp.style.width = "100%";
+systemapp.style.height = "100%";
+systemapp.style.zIndex = 99999;
+systempic.style.transition = "opacity 0.15s";
+systemapp.style.top = "0%";
+systempic.style.opacity = "0%";
+systempic.style.top = "0%";
+
+systemclicked = false;
+
+} else {
+
+systemapp.style.transition = "all 0.3s";
+systemapp.style.backgroundColor = "Transparent";
+systemapp.style.width = "100px";
+systemapp.style.height = "100px";
+systemapp.style.zIndex = 2;
+systempic.style.transition = "opacity 1s";
+systemapp.style.top = "45%";
+systempic.style.opacity = "60%";
+systempic.style.top = "0%";
+
+systemclicked = true;
+
+
+
+}
+}
+
+var time = function(){
+if (timeclicked === true){
+timeapp.style.transition = "all 0.3s";
+timeapp.style.backgroundColor = "#1a1a1a";
+timeapp.style.width = "100%";
+timeapp.style.height = "100%";
+timeapp.style.zIndex = 99999;
+timepic.style.transition = "opacity 0.15s";
+timeapp.style.top = "0%";
+timepic.style.opacity = "0%";
+timepic.style.top = "0%";
+clock.style.transition = "all 0.3s";
+clock.style.opacity = "100%";
+clock.style.left = "5%";
+stock.style.transition = "all 0.3s";
+stock.style.opacity = "100%";
+stock.style.left = "48%";
+
+timeclicked = false;
+
+} else {
+
+timeapp.style.transition = "all 0.3s";
+timeapp.style.backgroundColor = "Transparent";
+timeapp.style.width = "100px";
+timeapp.style.height = "100px";
+timeapp.style.zIndex = 2;
+timepic.style.transition = "opacity 1s";
+timeapp.style.top = "67.5%";
+timepic.style.opacity = "60%";
+timepic.style.top = "0%";
+clock.style.transition = "all 0.3s";
+clock.style.opacity = "0%";
+clock.style.left = "-100%";
+
+stock.style.transition = "all 0.3s";
+stock.style.opacity = "0%";
+stock.style.left = "5%";
+
+timeclicked = true;
+
+
+
+}
+}
+
+
+
+var wifi = function(){
+if (wificlicked === true){
+cpu.style.transition = "all 1.5s";
+cpu2.style.transition = "all 1.5s";
+cpu.style.transitionDelay = "1s";
+cpu2.style.transitionDelay = "1s";
+cpu.style.opacity = "100%";
+cpu2.style.opacity = "100%";
+ping.style.transition = "all 0.3s";
+ping.style.top = "60%";
+ping.style.opacity = "100%";
+resource.style.transition = "all 0.3s";
+resource.style.opacity = "100%";
+rttframe.style.transition = "all 0.3s";
+rttframe.style.opacity = "0%";
+wifiapp.style.zIndex = 99999;
+wifiapp.style.transition = "all 0.3s";
+wifipic.style.transition = "opacity 0.15s";
+wifiword.style.transition = "all 1.5s";
+wifiword2.style.transition = "all 1.5s";
+wifiword3.style.transition = "all 1.5s";
+wifiword4.style.transition = "all 1.5s";
+wifiword3.style.transition = "all 1.0s, top 0.0s";
+vis2.style.transition = "all 1.5s, left 0.1s";
+vis3.style.transition = "all 1.5s, left 0.1s";
+vis1.style.opacity = "100%";
+vis2.style.opacity = "100%";
+vis3.style.opacity = "100%";
+vis2.style.left = "4%";
+vis3.style.left = "2%";
+wifiapp.style.backgroundColor = "#1a1a1a";
+wifiapp.style.width = "100%";
+wifiapp.style.height = "100%";
+wifiapp.style.top = "0%";
+wifiapp.style.left = "0%";
+wifiapp.style.opacity = "98%";
+wifipic.style.opacity = "0%";
+wifiword.style.opacity = "100%";
+wifiword2.style.opacity = "100%";
+wifiword4.style.opacity = "100%";
+wifiword3.style.top = "5%";
+wifiword3.style.opacity = "100%";
+ipframe.style.transition = "opacity 0.3s";
+ipframe.style.top = "-3%";
+ipframe.style.opacity = "100%";
+wificlicked = false;
+} else {
+resource.style.transition = "all 0.3s";
+resource.style.opacity = "0%";
+cpu.style.transition = "all 0.2s";
+cpu2.style.transition = "all 0.2s";
+cpu.style.opacity = "0%";
+cpu2.style.opacity = "0%";
+ping.style.transition = "opacity 0.3s, top 0.2s";
+ping.style.top = "150%";
+ping.style.opacity = "0%";
+wifiword3.style.top = "100%";
+wifiapp.style.zIndex = 2;
+rttframe.style.transition = "all 0.3s";
+rttframe.style.opacity = "0%";
+wifipic.style.transition = "opacity 1.25s";
+wifiapp.style.transition = "all 0.3s";
+wifiword.style.transition = "all 0.2s";
+wifiword2.style.transition = "all 0.2s";
+wifiword4.style.transition = "all 0.2s";
+wifiword3.style.transition = "all 0.2s, top 0.0s";
+vis2.style.transition = "all 0.2s";
+vis3.style.transition = "all 0.2s";
+vis1.style.opacity = "0%";
+vis2.style.opacity = "0%";
+vis3.style.opacity = "0%"
+vis2.style.left = "-100%";
+vis3.style.left = "-100%";
+wifiapp.style.backgroundColor = "Transparent";
+wifiapp.style.width = "100px";
+wifiapp.style.height = "100px";
+wifipic.style.opacity = "100%";
+wifiword2.style.opacity = "0%";
+wifiword4.style.opacity = "0%";
+wifiword3.style.opacity = "0%";
+wifiword.style.opacity = "0%";
+ipframe.style.transition = "opacity 0.3s";
+ipframe.style.top = "-30%";
+ipframe.style.opacity = "0%";
+
+wificlicked = true;
+}
+};
+
+
+window.onclick = function(){
+openFullscreen();
+};
+
+window.onerror = function(){
+document.getElementById("locationword4").style.display = "inline";
+};
+
+
+
+</script>
+
+
+</body>
+</html>
