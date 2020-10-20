@@ -8,12 +8,7 @@
 <link rel="apple-touch-icon" href="files/image/apple-touch-icon.png" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
 <title>v2.1.7</title>
-<style>
-<style>
-  .outer{fill:transparent;stroke:#fff;stroke-width:2;transition:stroke-dashoffset 1s;-webkit-animation-play-state:running}.outer-clock{fill:transparent;stroke-width:1;stroke:#3b3a3a;opacity:.95}.outer-minutes{opacity:.75}.outer-hours{opacity:.95}.outer-seconds{opacity:.95}.clock{position:relative;height:365px}.clock svg{position:absolute;left:0;right:0;margin:auto}.container-header{position:relative;background-color:black;color:#333;font-family:roboto,Helvetica,arial;font-weight:600;margin:0;padding:0;background-size:cover;background-repeat:no-repeat;height:100vh;overflow:hidden}.container-header:before{content:'';position:absolute;top:0;left:0;bottom:0;right:0;width:100%;height:100%;background-color:#000;opacity:.75;background:red;background:-webkit-radial-gradient(rgba(0,0,0,0.83),rgba(5,5,5,0.95),black);background:-o-radial-gradient(rgba(0,0,0,0.83),rgba(5,5,5,0.95),black);background:-moz-radial-gradient(rgba(0,0,0,0.83),rgba(5,5,5,0.95),black);background:radial-gradient(rgba(0,0,0,0.83),rgba(5,5,5,0.95),black)}.container-header .content{width:50%;height:50%;overflow:visible;margin:auto;position:absolute;top:0;left:0;bottom:0;right:0}.container-header h2{color:#fff;text-align:center;font-weight:100}.container-header h2 span{font-weight:600}.container{height:50vh}.container h3{text-align:center;color:#333;font-weight:100}.container h3 span{font-weight:600}.container .content-analog{box-shadow:0 4px 17px #888;width:50%;max-width:500px;min-width:300px;margin:auto;margin-top:112px;padding:2px 10px;background-color:#fff}.container .content-analog h3{text-transform:uppercase;font-weight:100}.container .content-analog h3 span{font-weight:600}.container .content-analog .time{font-size:3.8em;margin:0;margin-top:20px;font-weight:100}.container .content-analog .time span#text-hours{font-weight:600}.container .content-analog .time span#text-ampm{font-weight:600;font-size:.7em}.container .content-analog .date{font-size:1.5em;margin:0;font-weight:100}.container .content-analog .region{font-size:1.1em;margin:0;font-weight:100;margin-top:5px;margin-bottom:50px}.container .content-analog .region span{font-weight:600}body{background-color:#f2f2f2;color:#333;font-family:roboto,Helvetica,arial;font-weight:600;margin:0;padding:0}body a{color:inherit;text-decoration:none}
-  
-  </style>
-</style>
+
 <style>
 body, html {
 background-color: black;
@@ -98,10 +93,10 @@ z-index:2;
 
 <div class = "app"onclick = "timeclicked = true; time()" style = "opacity:98%;top:67.5%;left:0%;" id = "time">
 <img id = "timepic" src = "files/image/time.gif"style = "opacity:60%;overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);"width = "50%" height = "50%"></img>
+<iframe id = "clock" scrolling = "no" src = "files/frame/clock.html" style = "border:none;opacity:0%;overflow:hidden;position:fixed;top:25%;left:-100%;" width = "40%" height = "68%"></iframe>
 <p id = "timeword" style = "opacity:0%;position:fixed;top:0%;left:0%;">Wednesday, December 29th, 2020</p>
 <iframe width = "50%" height = "20%" id = "stock" scrolling = "no" style = "border-radius:10px;filter: grayscale(100%);border:none;position:fixed;left:-100%;top:70%;opacity:100%;" src = "files/frame/stock.html"></iframe>
-        <div class="clock" id = "clock" style = "position:absolute;top:-135%;left:-125%;"></div>
-       
+
 </div>
 
 <div id = "app_detect" style = "z-index:1;padding:500px 100px 100px 100px;background-color:Transparent;position:fixed;top:0%;left:0%;" width = "25%" height = "200%">
@@ -109,46 +104,6 @@ z-index:2;
 
 
 <script>
-
-var pkClock = {
-    id: 152,
-    className: 'clock',
-
-    //Clock display
-    displayHouresMinutes: false,
-    displayHouresMinutesSeconds: false,
-
-    //Graphical settings
-    size: 200
-  };
-  var pkTxtClock = {
-    id: 154,
-    className: 'clock-txt',
-    //Text time
-    TextTime: true,
-    region: 'Eureka',
-    displayTextTime: "hh-mm-ss-date-region"
-  };
-
-(function(){this.domElement;this.errMessage="Clock.js err: Please check again your settings in pkClock variable / variable = "
-this.flag=1;this.flagMinutes;this.perimeter;this.timeLoop=function(){var clockObject=this;this.calcTime();setTimeout(function(){clockObject.timeLoop();},1000);};this.DOMconstructor=function(){var settings=true;var textTimer=false;if(this.className&&this.size){this.domElement=document.getElementsByClassName(this.className)[0];this.perimeter=this.culcPerimeter(this.size/2);}else{settings=false;console.log(this.errMessage);}
-if(settings){this.svgConstructor();}};this.culcPerimeter=function(radius){var perimeter=0;perimeter=2*radius*3.14;return perimeter;}
-this.svgConstructor=function(){this.domElement.innerHTML="<svg width='"+this.size*2+"' height='"+this.size*2+"' > <title>Clock</title> <desc>SVG clock</desc><circle style='  stroke-dasharray: "+this.perimeter+"; stroke-dashoffset: 0;' class='outer-clock' cx='"+this.size+"' cy='"+this.size+"' r='"+(this.size/2)+"'/> <circle style='  stroke-dasharray: "+this.perimeter+"; stroke-dashoffset: 0;' class='outer outer-seconds' cx='"+this.size+"' cy='"+this.size+"' r='"+(this.size/2)+"' transform='rotate(-90,"+this.size+", "+this.size+")' /><line class='outer outer-minutes' x1='"+(this.size)+"' y1='"+(this.size)+"' x2='"+(this.size)+"' y2='"+(this.size/2)+"' /> <line class='outer outer-hours' x1='"+(this.size)+"' y1='"+(this.size)+"' x2='"+(this.size)+"' y2='"+(this.size/1.35)+"' /> </svg></div>";}
-this.twenTotwo=function(hours){if(hours>12){hours=hours-12;}
-return hours;}
-this.circleAction=function(s){var per_s=-(this.perimeter*this.flag)-(this.perimeter/60*s);object=this.domElement.getElementsByClassName("outer")[0];object.setAttribute("style","stroke-dasharray: "+this.perimeter+"; stroke-dashoffset: "+per_s+";");}
-this.MinutesAction=function(time){var size=this.size;object=this.domElement.getElementsByClassName("outer")[1];var per_time=360/60*time;object.setAttribute("transform","rotate("+(per_time)+","+size+", "+size+")");}
-this.hourAction=function(time){var size=this.size;object=this.domElement.getElementsByClassName("outer")[2];var per_time=360/12*time;object.setAttribute("transform","rotate("+(per_time)+","+size+", "+size+")");}
-this.calcTime=function(){var today=new Date();var h=today.getHours();var m=today.getMinutes();var s=today.getSeconds();if(this.flagMinutes!=m){this.flagMinutes=m;this.flag++;}
-this.circleAction(s);this.MinutesAction(m);this.hourAction(this.twenTotwo(h));}
-this.DOMconstructor();this.timeLoop();}).apply(pkClock);(function(){this.domElement;this.errMessage="Clock.js err: Please check again your settings in pkTxtClock variable / variable = "
-this.flag=1;this.flagMinutes;this.perimeter;this.timeLoop=function(){var clockObject=this;this.calcTextTimeHMSDR();setTimeout(function(){clockObject.timeLoop();},1000);};this.DOMconstructor=function(){var settings=true;var textTimer=false;if(this.className&&this.TextTime&&this.region){this.domElement=document.getElementsByClassName(this.className)[0];}else{settings=false;console.log(this.errMessage);}
-if(settings){this.textTimeConstructor();this.timeLoop();}};this.textTimeConstructor=function(){var newDom="<div><p class='time'><span id='text-hours'>04</span> : <span id='text-minutes'>24</span> <span id='text-ampm'>PM</span></p> <p class='date'><span id='text-date'>Monday</span>, <span id='text-month'>Apr</span> <span id='text-month-date'>04</span>, <span id='text-year'>04</span></p> <p class='region'><span id='text-region'>24</span></p></div>";this.domElement.innerHTML=newDom;var region=document.getElementById("text-region");region.innerHTML="Time in "+this.region;}
-this.calcTextTimeHMSDR=function(){var today=new Date();var hour=document.getElementById("text-hours");hour.innerHTML=this.toTwelveHours(today.getHours());var minutes=document.getElementById("text-minutes");minutes.innerHTML=today.getMinutes();var ampm=document.getElementById("text-ampm");ampm.innerHTML=this.getAmPm(today.getHours());var date=document.getElementById("text-date");date.innerHTML=this.getDayOfWeek(today.getDay());var month=document.getElementById("text-month");month.innerHTML=this.getMonthName(today.getMonth());var day=document.getElementById("text-month-date");day.innerHTML=today.getDate();var year=document.getElementById("text-year");year.innerHTML=today.getFullYear();}
-this.getDayOfWeek=function(day){return["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][day];};this.getMonthName=function(month){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][month];};this.toTwelveHours=function(hours){if(hours>12){return hours-12;}
-else{return hours;}}
-this.getAmPm=function(hours){if(hours>12){return 'PM';}
-else{return 'AM';}};this.DOMconstructor();}).apply(pkTxtClock);
 
 
 
