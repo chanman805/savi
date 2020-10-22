@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" href="files/image/apple-touch-icon.png" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
-<title>v2.3.0</title>
+<title>v2.3.4</title>
 
 <style>
 body, html {
@@ -54,7 +54,7 @@ color:white;
 </head>
 
 <body>
-<img id = "face" width = "80%" height = "150%" style = "position:fixed;top:-26%;left:20%;" src = "files/image/face.gif"></img>
+<img id = "face" onclick = "hide()" width = "80%" height = "150%" style = "position:fixed;top:-26%;left:20%;" src = "files/image/face.gif"></img>
 
 <div class = "app"onclick = "wificlicked = true; wifi()" style = "top:0%;left:0%;" id = "wifi">
 <img id = "wifipic" src = "files/image/wifi.gif" style = "overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);" width = "50%" height = "50%"></img>
@@ -407,6 +407,7 @@ function openFullscreen() {
   elem.msRequestFullscreen();
   }
 }
+var face = document.getElementById("face");
 var wifiapp = document.getElementById("wifi");
 var wifipic = document.getElementById("wifipic");
 var wifiword = document.getElementById("wifiword");
@@ -707,6 +708,10 @@ function handleWifiMove(evt) {
 
 var unhide = function(){
 
+face.style.transition = "all 1.5s";
+face.style.transitionDelay = "1s";
+face.style.left = "20%";
+
 wifiapp.style.transition = "all 1s";
 locationapp.style.transition = "all 1s";
 timeapp.style.transition = "all 1s";
@@ -720,6 +725,10 @@ systemapp.style.top = "45%";
 };
 
 var hide = function(){
+
+face.style.transition = "all 1.5s";
+face.style.transitionDelay = "1s";
+face.style.left = "10%";
 
 wifiapp.style.transition = "all 1s";
 locationapp.style.transition = "all 1s";
