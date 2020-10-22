@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" href="files/image/apple-touch-icon.png" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
-<title>v2.2.0</title>
+<title>v2.2.2</title>
 
 <style>
 body, html {
@@ -93,15 +93,15 @@ z-index:2;
 
 <div class = "app"onclick = "timeclicked = true; time()" style = "opacity:98%;top:67.5%;left:0%;" id = "time">
 <img id = "timepic" src = "files/image/time.gif"style = "opacity:60%;overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);"width = "50%" height = "50%"></img>
-<iframe id = "clock" scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:150px;height:150px;border:none;opacity:0%;overflow:hidden;position:fixed;top:7.5%;left:-100%;"src="https://www.clocklink.com/html5embed.php?clock=041&timezone=GMT-0700&color=white&size=150&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=white"></iframe>
-<p id = "timeword" style = "font-size:15px;opacity:0%;position:fixed;top:-100%;left:47.5%;color:white;">Wednesday, December 29th, 2020</p>
+<iframe width = "50%" height = "50%"id = "clock" scrolling="no" frameborder="no" clocktype="html5" style="filter:grayscale(100%);overflow:hidden;border:0;margin:0;padding:0;width:200px;height:200px;border:none;opacity:0%;overflow:hidden;position:fixed;top:7.5%;left:-100%;"src="https://www.clocklink.com/html5embed.php?clock=041&timezone=GMT-0700&color=white&size=150&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=white"></iframe>
+<p id = "timeword" style = "font-size:15px;opacity:0%;position:fixed;top:-100%;left:52%;color:white;">Loading time and date info...</p>
 <iframe width = "98%" height = "20%" id = "stock" scrolling = "no" style = "border-radius:10px;filter: grayscale(100%) invert(100%);border:none;position:fixed;left:-100%;top:75%;opacity:100%;" src = "files/frame/stock.html"></iframe>
 <iframe id = "rome" style = "opacity:0%;position:fixed;top:17.5%;left:-140%;"src="https://freesecure.timeanddate.com/clock/i7ihf27r/n215/szw60/szh60/hbw0/hfc000/cf100/hgr0/hccfff/hcw10/fav0/fiv0/mqc1a1a1a/mql15/mqw1/mqd100/mhc1a1a1a/mhl15/mhw2/mhd100/mmc1a1a1a/mmw2/hhcbbb/hmcddd/hsceee" frameborder="0" width="25%" height="25%"></iframe>
 <iframe id = "london" style = "opacity:0%;position:fixed;top:17.5%;left:-155%;"src= "https://freesecure.timeanddate.com/clock/i7ihf27r/n136/szw60/szh60/hbw0/hfc000/cf100/hgr0/hccfff/hcw10/fav0/fiv0/mqc1a1a1a/mql15/mqw1/mqd100/mhc1a1a1a/mhl15/mhw2/mhd100/mmc1a1a1a/mmw2/hhcbbb/hmcddd/hsceee"frameborder="0" width="25%" height="25%"></iframe>
 <iframe id = "paris" style = "opacity:0%;position:fixed;top:17.5%;left:-170%;"src="https://freesecure.timeanddate.com/clock/i7ihf27r/n195/szw60/szh60/hbw0/hfc000/cf100/hgr0/hccfff/hcw10/fav0/fiv0/mqc1a1a1a/mql15/mqw1/mqd100/mhc1a1a1a/mhl15/mhw2/mhd100/mmc1a1a1a/mmw2/hhcbbb/hmcddd/hsceee" frameborder="0" width="25%" height="25%"></iframe>
 <iframe id = "tokyo" style = "opacity:0%;position:fixed;top:17.5%;left:-185%;"src="https://freesecure.timeanddate.com/clock/i7ihf27r/n248/szw60/szh60/hbw0/hfc000/cf100/hgr0/hccfff/hcw10/fav0/fiv0/mqc1a1a1a/mql15/mqw1/mqd100/mhc1a1a1a/mhl15/mhw2/mhd100/mmc1a1a1a/mmw2/hhcbbb/hmcddd/hsceee" frameborder="0" width="25%" height="25%"></iframe>
 <img id = "timeword2"src = "files/image/good.gif" style = "opacity:0%;position:fixed;top:-100%;left:3.5%" width = "5%" height = "8%"></img>
-<img id = "timevis1" style = "padding:10px;padding-right:100px;background-color:black;border-radius:10px;position:fixed;top:40%;left:-100%;opacity:0%;" width = "62.5%" height = "7.5%" src = "files/image/vis1.gif"></img>
+<img id = "timevis1" style = "padding:10px;padding-right:100px;background-color:black;border-radius:10px;position:fixed;top:42.5%;left:-100%;opacity:0%;" width = "50%" height = "6%" src = "files/image/vis1.gif"></img>
 </div>
 
 <div id = "app_detect" style = "z-index:1;padding:500px 100px 100px 100px;background-color:Transparent;position:fixed;top:0%;left:0%;" width = "25%" height = "200%">
@@ -109,8 +109,6 @@ z-index:2;
 
 
 <script>
-
-
 
 const perfData = window.performance.timing; 
 const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
@@ -128,6 +126,19 @@ document.getElementById("vis1").style.filter = "hue-rotate(130deg)";
 }else {
 
 }
+
+if (connectTime>0&&connectTime<5){
+document.getElementById("timevis1").style.filter = "hue-rotate(310deg)";
+} else if (connectTime>5&&connectTime<10) {
+document.getElementById("timevis1").style.filter = "hue-rotate(250deg)";
+} else if (connectTime>15&&connectTime<25) {
+document.getElementById("timevis1").style.filter = "hue-rotate(190deg)";
+} else if (connectTime>25) {
+document.getElementById("timevis1").style.filter = "hue-rotate(130deg)";
+}else {
+
+}
+
 var firstVar = (connectTime/1000);
 if (firstVar<0){
 document.getElementById("wifiword4").innerHTML = "0.000 s";
@@ -862,23 +873,23 @@ timeword2.style.top = "4.5%";
 timeword2.style.opacity = "100%";
 
 paris.style.transition = "all 0.3s";
-paris.style.left = "70%";
+paris.style.left = "72%";
 paris.style.opacity = "100%";
 
 rome.style.transition = "all 0.3s";
-rome.style.left = "40%";
+rome.style.left = "43%";
 rome.style.opacity = "100%";
 
 london.style.transition = "all 0.3s";
-london.style.left = "55%";
+london.style.left = "57.5%";
 london.style.opacity = "100%";
 
 tokyo.style.transition = "all 0.3s";
-tokyo.style.left = "85%";
+tokyo.style.left = "86.5%";
 tokyo.style.opacity = "100%";
 
 timevis1.style.transition = "0.05s";
-timevis1.style.left = "35%";
+timevis1.style.left = "45%";
 timevis1.style.opacity = "100%";
 
 
@@ -1037,6 +1048,23 @@ openFullscreen();
 window.onerror = function(){
 document.getElementById("locationword4").style.display = "inline";
 };
+
+  window.onload = function() {
+  clock();  
+    function clock() {
+    var now = new Date();
+    var choose1 = now.getMonth();
+	var choose2 = now.getDate();
+	var choose3 = now.getFullYear();
+	var day = now.getDay();
+	var month = ["January","February","March","April","May","June","July", "August", "September", "October", "November" , "December"];
+	var week = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  document.getElementById('timeword').innerHTML =  week[day]+ " "+ month[choose1] +" "+ choose2+ ", "+choose3;
+    setTimeout(clock, 1000);
+    
+}
+}
+
 
 
 
