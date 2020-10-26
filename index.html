@@ -49,6 +49,10 @@ td {
 color:white;
 }
 
+#vis1, #vis2, #vis3, #sysvis1, #sysvis2, #sysvis3, #timevis1, #timevis2 {
+filter:grayscale(40%);
+}
+
 </style>
 
 </head>
@@ -65,7 +69,7 @@ color:white;
 <iframe id = "rtt" scrolling = "no"style = "opacity:0%;border:none;position:fixed;top:56%;left:1%;" width = "20%" height = "20%"src = "files/frame/rtt.html"></iframe>
 <img id = "vis1" style = "opacity:0%;position:fixed;top:20%;left:4%;opacity:0%;" width = "40%" height = "7.5%" src = "files/image/vis1.gif"></img>
 <img id = "vis2" style = "opacity:0%;position:fixed;top:36.5%;left:-100%" width = "40%" height = "7.5%" src = "files/image/vis2.gif"></img>
-<img id = "vis3" style = "opacity:0%;position:fixed;top:54%;left:-100%" width = "40%" height = "7.5%" src = "files/image/vis3.gif"></img>
+<img id = "vis3" style = "opacity:0%;position:fixed;top:53.5%;left:-100%" width = "40%" height = "7.5%" src = "files/image/vis3.gif"></img>
 <iframe id = "ip" scrolling = "no"style = "padding:10px;background-color:Transparent;opacity:0%;border:none;position:absolute;top:-5.5%;left:58%;" width = "100%" height = "20%"src = "files/frame/ip.html"></iframe>
 <iframe id = "ping" scrolling = "no"style = "border-radius:10px;opacity:0%;border:none;position:absolute;top:150%;left:2%;" width = "22%" height = "23%"src = "files/frame/ping.html"></iframe>
 <img id = "wifiword3"src = "files/image/good.gif" style = "opacity:0%;position:fixed;top:5%;left:3.5%" width = "5%" height = "8%"></img>
@@ -150,14 +154,14 @@ if (d.getMinutes() != newd.getMinutes()) {
 
 spd = ((_speedconstant * amount) / di);
 
-if (spd>5){
+if (spd>10){
 document.getElementById("cpu").style.filter = "grayscale(60%)";
 document.getElementById("cpu2").style.filter = "grayscale(60%)";
 document.getElementById("wifiword6").style.transition = "all 0.5s";
 document.getElementById("wifiword6").style.opacity = "0%";
-} else if (spd<1){
-document.getElementById("cpu").style.filter = "grayscale(60%) invert(100%)";
-document.getElementById("cpu2").style.filter = "grayscale(60%) invert(100%)";
+} else if (spd<3){
+document.getElementById("cpu").style.filter = "grayscale(60%) hue-rotate(180deg)";
+document.getElementById("cpu2").style.filter = "grayscale(60%) hue-rotate(180deg)";
 document.getElementById("wifiword6").style.transition = "all 0.5s";
 document.getElementById("wifiword6").style.opacity = "100%";
 } else {
