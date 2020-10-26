@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" href="files/image/apple-touch-icon.png" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
-<title>v3.2.0</title>
+<title>v3.3.0</title>
 
 <style>
 body, html {
@@ -38,7 +38,7 @@ border-radius: 25px;
 
 #face {
 overflow:hidden;
-filter:grayscale(60%);
+filter:grayscale(85%);
 }
 .app {
 overflow:hidden;
@@ -60,18 +60,22 @@ color:white;
 <div class = "app"onclick = "wificlicked = true; wifi()" style = "top:0%;left:0%;" id = "wifi">
 <img id = "wifipic" src = "files/image/wifi.gif" style = "overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);" width = "50%" height = "50%"></img>
 <p id = "wifiword4"style = "opacity:0%;background-color:black;border-radius:10px;padding:10px;padding-left:320px;position:fixed;top:10%;left:-10%;">loading...</p>
-<p id = "wifiword"style = "opacity:0%;background-color:black;border-radius:10px;padding:10px;padding-left:320px;position:fixed;top:30%;left:-10%;">loading...</p>
-<p id = "wifiword2"style = "opacity:0%;background-color:black;border-radius:10px;padding:10px;padding-left:320px;position:fixed;top:50%;left:-10%;">loading...</p>
+<p id = "wifiword"style = "opacity:0%;background-color:black;border-radius:10px;padding:10px;padding-left:320px;position:fixed;top:27%;left:-10%;">loading...</p>
+<p id = "wifiword2"style = "opacity:0%;background-color:black;border-radius:10px;padding:10px;padding-left:320px;position:fixed;top:44%;left:-10%;">loading...</p>
 <iframe id = "rtt" scrolling = "no"style = "opacity:0%;border:none;position:fixed;top:56%;left:1%;" width = "20%" height = "20%"src = "files/frame/rtt.html"></iframe>
 <img id = "vis1" style = "opacity:0%;position:fixed;top:20%;left:4%;opacity:0%;" width = "40%" height = "7.5%" src = "files/image/vis1.gif"></img>
-<img id = "vis2" style = "opacity:0%;position:fixed;top:37.5%;left:-100%" width = "40%" height = "10%" src = "files/image/vis2.gif"></img>
-<img id = "vis3" style = "opacity:0%;position:fixed;top:61%;left:-100%" width = "40%" height = "7.5%" src = "files/image/vis3.gif"></img>
-<iframe id = "ip" scrolling = "no"style = "opacity:0%;border:none;position:absolute;top:-20%;left:60%;" width = "100%" height = "20%"src = "files/frame/ip.html"></iframe>
-<iframe id = "ping" scrolling = "no"style = "border-radius:10px;opacity:0%;border:none;position:absolute;top:150%;left:2.5%;" width = "22%" height = "40%"src = "files/frame/ping.html"></iframe>
+<img id = "vis2" style = "opacity:0%;position:fixed;top:36.5%;left:-100%" width = "40%" height = "7.5%" src = "files/image/vis2.gif"></img>
+<img id = "vis3" style = "opacity:0%;position:fixed;top:54%;left:-100%" width = "40%" height = "7.5%" src = "files/image/vis3.gif"></img>
+<iframe id = "ip" scrolling = "no"style = "padding:10px;background-color:Transparent;opacity:0%;border:none;position:absolute;top:-5.5%;left:58%;" width = "100%" height = "20%"src = "files/frame/ip.html"></iframe>
+<iframe id = "ping" scrolling = "no"style = "border-radius:10px;opacity:0%;border:none;position:absolute;top:150%;left:2%;" width = "22%" height = "23%"src = "files/frame/ping.html"></iframe>
 <img id = "wifiword3"src = "files/image/good.gif" style = "opacity:0%;position:fixed;top:5%;left:3.5%" width = "5%" height = "8%"></img>
-<iframe id = "cpu" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:30%;left:57%;" width = "40%" height = "35%"src = "files/frame/cputest.html"></iframe>
-<iframe id = "cpu2" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:30%;left:64.5%;" width = "40%" height = "35%"src = "files/frame/cputest2.html"></iframe>
-<iframe id = "resource" scrolling = "yes"style = "overflow-y:scroll;overflow-x:hidden;border-radius:10px;opacity:0%;border:none;position:absolute;top:60%;left:27%;" width = "30%" height = "20%"src = "files/frame/resource.html"></iframe>
+<img id = "wifiword5"src = "files/image/ping.gif" style = "filter:grayscale(100%) invert(10%);border-radius:0px 0px 5px 0px;opacity:0%;position:fixed;top:110%;left:23.75%" width = "5%" height = "8%"></img>
+<img id = "wifiword6"src = "files/image/cpu.gif" style = "filter:grayscale(60%);border-radius:10px;opacity:0%;position:fixed;top:-100%;left:16.5%" width = "5%" height = "8%"></img>
+<img id = "wifiword7"src = "files/image/router.gif" style = "filter:grayscale(100%) invert(100%);opacity:0%;position:fixed;top:-100%;left:10%" width = "5%" height = "8%"></img>
+
+<iframe id = "cpu" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:27%;left:57%;" width = "40%" height = "35%"src = "files/frame/cputest.html"></iframe>
+<iframe id = "cpu2" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:27%;left:64.5%;" width = "40%" height = "35%"src = "files/frame/cputest2.html"></iframe>
+<iframe id = "resource" scrolling = "yes"style = "overflow-y:scroll;overflow-x:hidden;border-radius:10px;opacity:0%;border:none;position:absolute;top:56%;left:26%;" width = "34%" height = "23%"src = "files/frame/resource.html"></iframe>
 </div>
 
 <div class = "app"onclick = "locationclicked = true; locationX()" style = "opacity:90%;top:22.5%;left:0%;" id = "location">
@@ -145,9 +149,24 @@ if (d.getMinutes() != newd.getMinutes()) {
 }
 
 spd = ((_speedconstant * amount) / di);
-if (spd<0){
-spd = spd*-1;
+
+if (spd>5){
+document.getElementById("cpu").style.filter = "grayscale(60%)";
+document.getElementById("cpu2").style.filter = "grayscale(60%)";
+document.getElementById("wifiword6").style.transition = "all 0.5s";
+document.getElementById("wifiword6").style.opacity = "0%";
+} else if (spd<1){
+document.getElementById("cpu").style.filter = "grayscale(60%) invert(100%)";
+document.getElementById("cpu2").style.filter = "grayscale(60%) invert(100%)";
+document.getElementById("wifiword6").style.transition = "all 0.5s";
+document.getElementById("wifiword6").style.opacity = "100%";
+} else {
+document.getElementById("cpu").style.filter = "grayscale(100%)";
+document.getElementById("cpu2").style.filter = "grayscale(100%)";
+document.getElementById("wifiword6").style.transition = "all 0.5s";
+document.getElementById("wifiword6").style.opacity = "0%";
 }
+
 document.getElementById("systemword5").innerHTML = (((Math.round(spd * 1000) / 1000)))+" ghz";
  var use = (((Math.round(spd * 1000) / 1000)*50));
  document.getElementById("sysvis2").style.transition = "filter 10s";
@@ -515,6 +534,9 @@ var wifiword = document.getElementById("wifiword");
 var wifiword2 = document.getElementById("wifiword2");
 var wifiword3 = document.getElementById("wifiword3");
 var wifiword4 = document.getElementById("wifiword4");
+var wifiword5 = document.getElementById("wifiword5");
+var wifiword6 = document.getElementById("wifiword6");
+var wifiword7 = document.getElementById("wifiword7");
 var timevis1 = document.getElementById("timevis1");
 var timevis2 = document.getElementById("timevis2");
 var timeword = document.getElementById("timeword");
@@ -1161,7 +1183,7 @@ cpu2.style.transitionDelay = "1s";
 cpu.style.opacity = "100%";
 cpu2.style.opacity = "100%";
 ping.style.transition = "all 0.3s";
-ping.style.top = "60%";
+ping.style.top = "56%";
 ping.style.opacity = "100%";
 resource.style.transition = "all 0.3s";
 resource.style.opacity = "100%";
@@ -1175,6 +1197,9 @@ wifiword2.style.transition = "all 1.5s";
 wifiword3.style.transition = "all 1.5s";
 wifiword4.style.transition = "all 1.5s";
 wifiword3.style.transition = "all 1.0s, top 0.0s";
+wifiword5.style.transition = "all 1.0s, top 0.0s";
+wifiword6.style.transition = "all 1.0s, top 0.0s";
+wifiword7.style.transition = "all 1.0s, top 0.0s";
 vis2.style.transition = "all 1.5s, left 0.1s";
 vis3.style.transition = "all 1.5s, left 0.1s";
 vis1.style.opacity = "100%";
@@ -1194,11 +1219,33 @@ wifiword2.style.opacity = "100%";
 wifiword4.style.opacity = "100%";
 wifiword3.style.top = "5%";
 wifiword3.style.opacity = "100%";
+
+wifiword5.style.top = "86.5%";
+wifiword5.style.opacity = "30%";
+
+wifiword6.style.top = "5%";
+wifiword6.style.opacity = "100%";
+
+wifiword7.style.top = "5%";
+wifiword7.style.opacity = "100%";
+
+wifiword3.style.top = "5%";
+wifiword3.style.opacity = "100%";
 ipframe.style.transition = "opacity 0.3s";
-ipframe.style.top = "-3%";
+ipframe.style.top = "-5.5%";
 ipframe.style.opacity = "100%";
 wificlicked = false;
 } else {
+
+wifiword5.style.top = "-100%";
+wifiword5.style.opacity = "0%";
+
+wifiword6.style.top = "-100%";
+wifiword6.style.opacity = "0%";
+
+wifiword7.style.top = "110%";
+wifiword7.style.opacity = "0%";
+
 resource.style.transition = "all 0.3s";
 resource.style.opacity = "0%";
 cpu.style.transition = "all 0.2s";
