@@ -38,11 +38,11 @@ border-radius: 25px;
 
 #face {
 overflow:hidden;
-filter:grayscale(85%);
 }
 .app {
 overflow:hidden;
 z-index:2;
+opacity:50%;
 }
 
 td {
@@ -58,7 +58,7 @@ filter:grayscale(40%);
 </head>
 
 <body>
-<img id = "face" onclick = "hide()" width = "80%" height = "150%" style = "position:fixed;top:-26%;left:20%;" src = "files/image/face.gif"></img>
+<img id = "face" onclick = "hide()" width = "57%" height = "90%" style = "position:fixed;top:10%;left:40%" src = "files/image/face.gif"></img>
 <img src = "files/image/vis1.gif" id = "vis4" width = "20%" height = "5%" style = "background-color:black;padding:5px;padding-left:100px;border-radius:10px;filter:grayscale(100%);position:fixed;top:85%;left:-200%;"></img>
 
 <div class = "app"onclick = "wificlicked = true; wifi()" style = "top:0%;left:0%;" id = "wifi">
@@ -77,8 +77,8 @@ filter:grayscale(40%);
 <img id = "wifiword6"src = "files/image/cpu.gif" style = "filter:grayscale(60%);border-radius:10px;opacity:0%;position:fixed;top:-100%;left:16.5%" width = "5%" height = "8%"></img>
 <img id = "wifiword7"src = "files/image/router.gif" style = "filter:grayscale(100%) invert(100%);opacity:0%;position:fixed;top:-100%;left:10%" width = "5%" height = "8%"></img>
 
-<iframe id = "cpu" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:27%;left:57%;" width = "40%" height = "35%"src = "files/frame/cputest.html"></iframe>
-<iframe id = "cpu2" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:27%;left:64.5%;" width = "40%" height = "35%"src = "files/frame/cputest2.html"></iframe>
+<iframe id = "cpu" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:30%;left:57%;" width = "37%" height = "35%"src = "files/frame/cputest.html"></iframe>
+<iframe id = "cpu2" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:0%;border:none;position:absolute;top:30%;left:64.5%;" width = "37%" height = "35%"src = "files/frame/cputest2.html"></iframe>
 <iframe id = "resource" scrolling = "yes"style = "overflow-y:scroll;overflow-x:hidden;border-radius:10px;opacity:0%;border:none;position:absolute;top:56%;left:26%;" width = "34%" height = "23%"src = "files/frame/resource.html"></iframe>
 </div>
 
