@@ -84,7 +84,7 @@ function handleFaceStart(evt) {
     xDownFace = firstTouch.clientX;                                      
     yDownFace = firstTouch.clientY;                                      
 };                                           
-                                              
+
 
 function handleFaceMove(evt) {
     if ( ! xDownFace || ! yDownFace ) {
@@ -107,10 +107,10 @@ function handleFaceMove(evt) {
     } else {
         if ( yDiff > 0 ) {
             
-			unFace();
+			unhide();
 			
         } else { 
-            Face();
+            hide);
         }                                                                 
     }
     /* reset values */
