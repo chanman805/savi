@@ -1,7 +1,7 @@
 var unhide = function(){
 
 face.style= "transition:all 0.5s;position:fixed;top:10%;left:40%;";
-
+alert(face.style.left);
 vis4.style.transition = "all 2.5s";
 vis4.style.left = "-200%";
 
