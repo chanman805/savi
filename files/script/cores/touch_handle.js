@@ -110,7 +110,7 @@ function handleFaceMove(evt) {
 			unhide();
 			
         } else { 
-            hide);
+            hide();
         }                                                                 
     }
     /* reset values */
