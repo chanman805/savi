@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" href="files/image/apple-touch-icon.png" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
-<title>v4.0.1</title>
+<title>v3.3.1</title>
 
 <style>
 body, html {
@@ -21,7 +21,7 @@ overflow-x:hidden;
 overflow-y:hidden;
 }
 
-#wifi, #location, #system, #time, #weatherapp{
+#wifi, #location, #system, #time{
 background-color:Transparent;
 opacity:95%;
 color:white;
@@ -58,7 +58,7 @@ filter:grayscale(40%);
 </head>
 
 <body>
-<img id = "face" onclick = "alltheapps()" width = "57%" height = "90%" style = "position:fixed;top:10%;left:40%" src = "files/image/face.gif"></img>
+<img id = "face" onclick = "hide()" width = "57%" height = "90%" style = "position:fixed;top:10%;left:40%" src = "files/image/face.gif"></img>
 
 <div class = "app"onclick = "wificlicked = true; wifi()" style = "top:0%;left:0%;" id = "wifi">
 <img id = "wifipic" src = "files/image/wifi.gif" style = "overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);" width = "50%" height = "50%"></img>
@@ -130,19 +130,9 @@ filter:grayscale(40%);
 <img id = "timevis2" style = "padding: 10px;padding-right:100px;opacity:0%;background-color:black;position:fixed;top:57.5%;left:-100%;border-radius:10px;" width = "50%" height = "6%" src = "files/image/vis2.gif"></img>
 </div>
 
-<div class = "app"onclick = "weatherclicked = true; weather()" style = "opacity:0%;top:0%;left:0%;" id = "weatherapp">
-<img id = "weatherpic" src = "files/image/weather.gif"style = "opacity:60%;overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);"width = "49%" height = "49%"></img>
-<iframe width = "50%" height = "50%"id = "clock" scrolling="no" frameborder="no" clocktype="html5" style="filter:grayscale(100%);overflow:hidden;border:0;margin:0;padding:0;width:200px;height:200px;border:none;opacity:0%;overflow:hidden;position:fixed;top:7.5%;left:-100%;"src="https://www.clocklink.com/html5embed.php?clock=041&timezone=GMT-0700&color=white&size=150&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=white"></iframe>
-<p id = "weatherword" style = "width:100%;margin-left: 48%;margin-right:2%;font-size:15px;opacity:0%;position:fixed;top:-100%;left:auto;color:white;float:right;">Loading time and date info...</p>
-<img id = "weatherword2"src = "files/image/good.gif" style = "opacity:0%;position:fixed;top:-100%;left:3.5%" width = "5%" height = "8%"></img>
-<img id = "weathervis1" style = "padding:10px;padding-right:100px;background-color:black;border-radius:10px;position:fixed;top:42.5%;left:-100%;opacity:0%;" width = "50%" height = "6%" src = "files/image/vis1.gif"></img>
-<img id = "weathervis2" style = "padding: 10px;padding-right:100px;opacity:0%;background-color:black;position:fixed;top:57.5%;left:-100%;border-radius:10px;" width = "50%" height = "6%" src = "files/image/vis2.gif"></img>
-</div>
-
-
-<img onclick = "normal();" id  = "back"style = "display:none;z-index:999999999;position:absolute;opacity:50%;top:-10%;" width = "7.5%" height = "120%" src = "files/image/arrow.png"></img>
 <div id = "app_detect" style = "z-index:1;padding:500px 100px 100px 100px;background-color:Transparent;position:fixed;top:0%;left:0%;" width = "25%" height = "200%">
 </div>
+
 
 <script>
 
@@ -314,7 +304,6 @@ var face = document.getElementById("face");
 var systemcpu = document.getElementById("cpuSYS");
 var systemcpu2 = document.getElementById("cpu2SYS");
 var icon = document.getElementById("icon");
-var backbutton = document.getElementById("back");
 var systemword1 = document.getElementById("systemword1");
 var systemword2 = document.getElementById("systemword2");
 var systemword3 = document.getElementById("systemword3");
@@ -370,13 +359,12 @@ var locationword = document.getElementById("locationword");
 var locationword2 = document.getElementById("locationword2");
 var locationword3 = document.getElementById("locationword3");
 var locationword4 = document.getElementById("locationword4");
-var weatherapp = document.getElementById("weatherapp");
+
 
 var wificlicked = false;
 var locationclicked = false;
 var systemclicked = false;
 var timeclicked = false;
-
 
 
 </script>
@@ -387,7 +375,6 @@ var timeclicked = false;
 <script rel = "preload"src = "files/script/cores/wifi.js"></script>
 <script rel = "preload"src = "files/script/cores/system.js"></script>
 <script rel = "preload"src = "files/script/cores/location.js"></script>
-<script rel = "preload"src = "files/script/cores/app_library.js"></script>
 <script>
 window.onerror = function(){
 document.getElementById("locationword4").style.display = "inline";
