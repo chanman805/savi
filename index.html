@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" href="files/image/apple-touch-icon.png" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
-<title>v4.2</title>
+<title>v4.3</title>
 
 <style>
 body, html {
@@ -373,18 +373,37 @@ var timeclicked = false;
 
 
 </script>
-<script rel = "preload"src = "files/script/cores/speed_detect.js"></script>
-<script rel = "preload"src = "files/script/cores/touch_handle.js"></script>
-<script rel = "preload"src = "files/script/cores/hide.js"></script>
-<script rel = "preload"src = "files/script/cores/time.js"></script>
-<script rel = "preload"src = "files/script/cores/wifi.js"></script>
-<script rel = "preload"src = "files/script/cores/system.js"></script>
-<script rel = "preload"src = "files/script/cores/location.js"></script>
+<script id = "c0"defer = "defer" src = "files/script/cores/speed_detect.js"></script>
+<script id = "c1"defer = "defer"src = "files/script/cores/touch_handle.js"></script>
+<script id = "c2"defer = "defer"src = "files/script/cores/hide.js"></script>
+<script id = "c3"defer = "defer"src = "files/script/cores/time.js"></script>
+<script id = "c4"defer = "defer"src = "files/script/cores/wifi.js"></script>
+<script id = "c5"defer = "defer"src = "files/script/cores/system.js"></script>
+<script id = "c6"defer = "defer"src = "files/script/cores/location.js"></script>
+<script id = "c7"defer = "defer"src = "files/script/cores/health.js"></script>
+<script id = "c8"defer = "defer"src = "files/script/cores/speak.js"></script>
 <script>
+
+
+var core_counter =0;
+var error_counter = 0;
+var loadhandler = function(){
+core_counter = core_counter+1;
+};
+document.getElementById("c0").addEventListener('load', loadhandler);
+document.getElementById("c1").addEventListener('load', loadhandler);
+document.getElementById("c2").addEventListener('load', loadhandler);
+document.getElementById("c3").addEventListener('load', loadhandler);
+document.getElementById("c4").addEventListener('load', loadhandler);
+document.getElementById("c5").addEventListener('load', loadhandler);
+document.getElementById("c6").addEventListener('load', loadhandler);
+document.getElementById("c7").addEventListener('load', loadhandler);
+document.getElementById("c8").addEventListener('load', loadhandler);
+
 window.onerror = function(){
 document.getElementById("locationword4").style.display = "inline";
+error_counter=error_counter+1;
 };
-
   window.onload = function() {
   clock();  
     function clock() {
