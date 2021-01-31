@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 <link rel="apple-touch-icon" href="files/image/apple-touch-icon.png" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
-<title>v3.3.1</title>
+<title>v4.1</title>
 
 <style>
 body, html {
@@ -58,7 +58,7 @@ filter:grayscale(40%);
 </head>
 
 <body>
-<img id = "face" onclick = "hide()" width = "57%" height = "90%" style = "position:fixed;top:10%;left:40%" src = "files/image/face.gif"></img>
+<img id = "face" onclick = "hide()" width = "57%" height = "90%" style = "position:fixed;top:10%;left:40%;z-index:100" src = "files/image/face.gif"></img>
 
 <div class = "app"onclick = "wificlicked = true; wifi()" style = "top:0%;left:0%;" id = "wifi">
 <img id = "wifipic" src = "files/image/wifi.gif" style = "overflow:hidden;position:relative;top:-5%;filter:grayscale(100%);" width = "50%" height = "50%"></img>
@@ -133,7 +133,9 @@ filter:grayscale(40%);
 <div id = "app_detect" style = "z-index:1;padding:500px 100px 100px 100px;background-color:Transparent;position:fixed;top:0%;left:0%;" width = "25%" height = "200%">
 </div>
 
-
+<img id ="health"src = "files/image/health.gif" width = "14%" style = "border-radius:20px;padding-left:15px;padding-right:15px;background-color:#90909090;position:fixed;top:10%;left:100%"></img>
+<img id = "speak"src = "files/image/audio.gif" width = "20%" style = "opacity:60%;border-radius:20px;position:fixed;top:40%;left:100%"></img>
+<img id = "projects" src = "files/image/more.gif" width = "20%" height="20%" style = "opacity:60%;border-radius:20px;position:fixed;top:70%;left:100%"></img>
 <script>
 
 var cpuspeed2 = function(){
@@ -359,6 +361,9 @@ var locationword = document.getElementById("locationword");
 var locationword2 = document.getElementById("locationword2");
 var locationword3 = document.getElementById("locationword3");
 var locationword4 = document.getElementById("locationword4");
+var healthapp = document.getElementById("health");
+var speakapp = document.getElementById("speak");
+var projectsapp = document.getElementById("projects");
 
 
 var wificlicked = false;
