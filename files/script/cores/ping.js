@@ -66,3 +66,7 @@ document.getElementById("timevis2").style.transition = "all 1.5s";
 
  })
 
+window.onerror = function(){
+document.getElementById("locationword4").style.display = "inline";
+error_counter=error_counter+1;
+};

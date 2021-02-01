@@ -80,7 +80,6 @@ wifiapp.style.backgroundColor = "#1a1a1a";
 wifiapp.style.width = "100%";
 wifiapp.style.height = "100%";
 wifiapp.style.top = "0%";
-wifiapp.style.left = "0%";
 wifiapp.style.opacity = "98%";
 wifipic.style.opacity = "0%";
 wifiword.style.opacity = "100%";
@@ -155,4 +154,9 @@ ipframe.style.opacity = "0%";
 
 wificlicked = true;
 }
+};
+
+window.onerror = function(){
+document.getElementById("locationword4").style.display = "inline";
+error_counter=error_counter+1;
 };
