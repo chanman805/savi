@@ -1,0 +1,111 @@
+
+<!doctype html>
+<html>
+<head>
+	<title>𝓢𝔸ν𝐢 - External Cam</title>
+	 <link REL="SHORTCUT ICON" HREF="ICON.ico">
+
+	<meta charset='utf-8'>
+	<script>
+	(function() {
+ var windowclosed = false;
+  var width = 1000;   
+  var height = 1000;     
+  var streaming = false;
+  var video = null;
+  var canvas = null;
+  
+
+
+  function startup() {
+    video = document.getElementById('video');
+    canvas = document.getElementById('canvas');
+  document.getElementById("failed").style = "display:none;position:absolute;left:11.5%;top:5%;width:80%;height:90%";
+    navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    .then(function(stream) {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch(function(err) {
+	document.getElementById("failed").style = "display:inline;position:absolute;left:11.5%;top:5%;width:80%;height:90%";
+	 
+	  window.onclick = function(){
+	  
+	  window.location.reload(true);
+	  
+	  };
+
+    });
+
+    video.addEventListener('canplay', function(ev){
+      if (!streaming) {
+        height = video.videoHeight / (video.videoWidth/width);
+      
+        if (isNaN(height)) {
+          height = width / (4/3);
+        }
+
+        streaming = true;
+      }
+    }, false);
+
+
+
+   
+
+  }
+
+  
+  
+  window.addEventListener('load', startup, false);
+})();
+
+window.onerror = function(){
+document.getElementById("failed").style = "display:inline;position:absolute;left:11.5%;top:5%;width:80%;height:90%";
+	
+};
+
+	</script>
+	<style>
+	body,html {
+	background-color:black;
+	overflow:hidden;
+	}
+	#video {
+	position:absolute;
+left:-100%;
+top:-5px;
+}
+
+
+#canvas {
+  display:none;
+}
+
+.camera {
+
+  display:block;
+}
+
+
+
+.contentarea {
+  font-size: 16px;
+  font-family: "consolas", "consolas", sans-serif;
+}
+	</style>
+</head>
+<body>
+<center>
+<img id = "failed" src = "frame_images/nocamera.gif"></img>
+</center>
+<div class="contentarea">
+  <div class="camera">
+    <video id="video"></video>
+  </div>
+  <canvas id="canvas">
+  </canvas>
+ 
+</div>
+</body>
+</html>
