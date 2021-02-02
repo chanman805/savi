@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="manifest" href="files/scripts/manifests/manifest.json" />
-<title>v6.0.1</title>
+<title>v6.0.2</title>
 
 <style>
 body, html {
@@ -134,7 +134,7 @@ opacity:100%;
 <p id = "systemword4"style = "padding:10px;border-radius:10px;background-color:black;font-size:15px;opacity:0%;position:fixed;top:23%;left:-100%;color:white;">loading...</p>
 <p id = "systemword5"style = "width:50%;padding:10px;border-radius:10px;padding-right:0px;margin-left:15px;background-color:black;font-size:15px;opacity:0%;position:fixed;top:79%;left:-100%;color:white;">loading...</p>
 <p id = "systemword6"style = "width:30%;padding:10px;border-radius:10px;background-color:black;font-size:10px;opacity:100%;position:fixed;top:67.5%;left:-200%;color:white;">loading...</p>
-<video id="video"  autoplay playsinline style = "display:none;opacity:100%"></video>
+<video id="video"  autoplay playsinline onplaying="this.controls=false" style = "display:none;opacity:100%"></video>
 <button style = "display:none"id="snap">Snap Photo</button>
 <canvas id="canvas" width="640" style = "border-radius:20px;opacity:100%;" height="480"></canvas>
 </div>
@@ -427,6 +427,10 @@ window.onerror = function(){
 document.getElementById("locationword4").style.display = "inline";
 error_counter=error_counter+1;
 };
+var allvideo=document.getElementById('video');
+function removeControls(allvideo){
+  allvideo.removeAttribute('controls');
+}
   window.onload = function() {
   clock();  
     function clock() {
@@ -441,7 +445,8 @@ error_counter=error_counter+1;
     setTimeout(clock, 1000);
     
 }
-}
+removeControls(allvideo);
+};
 </script>
 
 
