@@ -5,12 +5,13 @@
 -->
 <style>
 #video {
-width:500;
-height:1000;
+width:100%;
+height:100%;
+position:absolute;
 top:0px;
 }
 </style>
-<title>cam v1.1</title>
+<title>cam v1.2</title>
 <video id="video"  autoplay></video>
 <button style = "display:none"id="snap">Snap Photo</button>
 <canvas id="canvas" width="640" height="480"></canvas>
@@ -55,6 +56,6 @@ var video = document.getElementById('video');
 
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
-	context.drawImage(video, 0, 0, 640, 480);
+	context.drawImage(video, 0, 0, 0, 0);
 });
 </script>
