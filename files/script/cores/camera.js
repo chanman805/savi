@@ -1,22 +1,3 @@
-<!--
-	Ideally these elements aren't created until it's confirmed that the 
-	client supports video/camera, but for the sake of illustrating the 
-	elements involved, they are created with markup (not JavaScript)
--->
-<style>
-#video {
-width:100%;
-height:100%;
-position:absolute;
-top:0px;
-}
-</style>
-<title>cam v1.3</title>
-<video id="video"  autoplay playsinline></video>
-<button style = "display:none"id="snap">Snap Photo</button>
-<canvas id="canvas" width="640" height="480"></canvas>
-
-<script>
 // Grab elements, create settings, etc.
 var video = document.getElementById('video');
 
@@ -25,15 +6,13 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
         //video.src = window.URL.createObjectURL(stream);
-		alert("got stream");
+		
         video.srcObject = stream;
         video.play();
     });
 }
 
-window.onload = function(){
-video.play();
-};
+
 
 /* Legacy code below: getUserMedia 
 else if(navigator.getUserMedia) { // Standard
@@ -63,7 +42,3 @@ var video = document.getElementById('video');
 document.getElementById("snap").addEventListener("click", function() {
 	context.drawImage(video, 0, 0, 0, 0);
 });
-window.onerror = function(){
-alert("error");
-};
-</script>

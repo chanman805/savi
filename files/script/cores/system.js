@@ -10,7 +10,7 @@ systemapp.style.top = "0%";
 systempic.style.opacity = "0%";
 systempic.style.top = "0%";
 
-camerafeed.style.display = "inline";
+video.style.display = "inline";
 
 systemcpu.style.opacity = "100%";
 systemcpu.style.left = "65%";
@@ -42,7 +42,7 @@ systemword6.style.opacity = "100%";
 systemclicked = false;
 
 } else {
-camerafeed.style.display = "none";
+video.style.display = "none";
 icon.style.opacity = "0%";
 icon.style.left = "-100%";
 systemword2.style.left = "-200%";
