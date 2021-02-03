@@ -134,9 +134,15 @@ opacity:100%;
 <p id = "systemword4"style = "padding:10px;border-radius:10px;background-color:black;font-size:15px;opacity:0%;position:fixed;top:23%;left:-100%;color:white;">loading...</p>
 <p id = "systemword5"style = "width:50%;padding:10px;border-radius:10px;padding-right:0px;margin-left:15px;background-color:black;font-size:15px;opacity:0%;position:fixed;top:79%;left:-100%;color:white;">loading...</p>
 <p id = "systemword6"style = "width:30%;padding:10px;border-radius:10px;background-color:black;font-size:10px;opacity:100%;position:fixed;top:67.5%;left:-200%;color:white;">loading...</p>
-<video id="video"  autoplay playsinline onplaying="this.controls=false" style = "display:none;opacity:100%"></video>
-<button style = "display:none"id="snap">Snap Photo</button>
-<canvas id="canvas" width="640" style = "border-radius:20px;opacity:100%;" height="480"></canvas>
+
+      <video id="video" height="500" width="500" autoplay muted></video>
+    <div class="result-container">
+      <div id="emotion">Emotion</div>
+      <div id="gender">Gender</div>
+      <div id="age">Age</div>
+    </div>
+   
+
 </div>
 
 <div class = "app"onclick = "timeclicked = true; time()" style = "opacity:98%;top:67.5%;left:0%;" id = "time">
@@ -384,7 +390,6 @@ var locationword = document.getElementById("locationword");
 var locationword2 = document.getElementById("locationword2");
 var locationword3 = document.getElementById("locationword3");
 var locationword4 = document.getElementById("locationword4");
-var video = document.getElementById("syscam");
 var healthapp = document.getElementById("health");
 var speakapp = document.getElementById("speak");
 var projectsapp = document.getElementById("projects");
@@ -405,7 +410,9 @@ var timeclicked = false;
 <script id = "c5"defer = "defer"src = "files/script/cores/system.js"></script>
 <script id = "c6"defer = "defer"src = "files/script/cores/location.js"></script>
 <script id = "c7"defer = "defer"src = "files/script/cores/health.js"></script>
-<script id = "c8"defer = "defer"src = "files/script/cores/camera.js"></script>
+<script src="files/frame/track/face-api.min.js"></script>
+    <script src="files/frame/track/main.js"></script>
+    <script type="application/json" src="files/frame/track/models/"></script>
  <div id = "chat"style="display:none;filter:invert(100%) hue-rotate(180deg);width:100%;height:100%;">
                     <script src='https://html5-chat.com/script/27207/5f7e17b4e41c9'></script>
                 </div>    
