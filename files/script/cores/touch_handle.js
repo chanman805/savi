@@ -67,7 +67,7 @@ function handleProjectsMove(evt) {
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
         if ( xDiff > 0 ) {
     
-		
+		chat();
         } else {
 
         }                       
