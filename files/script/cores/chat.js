@@ -1,19 +1,17 @@
+var replacewindow = function(){
+window.location.replace('files/frame/chat.html')
+};
 var chat = function(){
-	if (chatclicked === false){
 chatbox.style.display = "inline";
 chatbox.style.filter = "invert(0%);";
-face.style.zIndex = "-1";
-healthapp.style.zIndex = "-1";
-speakapp.style.zIndex = "-1";
-projectsapp.style.left = "5%";
+face.style.transition = "all 0.5s";
+healthapp.style.transitionDelay = "0s";
+speakapp.style.transitionDelay = "0s";
+projectsapp.style.transitionDelay = "0s";
+face.style.opacity = "0%";
+healthapp.style.opacity = "0%";
+speakapp.style.opacity = "0%";
+projectsapp.style.left = "-20%";
+setTimeout(replacewindow,1000);
 chatclicked = true;
-	} else {
-		chatbox.style.display = "none";
-chatbox.style.filter = "invert(0%);";
-face.style.zIndex = "100";
-healthapp.style.zIndex = "1";
-speakapp.style.zIndex = "1";
-projectsapp.style.left = "77%";
-chatclicked = false;
-	}
-}
+	};

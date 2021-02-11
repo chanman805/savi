@@ -66,10 +66,11 @@ function handleProjectsMove(evt) {
 
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
         if ( xDiff > 0 ) {
-    
 		chat();
+		  chatclicked = true;
         } else {
-
+chatclicked = false;
+chat();
         }                       
     } else {
         if ( yDiff > 0 ) {
