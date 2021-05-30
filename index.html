@@ -39,24 +39,48 @@ transform:scale(0.9);
 <div id = "mid">
 <img id = "face" src = "files/images/face.gif"></img>
 </div>
-</body>
 
+</body>
+<script src = "files/modules/swipe.js"></script>
 <script>
 
 var verified = false;
 
 var face = document.getElementById("face");
+var giggle = new Audio("files/audio/voice/giggle.mp3");
 var bgm = new Audio("files/audio/bgm/bgm1.mp3");
 
-var welcome = function(){
-face.style.opacity = "100%";
-face.style.transform = "scale(1)";
+var init_bgm = function(){
 bgm.volume = 0.5;
 bgm.play();
+bgm.onended = function(){
+bgm.play();
 };
+};
+
+var display_menu = function(){
+
+};
+
+var init_face = function(){
+face.style.opacity = "100%";
+face.style.transform = "scale(1)";
+};
+
+var welcome = function(){
+init_face();
+init_bgm();
+
+};
+
+window.addEventListener("swiped-up", function(){
+display_menu();
+});
 
 window.onclick = function(){
 if (!verified){
+giggle.volume = 0.2;
+giggle.play();
 welcome();
 verified = true;
 } 
