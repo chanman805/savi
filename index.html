@@ -1,0 +1,67 @@
+<html>
+<head>
+<style>
+body, html {
+background-color:black;
+color:white;
+height: 100%;
+margin:0;
+padding:0;
+transition: all 1s;
+
+}
+
+#mid {
+    position:relative;
+    height: 100%;
+    width:100%;
+}
+
+#mid img {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+}
+
+#face {
+width:75vmin;
+opacity:0%;
+transition:opacity 2.5s, transform 1s;
+transform:scale(0.9);
+}
+
+</style>
+</head>
+<body>
+<div id = "mid">
+<img id = "face" src = "files/images/face.gif"></img>
+</div>
+</body>
+
+<script>
+
+var verified = false;
+
+var face = document.getElementById("face");
+var bgm = new Audio("files/audio/bgm/bgm1.mp3");
+
+var welcome = function(){
+face.style.opacity = "100%";
+face.style.transform = "scale(1)";
+bgm.volume = 0.5;
+bgm.play();
+};
+
+window.onclick = function(){
+if (!verified){
+welcome();
+verified = true;
+} 
+};
+
+</script>
+
+</html>
