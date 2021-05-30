@@ -1,0 +1,17 @@
+{
+  "name": "𝓼𝔸𝓿𝐢",
+  "short_name": "𝓼𝔸𝓿𝐢",
+  "description": "𝓼𝔸𝓿𝐢",
+  "display": "fullscreen",
+  "start_url": "https://chanman805.github.io/savi/index.html",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "files/images/styles/apple-touch-icon.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    }
+  ]
+}
+
