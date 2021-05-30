@@ -12,26 +12,40 @@ overflow:hidden;
 
 }
 
+
 #mid {
     position:relative;
     height: 100%;
     width:100%;
 }
 
-#mid img {
+#face {
     position:absolute;
     top:0;
     left:0;
     right:0;
     bottom:0;
     margin:auto;
-}
-
-#face {
-width:75vmin;
+	width:75vmin;
 opacity:0%;
 transition:opacity 2.5s, transform 1s;
 transform:scale(0.9);
+}
+
+
+#tray {
+opacity:0%;
+margin-top:250vmin;
+padding-bottom:50px;
+width:100%;
+text-align:center;
+transition: all 1s;
+}
+
+#tray img {
+width:10vmin;
+opacity:75%;
+padding:50px;
 }
 
 </style>
@@ -41,6 +55,14 @@ transform:scale(0.9);
 <img id = "face" src = "files/images/face.gif"></img>
 </div>
 
+<div id = "tray">
+<center>
+<img src = "files/images/tray/internet/icon.png"></img>
+<img src = "files/images/tray/location/icon.png"></img>
+<img src = "files/images/tray/code/icon.png"></img>
+<img src = "files/images/tray/news/icon.png"></img>
+</center>
+</div>
 </body>
 <script src = "files/modules/swipe.js"></script>
 <script>
@@ -60,7 +82,10 @@ bgm.play();
 };
 
 var display_menu = function(){
-alert('you swiped up');
+if (verified){
+document.getElementById('tray').style.opacity = "100%";
+document.getElementById('tray').style.marginTop = "-25vmin";
+}
 };
 
 var init_face = function(){
