@@ -79,6 +79,7 @@ margin-left:-20vmin;
 width: 25vmin;
 transition: all 1s;
 z-index:100;
+padding-right:70%;
 }
 
 #right_dock {
@@ -88,6 +89,33 @@ margin-right:-25vmin;
 width: 25vmin;
 transition: all 1s;
 z-index:100;
+padding-left:70%;
+}
+
+#invis_left {
+position:absolute;
+float:left;
+top:0;
+margin-left:0vmin;
+left:0;
+width: 25vmin;
+transition: all 1s;
+padding:25%;
+background-color:Transparent;
+opacity:0%;
+}
+
+#invis_right {
+position: absolute;
+float:right;
+top:0;
+left:50%;
+width: 25vmin;
+padding:25%;
+transition: all 1s;
+background-color:Transparent;
+opacity:0%;
+
 }
 
 
@@ -113,6 +141,14 @@ opacity:75%;
 <img id = "face" src = "files/images/system/face.gif"></img>
 </div>
 
+
+
+<div id = "invis_left" >
+</div>
+
+<div id = "invis_right" >
+</div>
+
 <div id = "left_dock" >
 <img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/chat.png"></img>
 <img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/clock.gif"></img>
@@ -134,6 +170,10 @@ opacity:75%;
 
 var left_dock = document.getElementById('left_dock');
 var right_dock = document.getElementById('right_dock');
+
+var invis_left = document.getElementById('invis_left');
+var invis_right = document.getElementById('invis_right');
+
 
 var r_out = false;
 var l_out = false;
@@ -179,14 +219,14 @@ init_bgm();
 
 
 
-document.body.addEventListener("swiped-left", function(){
+invis_right.addEventListener("swiped-left", function(){
 if (verified){
 load_right_dock();
 }
 
 });
 
-document.body.addEventListener("swiped-right", function(){
+invis_left.addEventListener("swiped-right", function(){
 if (verified){
 load_left_dock();
 }
@@ -201,9 +241,10 @@ right_dock.style.marginRight = "-50%";
 
 left_dock.addEventListener("swiped-left", function(){
 if (verified){
-left_dock.style.marginRight = "-50%";
+left_dock.style.marginLeft = "-50%";
 }
 });
+
 
 window.onclick = function(){
 if (!verified){
