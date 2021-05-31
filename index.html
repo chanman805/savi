@@ -58,24 +58,72 @@ opacity:75%;
 padding:20px;
 }
 
+#left_dock {
+float:left;
+margin-top:-95vmin;
+margin-left:25vmin;
+width: 5vmin;
+transition: all 1s;
+}
+
+#right_dock {
+float:right;
+margin-top:-95vmin;
+margin-right:25vmin;
+width: 5vmin;
+transition: all 1s;
+}
+
+
+.icon {
+width: 12.5vmin;
+margin:6vmin;
+transition: all 1s, transform 0.5s;
+opacity: 50%;
+
+}
+
+.icon:hover {
+transform:scale(1.1);
+cursor:pointer;
+opacity:75%;
+}
+
+
 </style>
 </head>
 <body>
 <div id = "mid">
-<img id = "face" src = "files/images/face.gif"></img>
+<img id = "face" src = "files/images/system/face.gif"></img>
 </div>
 
-<div id = "tray">
-<center>
-<img src = "files/images/tray/internet/icon.png"></img>
-<img src = "files/images/tray/location/icon.png"></img>
-<img src = "files/images/tray/code/icon.png"></img>
-<img src = "files/images/tray/news/icon.png"></img>
-</center>
+<div id = "left_dock" style = "margin-left:-10%;">
+<img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/chat.png"></img>
+<img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/clock.gif"></img>
+<img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/code.png"></img>
+<img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/health.png"></img>
 </div>
+
+
+<div id = "right_dock" style = "margin-right:-10%;">
+<img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/internet.png"></img>
+<img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/location.png"></img>
+<img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/mail.gif"></img>
+<img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/news.png"></img>
+</div>
+
 </body>
 <script src = "files/modules/swipe.js"></script>
 <script>
+
+var left_dock = document.getElementById('left_dock');
+var right_dock = document.getElementById('right_dock');
+
+var r_out = false;
+var l_out = false;
+
+
+var internet_launcher = document.getElementById('internet_launcher');
 
 var verified = false;
 
@@ -84,19 +132,23 @@ var giggle = new Audio("files/audio/voice/giggle.mp3");
 var bgm = new Audio("files/audio/bgm/bgm1.mp3");
 
 var init_bgm = function(){
-bgm.volume = 0.5;
+bgm.volume = 0.7;
 bgm.play();
 bgm.onended = function(){
 bgm.play();
 };
 };
 
-var display_menu = function(){
-if (verified){
-document.getElementById('tray').style.opacity = "100%";
-document.getElementById('tray').style.marginTop = "-15vmax";
-}
+var load_right_dock = function(){
+right_dock.style.marginRight = "22.5vmin";
+r_out=true;
 };
+
+var load_left_dock = function(){
+left_dock.style.marginLeft = "5vmin";
+l_out=true;
+};
+
 
 var init_face = function(){
 face.style.opacity = "100%";
@@ -109,8 +161,21 @@ init_bgm();
 
 };
 
-window.addEventListener("swiped-up", function(){
-display_menu();
+right_dock.addEventListener("swiped-right", function(){
+right_dock.style.marginRight = "-50%";
+});
+
+left_dock.addEventListener("swiped-left", function(){
+left_dock.style.marginRight = "-50%";
+});
+
+document.body.addEventListener("swiped-left", function(){
+load_right_dock();
+
+});
+
+document.body.addEventListener("swiped-right", function(){
+load_left_dock();
 });
 
 window.onclick = function(){
