@@ -293,13 +293,13 @@ var county = function(){
 	showRemaining(thanksgiving_day,thanksgiving, "thanksgiving.png");
 	showRemaining(birthday_day,birthday, "birthday.png");
 	showRemaining(america_day,america, "america.png");
+	
 	};
-
 
 get_date();
 get_time();
 window.onload = function(){
-var countdown = setInterval(county,1000);
+setInterval(county,1000);
 tick.volume = 0.5;
 top_strip.style.marginLeft = "0%";
 get_time();
