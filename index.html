@@ -75,7 +75,7 @@ padding:20px;
 #left_dock {
 float:left;
 margin-top:-95vmin;
-margin-left:25vmin;
+margin-left:-20vmin;
 width: 5vmin;
 transition: all 1s;
 }
@@ -83,7 +83,7 @@ transition: all 1s;
 #right_dock {
 float:right;
 margin-top:-95vmin;
-margin-right:25vmin;
+margin-right:-25vmin;
 width: 5vmin;
 transition: all 1s;
 }
@@ -111,7 +111,7 @@ opacity:75%;
 <img id = "face" src = "files/images/system/face.gif"></img>
 </div>
 
-<div id = "left_dock" style = "margin-left:-10%;">
+<div id = "left_dock" >
 <img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/chat.png"></img>
 <img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/clock.gif"></img>
 <img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/code.png"></img>
@@ -119,7 +119,7 @@ opacity:75%;
 </div>
 
 
-<div id = "right_dock" style = "margin-right:-10%;">
+<div id = "right_dock" >
 <img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/internet.png"></img>
 <img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/location.png"></img>
 <img id = "internet_launcher" onclick = "launch(internet_app)"class = "icon" src = "files/images/docks/mail.gif"></img>
@@ -176,20 +176,28 @@ init_bgm();
 };
 
 right_dock.addEventListener("swiped-right", function(){
+if (verified){
 right_dock.style.marginRight = "-50%";
+}
 });
 
 left_dock.addEventListener("swiped-left", function(){
+if (verified){
 left_dock.style.marginRight = "-50%";
+}
 });
 
 document.body.addEventListener("swiped-left", function(){
+if (verified){
 load_right_dock();
+}
 
 });
 
 document.body.addEventListener("swiped-right", function(){
+if (verified){
 load_left_dock();
+}
 });
 
 window.onclick = function(){
