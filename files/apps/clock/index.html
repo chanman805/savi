@@ -95,8 +95,9 @@ transition: all 1s;
 #christmas, #halloween, #valentines, #patricks, #thanksgiving, #birthday, #america {
 font-family:'mono';
 animation:none;
-letter-spacing:-2.5px;
+letter-spacing:-0.5px;
 margin-top:7.5px;
+font-size:14px;
 }
 
 
@@ -104,10 +105,10 @@ margin-top:7.5px;
 </style>
 <body>
 
-<h1 id = "time" style = "opacity:0%;">88:88</h1>
-<iframe id = "map"width="40%" height = "30%" style = "opacity:0%;bottom:-100%;" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-<h1 id = "date" style = "font-size:20px;opacity:0%;">July 24th, 2003</h1>
-<h1 id = "seconds" style = "font-size:20px;opacity:0%;">59</h1>
+<h1 id = "time" style = "opacity:100%;">88:88</h1>
+<iframe id = "map"width="40%" height = "30%" style = "opacity:100%;bottom:-100%;" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+<h1 id = "date" style = "font-size:20px;opacity:100%;">July 24th, 2003</h1>
+<h1 id = "seconds" style = "font-size:20px;opacity:100%;">59</h1>
 
 <div id = "top_strip" style = "margin-left:-100%">
 <p id = "christmas"><img class = "icon" src = "christmas.png"></img>      88:88:88</p>
@@ -303,10 +304,6 @@ top_strip.style.marginLeft = "0%";
 get_time();
 get_date();
 setInterval(get_time,1000);
-time.style.opacity = "100%";
-date.style.opacity = "100%";
-map.style.opacity = "100%";
-seconds.style.opacity = "100%";
 map.style.bottom = "0";
 };
 
