@@ -1,0 +1,366 @@
+<style>
+
+@font-face {
+  font-family: "default";
+  src: url("font.ttf");
+
+}
+
+@font-face {
+  font-family: "mono";
+  src: url("mono2.ttf");
+
+}
+
+body, html {
+background-color:black;
+background-image: none;
+background-repeat: no-repeat;
+background-size:5%;
+background-position:center;
+color:white;
+font-family: 'default';
+overflow:hidden;
+}
+
+h1 {
+font-size:150px;
+}
+#map {
+transition: all 1.5s, opacity 4s;
+float:right;
+position:absolute;
+right:0;
+margin-bottom:55px;
+margin-right:-10px;
+border-radius:20px 0px 0px 20px;
+background-color:black;
+}
+#map:hover {
+width:41%;
+transform:scale(1.025);
+}
+
+#time {
+transition: all 1.5s, opacity 3.5s;
+float:right;
+position:absolute;
+right:auto;
+top:-15vmin;
+font-size:75px;
+background-color:black;
+padding:10px;
+}
+
+#time:hover {
+transform:scale(1.025);
+opacity:100%!important;
+cursor:pointer;
+}
+
+#date{
+transition: all 1.5s, opacity 3.5s;
+float:right;
+position:absolute;
+right:0;
+top:37.5%;
+padding-right:5%;
+background-color:black;
+}
+
+#seconds{
+transition: all 1.5s, opacity 3.5s;
+float:right;
+position:absolute;
+right:0;
+top:37.5%;
+padding-right:20px;
+color:gray;
+background-color:black;
+}
+
+#top_strip {
+background-color:#33333350;
+margin-top:20px;
+text-align:left;
+vertical-align:bottom;
+transition: all 2.5s;
+padding:1%;
+padding-top:2.5px;
+padding-bottom:10px;
+padding-right:40px;
+width:17.5%;
+font-family:'mono';
+line-height:0px;
+border-radius:0px 20px 20px 0px;
+}
+
+.icon {
+margin:5px;
+margin-top:1px;
+margin-bottom:-5px;
+margin-right:20px;
+width:25px;
+transition: all 1s;
+}
+
+@keyframes color-change {
+  0% { color: white; letter-spacing:0px;}
+  50% { color: #ddffdd; letter-spacing:0.5px;}
+  100% { color: white; letter-spacing:0px;}
+}
+
+#christmas, #halloween, #valentines, #patricks, #thanksgiving, #birthday, #america {
+animation:none;
+letter-spacing:0px;
+}
+#heads_up_cam {
+width:70%;
+height:25%;
+margin-top:1.75%;
+background-position:center;
+vertical-align:center;
+font-size:15px;
+background-image:url('calendar.gif');
+padding:20px;
+border-radius:20px 0px 0px 20px;
+text-align:center;
+float:right;
+transition: all 2s, opacity 3s, background-size 7.5s;
+background-size: 100%;
+}
+
+#heads_up_cam:hover {
+width:70.5%;
+background-size:110%;
+
+}
+
+
+
+#heads_up_cam h1 {
+text-align:center;
+font-family: 'mono';
+font-size:20px;
+color:lightgray;
+background-color:#000000cc;
+padding:5px;
+width:50px;
+height:50px;
+}
+
+</style>
+<body>
+<div id = "heads_up_cam" style = "opacity:0%;margin-right:-100%">
+<h1>Nothing on your schedule today</h1>
+</div>
+<h1 id = "time" style = "opacity:0%;">88:88</h1>
+<iframe id = "map"width="40%" height = "30%" style = "opacity:0%;bottom:-100%;" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+<h1 id = "date" style = "font-size:20px;opacity:0%;">July 24th, 2003</h1>
+<h1 id = "seconds" style = "font-size:20px;opacity:0%;">59</h1>
+
+<div id = "top_strip" style = "margin-left:-100%">
+<p id = "christmas"><img class = "icon" src = "christmas.png"></img>      88:88:88</p>
+<p id = "halloween"><img class = "icon" src = "halloween.png"></img>      88:88:88</p>
+<p id = "valentines"> <img class = "icon" src = "valentines.png"></img>   88:88:88</p>
+<p id = "patricks"><img class = "icon" src = "patricks.png"></img>        88:88:88</p>
+<p id = "thanksgiving"><img class = "icon" src = "thanksgiving.png"></img>88:88:88</p>
+<p id = "birthday"><img class = "icon" src = "birthday.png"></img>        88:88:88</p>
+<p id = "america"> <img class = "icon" src = "america.png"></img>         88:88:88</p>
+</div>
+
+</body>
+<script src = "http://timezonepicker.com/json.php?w=600"></script>
+<script>
+
+var lightyear= new Date().getFullYear();
+
+var tick = new Audio('../../audio/sfx/clock_tick.mp3');
+var bell = new Audio('../../audio/sfx/bell.mp3');
+
+var map = document.getElementById('map');
+var time = document.getElementById('time');
+var date = document.getElementById('date');
+var seconds = document.getElementById('seconds');
+var top_strip = document.getElementById('top_strip');
+var heads_up_cam = document.getElementById('heads_up_cam');
+
+var christmas = document.getElementById('christmas');
+var halloween = document.getElementById('halloween');
+var valentines = document.getElementById('valentines');
+var patricks = document.getElementById('patricks');
+var thanksgiving = document.getElementById('thanksgiving');
+var birthday = document.getElementById('birthday');
+var america = document.getElementById('america');
+
+
+var blink_marker = true;
+
+
+var is_close = function(element) {
+element.style.animation = "color-change 2.5s infinite";
+};
+
+var chime = function(bellTime){
+
+var times = bellTime;
+for(var i=0; i < times; i++){
+    bell.play();
+}
+
+};
+
+var get_time = function(){
+
+var today = new Date();
+var hour = today.getHours();
+var min = today.getMinutes();
+var sec = today.getSeconds();
+
+
+
+if (hour>12){
+hour = hour -12;
+}
+
+if (min<10){
+min = "0"+min;
+}
+
+if (sec<10){
+sec = "0"+sec;
+}
+
+setInterval(fadeinout,1000);
+
+time.innerHTML = hour+":"+min;
+seconds.innerHTML = sec;
+
+tick.play();
+};
+
+
+
+
+var fadeinout = function(){
+time.style.transition = "opacity 1s";
+if (blink_marker){
+time.style.opacity = "50%";
+blink_marker = false;
+} else {
+time.style.opacity = "100%";
+blink_marker = true;
+}
+};
+
+var get_date = function(){
+var today = new Date();
+var month = today.getMonth();
+var day = today.getDate();
+var year = today.getFullYear();
+var hour = today.getHours();
+
+var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+date.innerHTML = months[month]+ " " + day + ", "+year;
+
+
+
+};
+
+
+var christmas_day = new Date('12/25/'+lightyear+' 12:1 AM');
+var halloween_day = new Date('10/31/'+lightyear+' 12:1 AM');
+var valentines_day = new Date('02/14/'+lightyear+' 12:1 AM');
+var patricks_day = new Date('03/16/'+lightyear+' 12:1 AM');
+var thanksgiving_day = new Date('11/25/'+lightyear+' 12:1 AM');
+var birthday_day = new Date('07/24/'+lightyear+' 12:1 AM');
+var america_day = new Date('7/04/'+lightyear+' 12:1 AM');
+
+
+
+
+
+
+</script>
+<script src = "thanksgiving_check.js"></script>
+<script>
+
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    
+
+
+
+
+  var showRemaining = function(day,element, pic_src) {
+        var now = new Date();
+        var distance = day - now;
+        if (distance < 0) {
+            element.innerHTML = '<img class = "icon" src = "'+pic_src+'"></img>  '+'---:--:--:--';
+            element.style.opacity = "20%";
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+		
+		if (minutes<10){
+minutes = "0"+minutes;
+}
+
+if (seconds<10){
+seconds = "0"+seconds;
+}
+
+if (hours<10){
+hours = "0"+hours;
+}
+if (days<100){
+days = "0" +days;
+ if (days<10){
+ days = "00"+days;
+ is_close(element);
+ }
+}
+
+
+        element.innerHTML = '<img class = "icon" src = "'+pic_src+'"></img>  ' + days + ":"+ hours + ":" + minutes + ":" + seconds;
+       
+    };
+
+
+
+
+var county = function(){
+    showRemaining(christmas_day,christmas, "christmas.png");
+	showRemaining(halloween_day,halloween, "halloween.png");
+	showRemaining(valentines_day,valentines, "valentines.png");
+	showRemaining(patricks_day,patricks, "patricks.png");
+	showRemaining(thanksgiving_day,thanksgiving, "thanksgiving.png");
+	showRemaining(birthday_day,birthday, "birthday.png");
+	showRemaining(america_day,america, "america.png");
+	};
+
+
+
+window.onload = function(){
+heads_up_cam.style.opacity = "100%";
+heads_up_cam.style.marginRight = "0px";
+var countdown = setInterval(county,1000);
+tick.volume = 0.1;
+top_strip.style.marginLeft = "0%";
+get_time();
+get_date();
+setInterval(get_time,1000);
+time.style.opacity = "100%";
+date.style.opacity = "100%";
+map.style.opacity = "100%";
+seconds.style.opacity = "100%";
+map.style.bottom = "0";
+};
+
+</script>

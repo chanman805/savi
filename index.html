@@ -173,14 +173,14 @@ border:none;
 <img id = "news_launcher" onclick = "launch(news, 'files/apps/news/index.html', 'news')"class = "icon" src = "files/images/docks/news.png"></img>
 </div>
 
-<iframe id = "frame0" src = ""></iframe>
-<iframe id = "frame1" src = ""></iframe>
-<iframe id = "frame2" src = ""></iframe>
-<iframe id = "frame3" src = ""></iframe>
-<iframe id = "frame4" src = ""></iframe>
-<iframe id = "frame5" src = ""></iframe>
-<iframe id = "frame6" src = ""></iframe>
-<iframe id = "frame7" src = ""></iframe>
+<iframe id = "frame0" scrolling = "no" src = ""></iframe>
+<iframe id = "frame1" scrolling = "no" src = ""></iframe>
+<iframe id = "frame2" scrolling = "no" src = ""></iframe>
+<iframe id = "frame3" scrolling = "no" src = ""></iframe>
+<iframe id = "frame4" scrolling = "no" src = ""></iframe>
+<iframe id = "frame5" scrolling = "no" src = ""></iframe>
+<iframe id = "frame6" scrolling = "no" src = ""></iframe>
+<iframe id = "frame7" scrolling = "no" src = ""></iframe>
 
 </body>
 <script src = "files/modules/swipe.js"></script>
@@ -200,10 +200,25 @@ var app_running = false;
 var app_on = "";
 
 var launch = function(app, app_src, name){
+face.style.transform = "scale(0.5)";
 app_on = app;
 app.src = app_src;
 app.style.top = "0";
 app_running = true;
+woosh.play();
+};
+
+
+var reset = function(app){
+if (app_running){
+woosh.play();
+face.style.transform = "scale(1)";
+app.style.top = "150%";
+app_running = false;
+setTimeout(function(){
+app.src = "";
+},1000);
+};
 };
 
 
@@ -225,8 +240,10 @@ var verified = false;
 var face = document.getElementById("face");
 var giggle = new Audio("files/audio/voice/giggle.mp3");
 var bgm = new Audio("files/audio/bgm/bgm1.mp3");
+var woosh = new Audio("files/audio/sfx/woosh.mp3");
 
 var init_bgm = function(){
+woosh.volume = 0.5;
 bgm.volume = 0.7;
 bgm.play();
 bgm.onended = function(){
@@ -312,12 +329,6 @@ left_dock.style.marginLeft = "-50%";
 }
 });
 
-var reset = function(app){
-if (app_running){
-app.style.top = "150%";
-app_running = false;
-};
-};
 
 
 window.onclick = function(){
