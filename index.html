@@ -76,16 +76,18 @@ padding:20px;
 float:left;
 margin-top:-95vmin;
 margin-left:-20vmin;
-width: 5vmin;
+width: 25vmin;
 transition: all 1s;
+z-index:100;
 }
 
 #right_dock {
 float:right;
 margin-top:-95vmin;
 margin-right:-25vmin;
-width: 5vmin;
+width: 25vmin;
 transition: all 1s;
+z-index:100;
 }
 
 
@@ -154,7 +156,7 @@ bgm.play();
 };
 
 var load_right_dock = function(){
-right_dock.style.marginRight = "22.5vmin";
+right_dock.style.marginRight = "5vmin";
 r_out=true;
 };
 
@@ -175,17 +177,7 @@ init_bgm();
 
 };
 
-right_dock.addEventListener("swiped-right", function(){
-if (verified){
-right_dock.style.marginRight = "-50%";
-}
-});
 
-left_dock.addEventListener("swiped-left", function(){
-if (verified){
-left_dock.style.marginRight = "-50%";
-}
-});
 
 document.body.addEventListener("swiped-left", function(){
 if (verified){
@@ -197,6 +189,19 @@ load_right_dock();
 document.body.addEventListener("swiped-right", function(){
 if (verified){
 load_left_dock();
+}
+});
+
+
+right_dock.addEventListener("swiped-right", function(){
+if (verified){
+right_dock.style.marginRight = "-50%";
+}
+});
+
+left_dock.addEventListener("swiped-left", function(){
+if (verified){
+left_dock.style.marginRight = "-50%";
 }
 });
 
