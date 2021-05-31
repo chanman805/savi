@@ -30,26 +30,24 @@ font-size:150px;
 transition: all 1.5s, opacity 4s;
 float:right;
 position:absolute;
-right:0;
-margin-bottom:55px;
-margin-right:-10px;
-border-radius:20px 0px 0px 20px;
+right:5vmin;
+top:47.5vmin;
+border-radius:20px;
 background-color:black;
-}
-#map:hover {
-width:41%;
-transform:scale(1.025);
+width:60%;
+height:45%;
 }
 
 #time {
 transition: all 1.5s, opacity 3.5s;
 float:right;
 position:absolute;
-right:auto;
+right:0;
 top:-15vmin;
 font-size:75px;
 background-color:black;
 padding:10px;
+padding-right:20px;
 }
 
 #time:hover {
@@ -62,8 +60,8 @@ cursor:pointer;
 transition: all 1.5s, opacity 3.5s;
 float:right;
 position:absolute;
-right:0;
-top:37.5%;
+right:12vmin;
+top:28vmin;
 padding-right:5%;
 background-color:black;
 }
@@ -72,27 +70,11 @@ background-color:black;
 transition: all 1.5s, opacity 3.5s;
 float:right;
 position:absolute;
-right:0;
-top:37.5%;
+right:0vmin;
+top:28vmin;
 padding-right:20px;
 color:gray;
 background-color:black;
-}
-
-#top_strip {
-background-color:#33333350;
-margin-top:20px;
-text-align:left;
-vertical-align:bottom;
-transition: all 2.5s;
-padding:1%;
-padding-top:2.5px;
-padding-bottom:10px;
-padding-right:40px;
-width:17.5%;
-font-family:'mono';
-line-height:0px;
-border-radius:0px 20px 20px 0px;
 }
 
 .icon {
@@ -111,49 +93,17 @@ transition: all 1s;
 }
 
 #christmas, #halloween, #valentines, #patricks, #thanksgiving, #birthday, #america {
+font-family:'mono';
 animation:none;
-letter-spacing:0px;
-}
-#heads_up_cam {
-width:70%;
-height:25%;
-margin-top:1.75%;
-background-position:center;
-vertical-align:center;
-font-size:15px;
-background-image:url('calendar.gif');
-padding:20px;
-border-radius:20px 0px 0px 20px;
-text-align:center;
-float:right;
-transition: all 2s, opacity 3s, background-size 7.5s;
-background-size: 100%;
-}
-
-#heads_up_cam:hover {
-width:70.5%;
-background-size:110%;
-
+letter-spacing:-2.5px;
+margin-top:7.5px;
 }
 
 
-
-#heads_up_cam h1 {
-text-align:center;
-font-family: 'mono';
-font-size:20px;
-color:lightgray;
-background-color:#000000cc;
-padding:5px;
-width:50px;
-height:50px;
-}
 
 </style>
 <body>
-<div id = "heads_up_cam" style = "opacity:0%;margin-right:-100%">
-<h1>Nothing on your schedule today</h1>
-</div>
+
 <h1 id = "time" style = "opacity:0%;">88:88</h1>
 <iframe id = "map"width="40%" height = "30%" style = "opacity:0%;bottom:-100%;" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 <h1 id = "date" style = "font-size:20px;opacity:0%;">July 24th, 2003</h1>
@@ -183,7 +133,6 @@ var time = document.getElementById('time');
 var date = document.getElementById('date');
 var seconds = document.getElementById('seconds');
 var top_strip = document.getElementById('top_strip');
-var heads_up_cam = document.getElementById('heads_up_cam');
 
 var christmas = document.getElementById('christmas');
 var halloween = document.getElementById('halloween');
@@ -348,8 +297,6 @@ var county = function(){
 
 
 window.onload = function(){
-heads_up_cam.style.opacity = "100%";
-heads_up_cam.style.marginRight = "0px";
 var countdown = setInterval(county,1000);
 tick.volume = 0.1;
 top_strip.style.marginLeft = "0%";

@@ -200,17 +200,29 @@ var app_running = false;
 var app_on = "";
 
 var launch = function(app, app_src, name){
-face.style.transform = "scale(0.5)";
+face.style.transform = "scale(1.5)";
+face.style.marginLeft = "-50vmin";
+face.style.marginTop = "60vmin";
 app_on = app;
 app.src = app_src;
 app.style.top = "0";
 app_running = true;
 woosh.play();
+face.style.opacity = "25%";
+face.style.filter = "grayscale(50%)";
 };
 
 
 var reset = function(app){
 if (app_running){
+
+
+face.style.transform = "scale(1.5)";
+face.style.marginLeft = "auto";
+face.style.marginTop = "auto";
+face.style.opacity = "100%";
+face.style.filter = "grayscale(0%)";
+
 woosh.play();
 face.style.transform = "scale(1)";
 app.style.top = "150%";
