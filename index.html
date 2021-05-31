@@ -240,6 +240,34 @@ right_dock.style.marginRight = "-50%";
 }
 });
 
+
+
+right_dock.addEventListener("swiped-down", function(){
+if (verified){
+right_dock.style.marginTop = "100%";
+
+setTimeout(function(){
+right_dock.style.marginTop = "-95vmin";
+right_dock.style.marginRight = "-50%";
+},500);
+
+}
+});
+
+
+
+left_dock.addEventListener("swiped-down", function(){
+if (verified){
+left_dock.style.marginTop = "100%";
+
+setTimeout(function(){
+left_dock.style.marginTop = "-95vmin";
+left_dock.style.marginLeft = "-50%";
+},500);
+
+}
+});
+
 left_dock.addEventListener("swiped-left", function(){
 if (verified){
 left_dock.style.marginLeft = "-50%";
