@@ -159,18 +159,18 @@ border:none;
 </div>
 
 <div id = "left_dock" >
-<img id = "chat_launcher" onclick = "launch(chat, 'files/apps/chat/index.html', 'chat')"class = "icon" src = "files/images/docks/chat.png"></img>
-<img id = "clock_launcher" onclick = "launch(clock, 'files/apps/clock/index.html', 'clock')"class = "icon" src = "files/images/docks/clock.gif"></img>
-<img id = "code_launcher" onclick = "launch(code, 'files/apps/code/index.html', 'code')"class = "icon" src = "files/images/docks/code.png"></img>
-<img id = "health_launcher" onclick = "launch(health, 'files/apps/health/index.html', 'health')"class = "icon" src = "files/images/docks/health.png"></img>
+<img id = "chat_launcher" onclick = "launch(chat, 'files/apps/chat/index.html')"class = "icon" src = "files/images/docks/chat.png"></img>
+<img id = "clock_launcher" onclick = "launch(clock, 'files/apps/clock/index.html')"class = "icon" src = "files/images/docks/clock.gif"></img>
+<img id = "code_launcher" onclick = "launch(code, 'files/apps/code/index.html')"class = "icon" src = "files/images/docks/code.png"></img>
+<img id = "health_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/health.png"></img>
 </div>
 
 
 <div id = "right_dock" >
-<img id = "internet_launcher" onclick = "launch(internet, 'files/apps/internet/index.html', 'internet')"class = "icon" src = "files/images/docks/internet.png"></img>
-<img id = "location_launcher" onclick = "launch(locate, 'files/apps/locate/index.html', 'locate')"class = "icon" src = "files/images/docks/location.png"></img>
-<img id = "mail_launcher" onclick = "launch(mail, 'files/apps/mail/index.html', 'mail')"class = "icon" src = "files/images/docks/mail.gif"></img>
-<img id = "news_launcher" onclick = "launch(news, 'files/apps/news/index.html', 'news')"class = "icon" src = "files/images/docks/news.png"></img>
+<img id = "internet_launcher" onclick = "launch(internet, 'files/apps/internet/index.html')"class = "icon" src = "files/images/docks/internet.png"></img>
+<img id = "location_launcher" onclick = "launch(locate, 'files/apps/locate/index.html')"class = "icon" src = "files/images/docks/location.png"></img>
+<img id = "mail_launcher" onclick = "launch(mail, 'files/apps/mail/index.html')"class = "icon" src = "files/images/docks/mail.gif"></img>
+<img id = "news_launcher" onclick = "launch(news, 'files/apps/news/index.html')"class = "icon" src = "files/images/docks/news.png"></img>
 </div>
 <iframe id = "frame0" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
 <iframe id = "frame1" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
@@ -195,15 +195,18 @@ var mail = document.getElementById('frame6');
 var news = document.getElementById('frame7');
 
 var app_running = false;
-
+var temp_mem = "";
+var temp_src = "";
 var app_on = "";
+var app_on_src = "";
 
-var launch = function(app, app_src, name){
+var launch = function(app, app_src){
 
 face.style.transform = "scale(1.5)";
 face.style.marginLeft = "-50vmin";
 face.style.marginTop = "60vmin";
 app_on = app;
+app_on_src = app.src;
 app.src = app_src;
 app.style.top = "0";
 app_running = true;
@@ -228,7 +231,7 @@ face.style.transform = "scale(1)";
 app.style.top = "150%";
 app_running = false;
 setTimeout(function(){
-app.src = "files/apps/default/wait.html";
+app.src = temp_src;
 },1000);
 };
 };
@@ -370,14 +373,14 @@ verified = true;
 
 };
 
-
 window.addEventListener("orientationchange", function() {
   
   if ( window.orientation == 0 || window.orientation == 180) {
-   
+   reset(app_on);
     left_dock.style.opacity = "0%";
 	 right_dock.style.opacity = "0%";
   } else {
+
      left_dock.style.opacity = "100%";
 	 right_dock.style.opacity = "100%";
     
