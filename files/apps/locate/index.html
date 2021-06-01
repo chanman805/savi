@@ -48,6 +48,7 @@ color:gray;
 text-align:right;
 font-family: 'mono';
 margin-right:2.5vmin;
+letter-spacing:-1px;
 }
 
 </style>
@@ -79,7 +80,7 @@ function success(pos) {
   var latty = parseFloat(`${crd.latitude}`).toFixed(4)+ ", ";
  var longy = parseFloat(`${crd.longitude}`).toFixed(4);
  
-  document.getElementById("latlong").innerHTML = "<span style = 'font-size:1.1em'>"+latty+"</span> <span style = 'font-size:0.9em;color:lightgray'>"+ longy+"</span>";
+  document.getElementById("latlong").innerHTML = "<span style = 'font-size:1.2em'>"+latty+"</span> <span style = 'font-size:1em;color:lightgray'>"+ longy+"</span>";
  document.getElementById("altitude").innerHTML = "alt: "+parseFloat(`${crd.altitude+0}`).toFixed(4);
  document.getElementById("accuracy").innerHTML = "acc: "+parseFloat(`${crd.accuracy+0}`).toFixed(1);
  document.getElementById("altaccuracy").innerHTML = "alt/acc: "+parseFloat(`${crd.altitudeAccuracy+0}`).toFixed(1);
