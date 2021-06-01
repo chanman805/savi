@@ -21,6 +21,7 @@ background-position:center;
 color:white;
 font-family: 'default';
 overflow:hidden;
+font-family:1em;
 }
 
 h1 {
@@ -97,7 +98,8 @@ font-family:'mono';
 animation:none;
 letter-spacing:-0.5px;
 margin-top:10px;
-font-size:12px!important;
+font-size:0.95em!important;
+transform:scaleX(0.9);
 }
 
 
@@ -301,7 +303,7 @@ get_time();
 window.onload = function(){
 setInterval(county,1000);
 tick.volume = 0.5;
-top_strip.style.marginLeft = "0%";
+top_strip.style.marginLeft = "-7.5vmin";
 get_time();
 get_date();
 setInterval(get_time,1000);
