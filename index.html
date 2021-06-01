@@ -370,6 +370,20 @@ verified = true;
 
 };
 
+
+window.addEventListener("orientationchange", function() {
+  
+  if ( window.orientation == 0 || window.orientation == 180) {
+   
+    left_dock.style.opacity = "0%";
+	 right_dock.style.opacity = "0%";
+  } else {
+     left_dock.style.opacity = "100%";
+	 right_dock.style.opacity = "100%";
+    
+  }
+}, false);
+
 </script>
 
 </html>
