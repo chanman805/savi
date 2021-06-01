@@ -35,7 +35,7 @@ width:100%;
     margin-left: -40vmin;
     position: absolute;
     margin-top: 25vmin;
-    transform: scale(0.6);
+    transform: scale(0.575, 0.6);
 }
 
 #docky {
@@ -80,11 +80,11 @@ function success(pos) {
  var longy = parseFloat(`${crd.longitude}`).toFixed(4);
  
   document.getElementById("latlong").innerHTML = "<span style = 'font-size:1.1em'>"+latty+"</span> <span style = 'font-size:0.9em;color:lightgray'>"+ longy+"</span>";
- document.getElementById("altitude").innerHTML = "alt: "+(`${crd.altitude}`);
- document.getElementById("accuracy").innerHTML = "acc: "+(`${crd.accuracy}`);
- document.getElementById("altaccuracy").innerHTML = "alt/acc: "+(`${crd.altitudeAccuracy}`);
- document.getElementById("heading").innerHTML ="head: "+ (`${crd.heading}`);
-  document.getElementById("speed").innerHTML = "speed: "+(`${crd.speed}`);
+ document.getElementById("altitude").innerHTML = "alt: "+parseFloat(`${crd.altitude+0}`).toFixed(4);
+ document.getElementById("accuracy").innerHTML = "acc: "+parseFloat(`${crd.accuracy+0}`).toFixed(1);
+ document.getElementById("altaccuracy").innerHTML = "alt/acc: "+parseFloat(`${crd.altitudeAccuracy+0}`).toFixed(1);
+ document.getElementById("heading").innerHTML ="head: "+ parseFloat(`${crd.heading+0}`).toFixed(3);
+  document.getElementById("speed").innerHTML = "speed: "+parseFloat(`${crd.speed+0}`).toFixed(2);
   
  
   
