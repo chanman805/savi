@@ -1,0 +1,45 @@
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+<style>
+    body,
+    html {
+        font-size: 1em;
+        background-color: black;
+        font-family: "Courier Prime";
+        width: 100%;
+    }
+    currentTemp ng-binding {
+        font-family: "Courier Prime";
+        opacity: 100%;
+    }
+</style>
+<a
+    class="weatherwidget-io"
+    href="https://forecast7.com/en/40d80n124d16/eureka/?unit=us"
+    data-font="Roboto"
+    data-icons="Climacons Animated"
+    data-theme="original"
+    data-basecolor="black"
+    data-shadow="rgba(0, 0, 0, 0.19)"
+    data-accent=""
+    data-highcolor="#ffffff"
+    data-lowcolor="#ffffff"
+    data-suncolor="#ffffff"
+    data-cloudcolor="#ffffff"
+    data-cloudfill="#ffffff"
+    data-raincolor="#ffffff"
+    data-snowcolor="#ffffff"
+>
+    loading...
+</a>
+<script>
+    !(function (d, s, id) {
+        var js,
+            fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://weatherwidget.io/js/widget.min.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    })(document, "script", "weatherwidget-io-js");
+</script>
