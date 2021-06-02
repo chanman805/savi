@@ -166,13 +166,10 @@ transform:scaleX(0.9);
 </div>
 
 </body>
-<script src = "http://timezonepicker.com/json.php?w=600"></script>
 <script>
 
 var lightyear= new Date().getFullYear();
 
-var tick = new Audio('../../audio/sfx/clock_tick.mp3');
-var bell = new Audio('../../audio/sfx/bell.mp3');
 
 var map = document.getElementById('map');
 var time = document.getElementById('time');
@@ -200,7 +197,7 @@ var chime = function(bellTime){
 
 var times = bellTime;
 for(var i=0; i < times; i++){
-    bell.play();
+ 
 }
 
 };
@@ -231,7 +228,8 @@ setInterval(fadeinout,1000);
 time.innerHTML = hour+":"+min;
 seconds.innerHTML = sec;
 
-tick.play();
+
+
 };
 
 
@@ -346,7 +344,6 @@ get_date();
 get_time();
 window.onload = function(){
 setInterval(county,1000);
-tick.volume = 0.5;
 top_strip.style.marginLeft = "-7.5vmin";
 get_time();
 get_date();
