@@ -1,26 +1,79 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-  <style>
-  body, html {
-     background-color: Transparent;
-	 filter:invert(100%) grayscale(100%);
-  }
-  </style>
-    <script src="api.js"></script>
+    <script src="http://www.webglearth.com/v2/api.js"></script>
     <script>
+	
+	var latty;
+	var longy;
+	var checkedy = false;
+	var x = 0.05;
+	
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function success(pos) {
+  var crd = pos.coords;
+  latty = (`${crd.latitude}`);
+ longy = (`${crd.longitude}`);
+
+var earth;
       function initialize() {
-        var earth = new WE.map('earth_div');
-        WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(earth);
+        earth = new WE.map('earth_div');
+        earth.setView([latty, longy], 1.5);
+        WE.tileLayer('https://api.maptiler.com/maps/toner/256/{z}/{x}/{y}.png?key=uhjAXEYUvZUzlOLs65XR',{
+          attribution: ''
+        }).addTo(earth);
+
+        // Start a simple rotation animation
+        var before = null;
+        requestAnimationFrame(function animate(now) {
+            var c = earth.getPosition();
+            var elapsed = before? now - before: 0;
+            before = now;
+            earth.setCenter([c[0], c[1] + x*(elapsed/15)]);
+            requestAnimationFrame(animate);
+        });
       }
+
+initialize();
+
+}
+
+function error(err) {
+   
+
+}
+
+window.onclick = function(){
+if (checkedy){
+x = 0.5;
+checkedy = false;
+} else {
+x=0;
+checkedy = true;
+}
+};
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+	
+      
     </script>
+    <style>
+      body, html {
+	  background-color:Transparent;
+	  }
+ 
+    </style>   
+    <title>WebGL Earth API v2: Animation</title>
   </head>
   <body>
-    <div id="earth_div" style="width:100%"></div>
+    <div id="earth_div" style = "width:200%;position:absolute;top:0;left:-80vmin" ></div>
   </body>
-  <script>
-  window.onload = function(){
-  initialize();
-  };
-  </script>
+  
+  
 </html>
