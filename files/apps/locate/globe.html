@@ -9,7 +9,7 @@
       function initialize() {
         earth = new WE.map('earth_div');
         earth.setView([40, -124], 1.5);
-        WE.tileLayer('https://api.maptiler.com/maps/toner/256/{z}/{x}/{y}.png?key=uhjAXEYUvZUzlOLs65XR',{
+        WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
           attribution: ''
         }).addTo(earth);
 
