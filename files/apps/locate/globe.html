@@ -1,7 +1,8 @@
+
 <!DOCTYPE HTML>
 <html>
   <head>
-    <script src="http://www.webglearth.com/v2/api.js"></script>
+    <script src="api.js"></script>
     <script>
       var earth;
 	  var x = 0.05;
@@ -9,7 +10,7 @@
       function initialize() {
         earth = new WE.map('earth_div');
         earth.setView([40, -124], 1.5);
-        WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        WE.tileLayer('https://api.maptiler.com/maps/toner/256/{z}/{x}/{y}@2x.png?key=uhjAXEYUvZUzlOLs65XR',{
           attribution: ''
         }).addTo(earth);
 
