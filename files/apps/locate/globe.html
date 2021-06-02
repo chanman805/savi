@@ -3,27 +3,12 @@
   <head>
     <script src="http://www.webglearth.com/v2/api.js"></script>
     <script>
-	
-	var latty;
-	var longy;
-	var checkedy = false;
-	var x = 0.05;
-	
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
-
-function success(pos) {
-  var crd = pos.coords;
-  latty = (`${crd.latitude}`);
- longy = (`${crd.longitude}`);
-
-var earth;
+      var earth;
+	  var x = 0.05;
+	  var giggity = true;
       function initialize() {
         earth = new WE.map('earth_div');
-        earth.setView([latty, longy], 1.5);
+        earth.setView([40, -124], 1.5);
         WE.tileLayer('https://api.maptiler.com/maps/toner/256/{z}/{x}/{y}.png?key=uhjAXEYUvZUzlOLs65XR',{
           attribution: ''
         }).addTo(earth);
@@ -34,34 +19,20 @@ var earth;
             var c = earth.getPosition();
             var elapsed = before? now - before: 0;
             before = now;
-            earth.setCenter([c[0], c[1] + x*(elapsed/15)]);
+            earth.setCenter([c[0], c[1] + x*(elapsed/50)]);
             requestAnimationFrame(animate);
         });
       }
-
-initialize();
-
-}
-
-function error(err) {
-   
-
-}
-
-window.onclick = function(){
-if (checkedy){
-x = 0.5;
-checkedy = false;
-} else {
-x=0;
-checkedy = true;
-}
-};
-
-navigator.geolocation.getCurrentPosition(success, error, options);
-
-	
-      
+	  
+	  window.onclick = function(){
+	  if (giggity){
+	  x = 0.5;
+	  giggity = false;
+	  } else {
+	  x = 0.05;
+	  giggity = true;
+	  }
+	  };
     </script>
     <style>
       body, html {
@@ -71,9 +42,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
     </style>   
     <title>WebGL Earth API v2: Animation</title>
   </head>
-  <body>
-    <div id="earth_div" style = "width:200%;position:absolute;top:0;left:0;" ></div>
+  <body onload="initialize()">
+    <div id="earth_div" style = "width:200%;position:absolute;top:0;left:-50vmin;"></div>
   </body>
-  
-  
 </html>
