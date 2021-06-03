@@ -22,9 +22,9 @@ height:100%;
 overflow-x:hidden;
 overflow-y:auto;
 font-family:'default';
-transform:translate(30vmin,0);
 padding:10px;
 font-size:1em;
+transition: all 3s;
 }
 
 .feed-item-title a {
@@ -42,16 +42,71 @@ font-weight:bolder;
 font-size:15px;
 }
 
+#searchbar {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-top: 5vmin;
+    padding: 10px;
+    font-family: 'default';
+    margin-left: -2.5vmin;
+    position: fixed;
+    width: 50vmin;
+    text-align: right;
+    transform: translate(-20vmin,0);
+}
+
+
+#right {
+    float: right;
+    width: 60%;
+    margin-top: -7.5vmin;
+    margin-right: 20vmin;
+}
 
 </style>
-<body style = "width:55%;height:100%;">
-</body>
-
+<body>
+<div style = "float:left;">
+<input  id = "searchbar"></input>
+</div>
+<div id = "right">
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Fwww.nytimes.com%2Fsvc%2Fcollections%2Fv1%2Fpublish%2Fhttps%3A%2F%2Fwww.nytimes.com%2Fsection%2Fworld%2Frss.xml&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Fwww.cnbc.com%2Fid%2F100727362%2Fdevice%2Frss%2Frss.html&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=http%3A%2F%2Ffeeds.washingtonpost.com%2Frss%2Fworld&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Fabcnews.go.com%2Fabcnews%2Finternationalheadlines&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Fwww.latimes.com%2Fworld%2Frss2.0.xml&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Ftime.com%2Ffeed&detail=20&limit=5&showtitle=false&type=js"></script>
+</div>
+</body>
 
+
+<script> 
+
+var myFunction = function() {
+  var filter = document.getElementById('searchbar').value.toString().toLowerCase();
+  var nodes = document.getElementsByTagName('p');
+  var nodes2 = document.getElementsByTagName('h4');
+
+  for (i = 0, j = 0; i < nodes.length, j<nodes2.length; i++, j++) {
+    if (nodes[i].innerText.toLowerCase().includes(filter)) {
+      nodes[i].style.transition = 'all 0.5';
+	  nodes[i].style.opacity = "100%";
+	  nodes2[j].style.opacity = "100%";
+    } else {
+	nodes[i].style.transition = 'all 0.5s';
+      nodes[i].style.opacity = "25%";
+	  nodes2[j].style.opacity = "25%";
+	  
+    }
+  }
+}
+
+window.onclick = function(){
+
+setInterval(myFunction,1000);
+};
+
+
+ </script>
 </html>
