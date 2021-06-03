@@ -42,22 +42,33 @@ font-weight:bolder;
 font-size:15px;
 }
 
-#searchbar {
-    background-color: black;
+#searchbar, #load {
+    background-color: #1a1a1a;
     color: white;
-    border: 1px solid white;
+	border:none;
     border-radius: 10px;
-    margin-top: 5vmin;
     padding: 10px;
     font-family: 'default';
     margin-left: -2.5vmin;
-    position: fixed;
     width: 100vmin;
     text-align: right;
     transform: translate(-60vmin,0);
 	transition: all 1s;
 	font-size:1.5em;
+	box-shadow:5px 5px 0px white;
+	outline:none;
+	display:block;
 }
+
+#load {
+box-shadow:none;
+width:90vmin;
+margin-top:5vmin;
+text-align:right;
+padding:10px;
+padding-right:20px;
+}
+
 
 
 #right {
@@ -70,16 +81,24 @@ transition: all 1s;
 
 </style>
 <body>
-<div style = "float:left;">
-<input  id = "searchbar"></input>
+<div style = "float:left;position:fixed;">
+<input  placeholder = "search" id = "searchbar"></input>
+<button id = "load" onclick = "load_yer_own_shit()" >
+<img src = "rss.png" width = "40px" ></img>
+</button>
 </div>
 <div id = "right">
+<div id = "established">
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Fwww.nytimes.com%2Fsvc%2Fcollections%2Fv1%2Fpublish%2Fhttps%3A%2F%2Fwww.nytimes.com%2Fsection%2Fworld%2Frss.xml&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Fwww.cnbc.com%2Fid%2F100727362%2Fdevice%2Frss%2Frss.html&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=http%3A%2F%2Ffeeds.washingtonpost.com%2Frss%2Fworld&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Fabcnews.go.com%2Fabcnews%2Finternationalheadlines&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Fwww.latimes.com%2Fworld%2Frss2.0.xml&detail=20&limit=5&showtitle=false&type=js"></script>
 <script src="https://rss.bloople.net/?url=https%3A%2F%2Ftime.com%2Ffeed&detail=20&limit=5&showtitle=false&type=js"></script>
+</div>
+<div id = "whocares" style = "top:150%" >
+<script id = "dummy_script"></script>
+</div>
 </div>
 </body>
 
@@ -88,16 +107,19 @@ transition: all 1s;
 
 var input = document.getElementById('searchbar');
 var right = document.getElementById('right');
+var load = document.getElementById('load');
 
 input.addEventListener("focus",function(){
 input.style.width = "120vmin";
 input.style.height = "20vmin";
 input.style.fontSize = "2em";
 right.style.width = "50%";
+input.style.borderRadius = "20px";
 });
 
 input.addEventListener("blur",function(){
 input.style.width = "100vmin";
+input.style.borderRadius = "10px";
 input.style.height = "auto";
 input.style.fontSize = "2em";
 right.style.width = "60%";
@@ -122,10 +144,31 @@ var myFunction = function() {
   }
 }
 
-window.onclick = function(){
+var dummy = document.getElementById('dummy_script');
+var established = document.getElementById('established');
+var whocares = document.getElementById('whocares');
+
+var load_yer_own_shit = function(){
+var newURL = prompt("RSS Feed");
+searchbar.style.transform = "translate(-250vmin,0)";
+load.style.transform = "translate(-250vmin,0)";
+dummy.src = "https://rss.bloople.net/?url=https://"+newURL+"&detail=20&limit=5&showtitle=false&type=js";
+document.body.style.width = "90%";
+dummy.style.width = "60%";
+dummy.style.float = "right";
+established.style.display = "none";
+
+};
+
+window.onload = function(){
 
 setInterval(myFunction,1000);
 };
+
+
+
+
+
 
 
  </script>
