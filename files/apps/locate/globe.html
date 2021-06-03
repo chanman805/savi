@@ -5,11 +5,11 @@
     <script src="api.js"></script>
     <script>
       var earth;
-	  var x = 0.05;
+	  var x = 0.1;
 	  var giggity = true;
       function initialize() {
         earth = new WE.map('earth_div');
-        earth.setView([40, -124], 1.5);
+        earth.setView([40, -124], 1.75);
         WE.tileLayer('https://api.maptiler.com/maps/toner/256/{z}/{x}/{y}@2x.png?key=uhjAXEYUvZUzlOLs65XR',{
           attribution: ''
         }).addTo(earth);
@@ -28,10 +28,10 @@
 	  window.onclick = function(){
 	  if (giggity){
 	  x = 0.5;
-	  earth.setView([40, -124], 1.5);
+	  earth.setView([40, -124], 1.75);
 	  giggity = false;
 	  } else {
-	  x = 0.05;
+	  x = 0.1;
 	  giggity = true;
 	  }
 	  };
@@ -47,6 +47,6 @@
     <title>WebGL Earth API v2: Animation</title>
   </head>
   <body onload="initialize()">
-    <div id="earth_div" style = "width:200%;position:absolute;top:0;left:-50vmin;"></div>
+    <div id="earth_div" style = "width:200%;position:absolute;top:-5vmin;left:-50vmin;"></div>
   </body>
 </html>
