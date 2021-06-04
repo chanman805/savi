@@ -203,9 +203,9 @@ padding-top:0px;
 <div id = "health_div">
 <h1 ><span style = "    font-size: 20px;
     padding-right: 1px;
-   ">v</span>7.0.1</h1>
+   ">v</span>7.0.2</h1>
 	
-<p style = "background-color:#1a1a1a;width:50%;text-align:right;transform:translate(-62.5vmin,0);font-size:15px;color:gray;padding:10px;border-radius:10px;padding-left:2.5vmin;margin-top:-3vmin">6/4/2021</p>
+<p style = "background-color: #ffffff42;width:50%;text-align:right;transform:translate(-62.5vmin,0);font-size:15px;color:white;padding:10px;border-radius:10px;padding-left:2.5vmin;margin-top:-3vmin">6/4/2021</p>
 </div>
 
 <iframe id = "frame0" onload = "frame_counter++;" onerror = "alert('nope')" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
@@ -230,6 +230,11 @@ var locate = document.getElementById('frame5');
 var mail = document.getElementById('frame6');
 var news = document.getElementById('frame7');
 
+var voice_path = "files/audio/voice/";
+
+var app_launchers = ["lowgrumbling","hereswhaticouldfind","ooh", "rambling","hereswhatigot","hereswhatifound"];
+
+var app_closers = ["hopethatwentwell", "okay", "rightidontknowwhatyouwantthatso", "valleygirlsigh", "yeahredothatone"];
 
 var health_div = document.getElementById('health_div');
 
@@ -240,7 +245,13 @@ var temp_src = "";
 var app_on = "";
 var app_on_src = "";
 
+var rando = Math.round(Math.random()*app_launchers.length-1);
+
 var launch = function(app, app_src){
+rando =Math.round(Math.random()*app_launchers.length-1);
+var audio = new Audio(voice_path+app_launchers[rando]+".mp3");
+audio.volume = 0.25;
+audio.play();
 
 if (app === health){
 
@@ -275,6 +286,10 @@ right_dock.style.opacity = "0%";
 
 
 var reset = function(app){
+rando =Math.round(Math.random()*app_closers.length-1);
+var audio = new Audio(voice_path+app_closers[rando]+".mp3");
+audio.volume = 0.25;
+audio.play();
 if (app_running){
 health_div.style.top = "150%";
 face.style.transition = "transform 1s, opacity 1s";
