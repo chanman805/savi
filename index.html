@@ -9,8 +9,21 @@
 <link href="files/images/app/apple-touch-icon.png" rel="icon" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="mobile-web-app-capable" content="yes">
+<script> var frame_counter = 0;</script>
 <head>
 <style>
+
+@font-face {
+  font-family: "default";
+  src: url("files/styles/font.ttf");
+
+}
+
+@font-face {
+  font-family: "mono";
+  src: url("mono2.ttf");
+
+}
 
 html {
   position: fixed;
@@ -144,6 +157,19 @@ border:none;
 opacity:0%;
 }
 
+#health_div {
+width:100%;
+height:100%;
+background-color:black;
+color:white;
+position:absolute;
+top:150%;
+transition: all 1s;
+font-family: 'default';
+padding:20px;
+padding-top:0px;
+}
+
 </style>
 </head>
 <body>
@@ -173,14 +199,23 @@ opacity:0%;
 <img id = "mail_launcher" onclick = "launch(mail, 'files/apps/mail/index.html')"class = "icon" src = "files/images/docks/mail.gif"></img>
 <img id = "news_launcher" onclick = "launch(news, 'files/apps/news/index.html')"class = "icon" src = "files/images/docks/news.png"></img>
 </div>
-<iframe id = "frame0" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
-<iframe id = "frame1" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
-<iframe id = "frame2" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
-<iframe id = "frame3" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
-<iframe id = "frame4" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
-<iframe id = "frame5" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
-<iframe id = "frame6" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
-<iframe id = "frame7" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
+
+<div id = "health_div">
+<h1 ><span style = "    font-size: 20px;
+    padding-right: 1px;
+   ">v</span>7.0.1</h1>
+	
+<p style = "background-color:#1a1a1a;width:50%;text-align:right;transform:translate(-62.5vmin,0);font-size:15px;color:gray;padding:10px;border-radius:10px;padding-left:2.5vmin;margin-top:-3vmin">6/4/2021</p>
+</div>
+
+<iframe id = "frame0" onload = "frame_counter++;" onerror = "alert('nope')" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
+<iframe id = "frame1" onload = "frame_counter++;" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
+<iframe id = "frame2" onload = "frame_counter++;" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
+<iframe id = "frame3" onload = "frame_counter++;" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
+<iframe id = "frame4" onload = "frame_counter++;" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
+<iframe id = "frame5" onload = "frame_counter++;" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
+<iframe id = "frame6" onload = "frame_counter++;" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
+<iframe id = "frame7" onload = "frame_counter++;" class = "frame" scrolling = "no" src = "files/apps/default/wait.html"></iframe>
 
 </body>
 <script src = "files/modules/swipe.js"></script>
@@ -195,6 +230,10 @@ var locate = document.getElementById('frame5');
 var mail = document.getElementById('frame6');
 var news = document.getElementById('frame7');
 
+
+var health_div = document.getElementById('health_div');
+
+
 var app_running = false;
 var temp_mem = "";
 var temp_src = "";
@@ -202,6 +241,19 @@ var app_on = "";
 var app_on_src = "";
 
 var launch = function(app, app_src){
+
+if (app === health){
+
+face.style.transform = "scale(0.8)";
+app_on = app;
+app_on_src = app.src;
+app_running = true;
+health_div.style.top = "0";
+left_dock.style.opacity = "0%";
+right_dock.style.opacity = "0%";
+
+woosh.play();
+} else {
 
 face.style.transform = "scale(1.5)";
 face.style.marginLeft = "-50vmin";
@@ -215,20 +267,23 @@ app_running = true;
 woosh.play();
 face.style.opacity = "20%";
 face.style.filter = "grayscale(50%)";
+left_dock.style.opacity = "0%";
+right_dock.style.opacity = "0%";
+}
+
 };
 
 
 var reset = function(app){
 if (app_running){
-
-face.style.transition = "all 0s";
-face.style.transform = "scale(1.1)";
-face.style.opacity = "0";
-setTimeout(function(){
+health_div.style.top = "150%";
 face.style.transition = "transform 1s, opacity 1s";
 face.style.transform = "scale(1)";
 face.style.opacity = "100%";
-},100);
+setTimeout(function(){
+left_dock.style.opacity = "100%";
+right_dock.style.opacity = "100%";
+},700);
 face.style.marginLeft = "auto";
 face.style.marginTop = "auto";
 face.style.filter = "grayscale(0%)";
@@ -377,7 +432,6 @@ giggle.play();
 welcome();
 verified = true;
 } 
-
 };
 
 window.addEventListener("orientationchange", function() {
