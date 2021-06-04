@@ -119,6 +119,7 @@ transition: all 1s;
 var input = document.getElementById('searchbar');
 var right = document.getElementById('right');
 var load = document.getElementById('load');
+var globe = document.getElementById('globe');
 
 input.addEventListener("focus",function(){
 input.style.width = "120vmin";
@@ -163,6 +164,7 @@ var load_yer_own_shit = function(){
 var newURL = prompt("RSS Feed");
 searchbar.style.transform = "translate(-250vmin,0)";
 load.style.transform = "translate(-250vmin,0)";
+globe.style.transform = "translate(-250vmin,0)";
 dummy.src = "https://rss.bloople.net/?url=https://"+newURL+"&detail=20&limit=5&showtitle=false&type=js";
 document.body.style.width = "90%";
 dummy.style.width = "60%";
