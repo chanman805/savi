@@ -230,12 +230,6 @@ var locate = document.getElementById('frame5');
 var mail = document.getElementById('frame6');
 var news = document.getElementById('frame7');
 
-var voice_path = "files/audio/voice/";
-
-var app_launchers = ["lowgrumbling","hereswhaticouldfind","ooh", "rambling","hereswhatigot","hereswhatifound"];
-
-var app_closers = ["hopethatwentwell", "okay", "rightidontknowwhatyouwantthatso", "valleygirlsigh", "yeahredothatone"];
-
 var health_div = document.getElementById('health_div');
 
 
@@ -245,13 +239,9 @@ var temp_src = "";
 var app_on = "";
 var app_on_src = "";
 
-var rando = Math.round(Math.random()*app_launchers.length-1);
 
 var launch = function(app, app_src){
-rando =Math.round(Math.random()*app_launchers.length-1);
-var audio = new Audio(voice_path+app_launchers[rando]+".mp3");
-audio.volume = 0.25;
-audio.play();
+
 
 if (app === health){
 
@@ -263,7 +253,53 @@ health_div.style.top = "0";
 left_dock.style.opacity = "0%";
 right_dock.style.opacity = "0%";
 
-woosh.play();
+enter_woosh.play();
+
+} else if (app === news){
+
+bgm.volume = 1;
+crowd.volume = 0.025;
+crowd.play();
+face.style.transform = "scale(1.5)";
+face.style.marginLeft = "-50vmin";
+face.style.marginTop = "60vmin";
+app_on = app;
+app.style.opacity = "100%";
+app_on_src = app.src;
+app.src = app_src;
+app.style.top = "0";
+app_running = true;
+enter_woosh.play();
+face.style.opacity = "20%";
+face.style.filter = "grayscale(50%)";
+left_dock.style.opacity = "0%";
+right_dock.style.opacity = "0%";
+
+
+} else if (app === locate){
+
+bgm.volume = 1;
+ping.volume = 0.5;
+ping.play();
+ping.onended = function(){
+ping.play();
+};
+face.style.transform = "scale(1.5)";
+face.style.marginLeft = "-50vmin";
+face.style.marginTop = "60vmin";
+app_on = app;
+app.style.opacity = "100%";
+app_on_src = app.src;
+app.src = app_src;
+app.style.top = "0";
+app_running = true;
+enter_woosh.play();
+face.style.opacity = "20%";
+face.style.filter = "grayscale(50%)";
+left_dock.style.opacity = "0%";
+right_dock.style.opacity = "0%";
+
+
 } else {
 
 face.style.transform = "scale(1.5)";
@@ -275,7 +311,7 @@ app_on_src = app.src;
 app.src = app_src;
 app.style.top = "0";
 app_running = true;
-woosh.play();
+enter_woosh.play();
 face.style.opacity = "20%";
 face.style.filter = "grayscale(50%)";
 left_dock.style.opacity = "0%";
@@ -286,10 +322,9 @@ right_dock.style.opacity = "0%";
 
 
 var reset = function(app){
-rando =Math.round(Math.random()*app_closers.length-1);
-var audio = new Audio(voice_path+app_closers[rando]+".mp3");
-audio.volume = 0.25;
-audio.play();
+bgm.volume = 1;
+crowd.pause();
+ping.pause();
 if (app_running){
 health_div.style.top = "150%";
 face.style.transition = "transform 1s, opacity 1s";
@@ -303,7 +338,7 @@ face.style.marginLeft = "auto";
 face.style.marginTop = "auto";
 face.style.filter = "grayscale(0%)";
 
-woosh.play();
+exit_woosh.play();
 app.style.top = "150%";
 app.style.opacity = "0%";
 app_running = false;
@@ -331,11 +366,15 @@ var verified = false;
 
 var face = document.getElementById("face");
 var giggle = new Audio("files/audio/voice/giggle.mp3");
-var bgm = new Audio("files/audio/bgm/bgm1.mp3");
-var woosh = new Audio("files/audio/sfx/woosh.mp3");
+var bgm = new Audio("files/audio/bgm/bgm.mp3");
+var crowd = new Audio("files/audio/bgm/crowd.mp3");
+var ping = new Audio("files/audio/sfx/ping.mp3");
+var enter_woosh = new Audio("files/audio/sfx/enter_woosh.mp3");
+var exit_woosh = new Audio("files/audio/sfx/exit_woosh.mp3");
 
 var init_bgm = function(){
-woosh.volume = 0.45;
+enter_woosh.volume = 0.45;
+exit_woosh.volume = 0.45;
 bgm.volume = 1;
 bgm.play();
 bgm.onended = function(){
