@@ -137,7 +137,7 @@ body {
 <body>
 <div style = "float:left;position:fixed;">
 <input  placeholder = "search" id = "searchbar"></input>
-<button id = "load" onclick = "load_yer_own_shit()" >
+<button id = "load" onclick = "audio.volume = 0.2;audio.play();load_yer_own_shit()" >
 <img src = "rss.png" width = "40px" ></img>
 </button>
 <iframe scrolling = "no" id = "globe" src = "../locate/globe.html"></iframe>
@@ -208,7 +208,6 @@ var established = document.getElementById('established');
 var whocares = document.getElementById('whocares');
 
 var load_yer_own_shit = function(){
-audio.volume = 0.2;audio.play();
 var newURL = prompt("RSS Feed");
 searchbar.style.transform = "translate(-250vmin,0)";
 load.style.transform = "translate(-250vmin,0)";
