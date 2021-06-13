@@ -282,7 +282,7 @@ for (var i = 0; i < all.length; ++i) {
     item.style.transform = "scale(0.8)";
 	setTimeout(function(){
 	
-	
+	enter_woosh.play();
 	document.getElementById('chat_launcher').style.transition = "all 0.5s";
 	document.getElementById('clock_launcher').style.transition = "all 0.5s";
 	document.getElementById('code_launcher').style.transition = "all 0.5s";
@@ -301,7 +301,8 @@ for (var i = 0; i < all.length; ++i) {
 	document.getElementById('location_launcher').style.transform = "translate(1500%,0) scale(0.8)";
 	document.getElementById('mail_launcher').style.transform = "translate(1500%,0) scale(0.8)";
 	document.getElementById('news_launcher').style.transform = "translate(1500%,0) scale(0.8)";
-
+bgm.pause();
+hack.play();
 	launch_hidden();
 	},550);
 }
@@ -337,7 +338,9 @@ var close_advance = function(){
 hidden_r.style.opacity = "0%";
 setTimeout(function(){
 
-
+exit_woosh.play();
+bgm.play();
+hack.pause();
 hidden_l.style.display = "none";
 hidden_r.style.display = "none";
 
@@ -446,6 +449,9 @@ enter_woosh.play();
 bgm.volume = 1;
 ping.volume = 0.5;
 ping.play();
+ping.onended = function(){
+ping.play();
+};
 face.style.transform = "scale(1.5)";
 face.style.marginLeft = "-50vmin";
 face.style.marginTop = "60vmin";
@@ -529,6 +535,7 @@ var verified = false;
 var face = document.getElementById("face");
 var giggle = new Audio("files/audio/voice/giggle.mp3");
 var bgm = new Audio("files/audio/bgm/bgm.mp3");
+var hack = new Audio("files/audio/bgm/hack.mp3");
 var crowd = new Audio("files/audio/bgm/crowd.mp3");
 var ping = new Audio("files/audio/sfx/ping.mp3");
 var enter_woosh = new Audio("files/audio/sfx/enter_woosh.mp3");
@@ -538,6 +545,7 @@ var init_bgm = function(){
 enter_woosh.volume = 0.5;
 exit_woosh.volume = 0.5;
 bgm.volume = 1;
+hack.volume = 0.5;
 bgm.play();
 bgm.onended = function(){
 bgm.play();
