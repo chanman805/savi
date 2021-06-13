@@ -238,7 +238,7 @@ padding-top:0px;
 <div id = "health_div">
 <h1 ><span style = "    font-size: 20px;
     padding-right: 1px;
-   ">v</span>7.1.3</h1>
+   ">v</span>7.1.5</h1>
 	
 <p style = "background-color: #ffffff42;width:50%;text-align:right;
 transform:translate(-62.5vmin,0);font-size:15px;color:white;padding:10px;
@@ -297,10 +297,10 @@ for (var i = 0; i < all.length; ++i) {
 	document.getElementById('clock_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
 	document.getElementById('code_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
 	document.getElementById('health_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
-	document.getElementById('internet_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
-	document.getElementById('location_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
-	document.getElementById('mail_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
-	document.getElementById('news_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
+	document.getElementById('internet_launcher').style.transform = "translate(1500%,0) scale(0.8)";
+	document.getElementById('location_launcher').style.transform = "translate(1500%,0) scale(0.8)";
+	document.getElementById('mail_launcher').style.transform = "translate(1500%,0) scale(0.8)";
+	document.getElementById('news_launcher').style.transform = "translate(1500%,0) scale(0.8)";
 
 	launch_hidden();
 	},550);
@@ -333,7 +333,6 @@ isadvance = true;
 
 var close_advance = function(){
 
-
 	hidden_l.style.opacity = "0%";
 hidden_r.style.opacity = "0%";
 setTimeout(function(){
@@ -347,7 +346,7 @@ document.getElementById('radio_launcher').style.transform = "scale(0)";
 
 hidden_l.style.marginLeft = "-1500vmin";
 hidden_r.style.marginRight = "-1500vmin";
-
+face.style.filter = "sepia(0%) brightness(100%) contrast(100%) hue-rotate(0deg)";
 face.style.transform = "scale(1)";
 
 },500);
