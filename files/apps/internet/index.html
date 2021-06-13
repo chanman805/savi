@@ -59,6 +59,7 @@ body {
 
 
 body, html {
+transform:scale(1.05);
 background-color:black;
 background-image: none;
 background-repeat: no-repeat;
@@ -76,21 +77,65 @@ width:100%;
 
 
 
+#wifiword4, #wifiword, #wifiword2 {
+    width: 100%;
+    float: right;
+    opacity: 100%;
+    background-color: #ffffff42;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 100%;
+    transform: translate(-20%,15vmin);
+    text-align: right;
+	margin-bottom:-5px;
+}
 
+#vis1, #vis2, #vis3 {
+	width:35%;
+	height:5%;
+	transform:translate(0, 14vmin);
+}
 
 </style>
 <body>
 
-<h1 id = "vis_1">
-<img id = "vis_1i" width = "100%" style = "top:0;" src = "vis.gif"></img>
-</h1>
 
-<h1 id = "vis_2">vis2</h1>
+<p id = "wifiword4">loading...</p>
+<p id = "wifiword">loading...</p>
+<p id = "wifiword2">loading...</p>
 
-<h1 id = "vis_3">vis3</h1>
+<iframe id = "rtt" scrolling = "no"style = "    opacity: 100%;
+    border: none;
+    position: fixed;
+    top: 1.5%;
+    left: 0%;
+    transform: scale(0.5);" width = "20%" height = "20%"src = "frame/rtt.html"></iframe>
+
+<img id = "vis1" style = "opacity:100%;position:fixed;top:10%;left:5%" src = "images/vis3.gif"></img>
+<img id = "vis2" style = "opacity:100%;position:fixed;top:27%;left:5%" src = "images/vis3.gif"></img>
+<img id = "vis3" style = "opacity:100%;position:fixed;top:44%;left:5%" src = "images/vis3.gif"></img>
+
+<iframe id = "ip" scrolling = "no"style = "padding:10px;background-color:Transparent;opacity:100%;border:none;position:absolute;top:-5.5%;left:58%;" width = "100%" height = "20%"src = "frame/ip.html"></iframe>
+<iframe id = "ping" scrolling = "no"style = "    border-radius: 10px;
+    opacity: 100%;
+    border: none;
+    position: absolute;
+    top: 70%;
+    left: 5%;
+    transform: scale(0.9);" width = "30%" height = "23%"src = "frame/ping.html"></iframe>
 
 
-
+<iframe id = "cpu" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:100%;border:none;position:absolute;top:37.5%;left:67.5%;" width = "37%" height = "35%"src = "frame/cputest.html"></iframe>
+<iframe id = "cpu2" scrolling = "no"style = "filter:grayscale(100%);transform:rotate(270deg);opacity:100%;border:none;position:absolute;top:37.5%;left:75%;" width = "37%" height = "35%"src = "frame/cputest2.html"></iframe>
+<iframe id = "resource" scrolling = "yes"style = "    overflow-y: scroll;
+    overflow-x: hidden;
+    border-radius: 10px;
+    opacity: 100%;
+    border: none;
+    position: absolute;
+    top: 70%;
+    left: 25%;
+    transform: scale(0.9);" width = "34%" height = "23%"src = "frame/resource.html"></iframe>
 </body>
 <script>
 const perfData = window.performance.timing; 
@@ -99,18 +144,181 @@ const connectTime = perfData.responseEnd - perfData.requestStart;
 const renderTime = perfData.domComplete - perfData.domLoading;
 
 if (connectTime>0&&connectTime<5){
-document.getElementById("vis_1i").style.filter = "hue-rotate(310deg)";
+document.getElementById("vis1").style.filter = "hue-rotate(310deg)";
 } else if (connectTime>5&&connectTime<10) {
-document.getElementById("vis_1i").style.filter = "hue-rotate(250deg)";
+document.getElementById("vis1").style.filter = "hue-rotate(250deg)";
 } else if (connectTime>15&&connectTime<25) {
-document.getElementById("vis_1i").style.filter = "hue-rotate(190deg)";
+document.getElementById("vis1").style.filter = "hue-rotate(190deg)";
 } else if (connectTime>25) {
-document.getElementById("vis_1i").style.filter = "hue-rotate(130deg)";
+document.getElementById("vis1").style.filter = "hue-rotate(130deg)";
 }else {
 
 }
 
 
+
+var firstVar = (connectTime/1000);
+if (firstVar<0){
+document.getElementById("wifiword4").innerHTML = "0.000 s";
+}else {
+document.getElementById("wifiword4").innerHTML = parseFloat((firstVar).toFixed(3))+ " <span style = 'opacity: 75%;font-size: 11px;margin: -2.5px;margin-bottom:0px'>s</span>";
+}
+
+
+
+
+function ping(host, port, pong) {
+
+  var started = new Date().getTime();
+
+  var http = new XMLHttpRequest();
+
+  http.open("GET", "https://" + host + ":" + port, /*async*/true);
+  http.onreadystatechange = function() {
+    if (http.readyState == 4) {
+      var ended = new Date().getTime();
+
+      var milliseconds = ended - started;
+      if (pong != null) {
+        pong(milliseconds);
+      }
+    }
+  };
+  try {
+    http.send(null);
+  } catch(exception) {
+    // this is expected
+  }
+}
+ping("8.8.8.8", "77", function(m){ 
+
+
+document.getElementById("wifiword").innerHTML =m+" <span style = 'opacity: 75%;font-size: 11px;margin: -2.5px;margin-bottom:0px'>ms</span>";
+
+if (m>250){
+document.getElementById("vis2").style.filter = "hue-rotate(100deg)";
+} else if (m<250&&m>200){
+	document.getElementById("vis2").style.transition = "all 1.5s";
+		document.getElementById("vis2").style.filter = "hue-rotate(180deg)";
+} else if (m<200&&m>150){
+
+		document.getElementById("vis2").style.transition = "all 1.5s";
+		document.getElementById("vis2").style.filter = "hue-rotate(200deg)";
+} else if (m<150&&m>50){
+	document.getElementById("vis2").style.transition = "all 1.5s";
+		document.getElementById("vis2").style.filter = "hue-rotate(300deg)";
+} else if (m<50){
+document.getElementById("vis2").style.transition = "all 1.5s";
+			document.getElementById("vis2").style.filter = "hue-rotate(300deg)";
+}else {
+	document.getElementById("vis2").style.filter = "hue-rotate(0deg)";
+}
+
+if (m>250){
+document.getElementById("timevis2").style.filter = "hue-rotate(100deg)";
+} else if (m<250&&m>200){
+	document.getElementById("timevis2").style.transition = "all 1.5s";
+		document.getElementById("timevis2").style.filter = "hue-rotate(180deg)";
+} else if (m<200&&m>150){
+
+		document.getElementById("timevis2").style.transition = "all 1.5s";
+		document.getElementById("timevis2").style.filter = "hue-rotate(200deg)";
+} else if (m<150&&m>50){
+	document.getElementById("timevis2").style.transition = "all 1.5s";
+		document.getElementById("timevis2").style.filter = "hue-rotate(300deg)";
+} else if (m<50){
+document.getElementById("timevis2").style.transition = "all 1.5s";
+			document.getElementById("timevis2").style.filter = "hue-rotate(300deg)";
+}else {
+	document.getElementById("timevis2").style.filter = "hue-rotate(0deg)";
+}
+
+ })
+
+	
+//JUST AN EXAMPLE, PLEASE USE YOUR OWN PICTURE!
+var imageAddr = "https://i.pinimg.com/564x/e2/0c/ce/e20ccebbf6562b93ff82ffc7d2c163f1.jpg"; 
+var downloadSize = 4995374; //bytes
+
+function ShowProgressMessage(msg) {
+    if (console) {
+        if (typeof msg == "string") {
+            console.log(msg);
+        } else {
+            for (var i = 0; i < msg.length; i++) {
+                console.log(msg[i]);
+            }
+        }
+    }
+    
+    var oProgress = document.getElementById("wifiword2");
+    if (oProgress) {
+        var actualHTML = (typeof msg == "string") ? msg : msg.join("<br />");
+        oProgress.innerHTML = actualHTML;
+    }
+}
+
+function InitiateSpeedDetection() {
+   
+    window.setTimeout(MeasureConnectionSpeed, 1);
+};    
+
+if (window.addEventListener) {
+    window.addEventListener('load', InitiateSpeedDetection, false);
+} else if (window.attachEvent) {
+    window.attachEvent('onload', InitiateSpeedDetection);
+}
+
+function MeasureConnectionSpeed() {
+   
+	var startTime, endTime;
+    var download = new Image();
+    download.onload = function () {
+        endTime = (new Date()).getTime();
+        showResults();
+    }
+    
+    download.onerror = function (err, msg) {
+        
+    }
+    
+    startTime = (new Date()).getTime();
+    var cacheBuster = "?nnn=" + startTime;
+    download.src = imageAddr + cacheBuster;
+    
+    function showResults() {
+	document.getElementById("vis2").style.transition = "all 1.5s";
+        var duration = (endTime - startTime) / 1000;
+        var bitsLoaded = downloadSize * 8;
+        var speedBps = (bitsLoaded / duration).toFixed(2);
+        var speedKbps = (speedBps / 1024).toFixed(2);
+        var speedMbps = (speedKbps / 1024).toFixed(2);
+		if (speedMbps>0&&speedMbps<50){
+		document.getElementById("vis3").style.filter = "hue-rotate(100deg)";
+
+		} else if (speedMbps>50&&speedMbps<75){
+		document.getElementById("vis3").style.transition = "all 1.5s";
+		document.getElementById("vis3").style.filter = "hue-rotate(180deg)";
+		} else if (speedMbps>75&&speedMbps<100){
+		document.getElementById("vis3").style.transition = "all 1.5s";
+		document.getElementById("vis3").style.filter = "hue-rotate(200deg)";
+		} else if (speedMbps>100&&speedMbps<200){
+		document.getElementById("vis3").style.transition = "all 1.5s";
+		document.getElementById("vis3").style.filter = "hue-rotate(300deg)";
+			} else if (speedMbps>200&&speedMbps<300){
+			document.getElementById("vis3").style.transition = "all 1.5s";
+			document.getElementById("vis3").style.filter = "hue-rotate(300deg)";
+				} else if (speedMbps>300){
+				document.getElementById("vis3").style.transition = "all 1.5s";
+				} else {
+				
+				}
+        ShowProgressMessage([
+            Math.round(speedMbps) + " <span style = 'opacity: 75%;font-size: 11px;margin: -2.5px;margin-bottom:0px'>mb/s<s/pan>", 
+            
+        ]);
+    }
+}
 
 
 

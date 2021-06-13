@@ -1,0 +1,66 @@
+<style>
+
+@font-face {
+  font-family: "default";
+  src: url("../mono2.ttf");
+
+}
+
+body,html { display:block;font-family: 'default'; text-decoration: none; width:100%; background-color:black; color:white; font-size:9px; line-spacing: 9px;}
+.responded { display:block;color: green;}
+.checking,.unchecked { color: #FF8C00;}
+.timeout { color: red;}
+a { display:inline-block;text-decoration: none; color:white; background-color:black;}
+span { color: green;}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
+<div style = "position:fixed; top:0%;left:-20%; width:100%;">
+<ul data-bind="foreach:servers"> <a href="#" data-bind="text:name,attr:{href: 'http://'+name};"></a> 
+<span data-bind="text:status,css:status;display:inline"></span>
+</ul></div>
+<script>
+    function ping(ip, callback) {
+        if (!this.inUse) {
+            this.status = "unchecked";
+            this.inUse = true;
+            this.callback = callback;
+            this.ip = ip;
+            var _that = this;
+            this.img = new Image();
+            this.img.onload = function () {
+                _that.inUse = false;
+                _that.callback("✖\n");
+            };
+            this.img.onerror = function (e) {
+                if (_that.inUse) {
+                    _that.inUse = false;
+                    _that.callback("✓\n", e);
+                }
+            };
+            this.start = new Date().getTime();
+            this.img.src = "http://" + ip;
+            this.timer = setTimeout(function () {
+                if (_that.inUse) {
+                    _that.inUse = false;
+                    _that.callback("✖\n");
+                }
+            }, 1500);
+        }
+    }
+    var PingModel = function (servers) {
+        var self = this;
+        var myServers = [];
+        ko.utils.arrayForEach(servers, function (location) {
+            myServers.push({ name: location, status: ko.observable("-") });
+        });
+        self.servers = ko.observableArray(myServers);
+        ko.utils.arrayForEach(self.servers(), function (s) {
+            s.status("-");
+            new ping(s.name, function (status, e) {
+                s.status(status);
+            });
+        });
+    };
+    var komodel = new PingModel(["google.com", "discord.com", "reddit.com", "amazon.com", "microsoft.net"]);
+    ko.applyBindings(komodel);
+</script>
