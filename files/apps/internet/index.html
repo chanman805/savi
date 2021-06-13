@@ -104,9 +104,9 @@ width:100%;
 <body>
 
 
-<p id = "wifiword4">loading...</p>
-<p id = "wifiword">loading...</p>
-<p id = "wifiword2">loading...</p>
+<p id = "wifiword4"> - s</p>
+<p id = "wifiword"> - ms</p>
+<p id = "wifiword2"> - mb/s</p>
 
 
 <img id = "vis1" style = "opacity:100%;position:fixed;top:10vmin;left:5%" src = "images/vis3.gif"></img>
@@ -153,13 +153,17 @@ document.getElementById("vis1").style.filter = "hue-rotate(130deg)";
 
 }
 
+function round(value, decimals) {
+ return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}   
+
 
 
 var firstVar = (connectTime/1000);
 if (firstVar<0){
 document.getElementById("wifiword4").innerHTML = "0.000 s";
 }else {
-document.getElementById("wifiword4").innerHTML = parseFloat((firstVar).toFixed(2))+ " <span style = 'opacity: 75%;font-size:0.75em!important;margin: -2.5px;margin-bottom:0px'>s</span>";
+document.getElementById("wifiword4").innerHTML = round(firstVar,2)+ " <span style = 'opacity: 75%;font-size:0.75em!important;margin: -2.5px;margin-bottom:0px'>s</span>";
 }
 
 
@@ -212,24 +216,6 @@ document.getElementById("vis2").style.transition = "all 1.5s";
 	document.getElementById("vis2").style.filter = "hue-rotate(0deg)";
 }
 
-if (m>250){
-document.getElementById("timevis2").style.filter = "hue-rotate(100deg)";
-} else if (m<250&&m>200){
-	document.getElementById("timevis2").style.transition = "all 1.5s";
-		document.getElementById("timevis2").style.filter = "hue-rotate(180deg)";
-} else if (m<200&&m>150){
-
-		document.getElementById("timevis2").style.transition = "all 1.5s";
-		document.getElementById("timevis2").style.filter = "hue-rotate(200deg)";
-} else if (m<150&&m>50){
-	document.getElementById("timevis2").style.transition = "all 1.5s";
-		document.getElementById("timevis2").style.filter = "hue-rotate(300deg)";
-} else if (m<50){
-document.getElementById("timevis2").style.transition = "all 1.5s";
-			document.getElementById("timevis2").style.filter = "hue-rotate(300deg)";
-}else {
-	document.getElementById("timevis2").style.filter = "hue-rotate(0deg)";
-}
 
  })
 
