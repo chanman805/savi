@@ -106,6 +106,30 @@ z-index:100;
 padding-left:70%;
 }
 
+#hidden_left_dock {
+float:left;
+margin-top:-95vmin;
+margin-left:-20vmin;
+width: 25vmin;
+transition: all 1s;
+z-index:100;
+padding-right:70%;
+opacity:0%;
+display:none;
+}
+
+#hidden_right_dock {
+float:right;
+margin-top:-95vmin;
+margin-right:-25vmin;
+width: 25vmin;
+transition: all 1s;
+z-index:100;
+padding-left:70%;
+opacity:0%;
+display:none;
+}
+
 #invis_left {
 position:absolute;
 float:left;
@@ -174,7 +198,7 @@ padding-top:0px;
 </head>
 <body>
 <div id = "mid">
-<img id = "face"  src = "files/images/system/face.gif"></img>
+<img id = "face"   src = "files/images/system/face.gif"></img>
 </div>
 
 
@@ -200,6 +224,17 @@ padding-top:0px;
 <img id = "news_launcher" onclick = "launch(news, 'files/apps/news/index.html')"class = "icon" src = "files/images/docks/news.png"></img>
 </div>
 
+
+<div id = "hidden_left_dock" >
+<img id = "voicemail_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/health.png"></img>
+</div>
+
+
+<div id = "hidden_right_dock" >
+<img id = "radio_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/health.png"></img>
+</div>
+
+
 <div id = "health_div">
 <h1 ><span style = "    font-size: 20px;
     padding-right: 1px;
@@ -223,6 +258,73 @@ border-radius:10px;padding-left:2.5vmin;margin-top:-3vmin">6/13/2021</p>
 <script src = "files/modules/swipe.js"></script>
 <script>
 
+var isadvance = false;
+
+var advance_mode = function(){
+load_left_dock();
+load_right_dock();
+setTimeout(function(){
+
+var all = document.getElementsByClassName('icon');
+for (var i = 0; i < all.length; ++i) {
+    var item = all[i];  
+	document.getElementById('chat_launcher').style.transition = "all 0.5s";
+	document.getElementById('clock_launcher').style.transition = "all 0.5s";
+	document.getElementById('code_launcher').style.transition = "all 0.5s";
+	document.getElementById('health_launcher').style.transition = "all 0.5s";
+	document.getElementById('internet_launcher').style.transition = "all 0.5s";
+	document.getElementById('location_launcher').style.transition = "all 0.5s";
+	document.getElementById('mail_launcher').style.transition = "all 0.5s";
+	document.getElementById('news_launcher').style.transition = "all 0.5s";
+    item.style.transform = "scale(0.8)";
+	setTimeout(function(){
+	
+	
+	document.getElementById('chat_launcher').style.transition = "all 0.5s";
+	document.getElementById('clock_launcher').style.transition = "all 0.5s";
+	document.getElementById('code_launcher').style.transition = "all 0.5s";
+	document.getElementById('health_launcher').style.transition = "all 0.5s";
+	document.getElementById('internet_launcher').style.transition = "all 0.5s";
+	document.getElementById('location_launcher').style.transition = "all 0.5s";
+	document.getElementById('mail_launcher').style.transition = "all 0.5s";
+	document.getElementById('news_launcher').style.transition = "all 0.5s";
+	
+	
+	document.getElementById('chat_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
+	document.getElementById('clock_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
+	document.getElementById('code_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
+	document.getElementById('health_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
+	document.getElementById('internet_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
+	document.getElementById('location_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
+	document.getElementById('mail_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
+	document.getElementById('news_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
+	isadvance = true;
+	launch_hidden();
+	},550);
+}
+
+},500);
+
+}
+
+var launch_hidden = function(){
+hidden_l.style.display = "block";
+hidden_r.style.display = "block";
+setTimeout(function(){
+hidden_l.style.opacity = "100%";
+hidden_r.style.opacity = "100%";
+
+
+document.getElementById('voicemail_launcher').style.transform = "scale(1)";
+document.getElementById('radio_launcher').style.transform = "scale(1)";
+
+hidden_l.style.marginLeft = "5vmin";
+hidden_r.style.marginRight = "5vmin";
+
+
+},50);
+};
+
 var chat = document.getElementById('frame0');
 var clock = document.getElementById('frame1');
 var code = document.getElementById('frame2');
@@ -234,6 +336,8 @@ var news = document.getElementById('frame7');
 
 var health_div = document.getElementById('health_div');
 
+var hidden_l = document.getElementById('hidden_left_dock');
+var hidden_r = document.getElementById('hidden_right_dock');
 
 var app_running = false;
 var temp_mem = "";
@@ -457,7 +561,12 @@ var frame5 = document.getElementById('frame5');
 var frame6 = document.getElementById('frame6');
 var frame7 = document.getElementById('frame7');
 
+document.getElementById('face').onclick = function(){
 
+if (!isadvance && verified && !app_running){
+advance_mode();
+}
+};
 
 
 window.onclick = function(){
@@ -466,7 +575,8 @@ giggle.volume = 0.2;
 giggle.play();
 welcome();
 verified = true;
-} 
+} else {
+}
 };
 
 window.addEventListener("orientationchange", function() {
