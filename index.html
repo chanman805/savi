@@ -226,12 +226,12 @@ padding-top:0px;
 
 
 <div id = "hidden_left_dock" >
-<img id = "voicemail_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/health.png"></img>
+<img id = "voicemail_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/voicemail.png"></img>
 </div>
 
 
 <div id = "hidden_right_dock" >
-<img id = "radio_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/health.png"></img>
+<img id = "radio_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/radio.png"></img>
 </div>
 
 
@@ -261,12 +261,15 @@ border-radius:10px;padding-left:2.5vmin;margin-top:-3vmin">6/13/2021</p>
 var isadvance = false;
 
 var advance_mode = function(){
+face.style.transition = "filter 2.5s, all 1s";
+face.style.filter = "sepia(100%) brightness(90%) contrast(170%) hue-rotate(280deg)";
 load_left_dock();
 load_right_dock();
 setTimeout(function(){
 
 var all = document.getElementsByClassName('icon');
 for (var i = 0; i < all.length; ++i) {
+
     var item = all[i];  
 	document.getElementById('chat_launcher').style.transition = "all 0.5s";
 	document.getElementById('clock_launcher').style.transition = "all 0.5s";
@@ -298,16 +301,16 @@ for (var i = 0; i < all.length; ++i) {
 	document.getElementById('location_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
 	document.getElementById('mail_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
 	document.getElementById('news_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
-	isadvance = true;
+
 	launch_hidden();
 	},550);
 }
 
 },500);
-
-}
+};
 
 var launch_hidden = function(){
+
 hidden_l.style.display = "block";
 hidden_r.style.display = "block";
 setTimeout(function(){
@@ -321,9 +324,87 @@ document.getElementById('radio_launcher').style.transform = "scale(1)";
 hidden_l.style.marginLeft = "5vmin";
 hidden_r.style.marginRight = "5vmin";
 
+face.style.transform = "scale(0.8)";
 
 },50);
+isadvance = true;
+
 };
+
+var close_advance = function(){
+
+
+	hidden_l.style.opacity = "0%";
+hidden_r.style.opacity = "0%";
+setTimeout(function(){
+
+
+hidden_l.style.display = "none";
+hidden_r.style.display = "none";
+
+document.getElementById('voicemail_launcher').style.transform = "scale(0)";
+document.getElementById('radio_launcher').style.transform = "scale(0)";
+
+hidden_l.style.marginLeft = "-1500vmin";
+hidden_r.style.marginRight = "-1500vmin";
+
+face.style.transform = "scale(1)";
+
+},500);
+isadvance = false;
+
+
+setTimeout(function(){
+
+var all = document.getElementsByClassName('icon');
+for (var i = 0; i < all.length; ++i) {
+
+    var item = all[i];  
+	document.getElementById('chat_launcher').style.transition = "all 0.5s";
+	document.getElementById('clock_launcher').style.transition = "all 0.5s";
+	document.getElementById('code_launcher').style.transition = "all 0.5s";
+	document.getElementById('health_launcher').style.transition = "all 0.5s";
+	document.getElementById('internet_launcher').style.transition = "all 0.5s";
+	document.getElementById('location_launcher').style.transition = "all 0.5s";
+	document.getElementById('mail_launcher').style.transition = "all 0.5s";
+	document.getElementById('news_launcher').style.transition = "all 0.5s";
+    item.style.transform = "scale(1)";
+	setTimeout(function(){
+	
+	
+	document.getElementById('chat_launcher').style.transition = "all 0.5s";
+	document.getElementById('clock_launcher').style.transition = "all 0.5s";
+	document.getElementById('code_launcher').style.transition = "all 0.5s";
+	document.getElementById('health_launcher').style.transition = "all 0.5s";
+	document.getElementById('internet_launcher').style.transition = "all 0.5s";
+	document.getElementById('location_launcher').style.transition = "all 0.5s";
+	document.getElementById('mail_launcher').style.transition = "all 0.5s";
+	document.getElementById('news_launcher').style.transition = "all 0.5s";
+	
+	
+	document.getElementById('chat_launcher').style.transform = "translate(0,0) scale(1)";
+	document.getElementById('clock_launcher').style.transform = "translate(0%,0) scale(1)";
+	document.getElementById('code_launcher').style.transform = "translate(0%,0) scale(1)";
+	document.getElementById('health_launcher').style.transform = "translate(0%,0) scale(1)";
+	document.getElementById('internet_launcher').style.transform = "translate(0%,0) scale(1)";
+	document.getElementById('location_launcher').style.transform = "translate(0%,0) scale(1)";
+	document.getElementById('mail_launcher').style.transform = "translate(0%,0) scale(1)";
+	document.getElementById('news_launcher').style.transform = "translate(0%,0) scale(1)";
+	
+	
+	
+	
+	
+	},550);
+}
+
+},500);
+
+
+};
+
+
+
 
 var chat = document.getElementById('frame0');
 var clock = document.getElementById('frame1');
@@ -565,6 +646,10 @@ document.getElementById('face').onclick = function(){
 
 if (!isadvance && verified && !app_running){
 advance_mode();
+} 
+
+if (isadvance && verified && !app_running){
+close_advance();
 }
 };
 
