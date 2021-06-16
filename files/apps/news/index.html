@@ -73,10 +73,12 @@ border:none;
 outline:none;
 margin-top:10%;
 width:50%;
-transform: translate(-12.5vmin,0);
+transform: translate(-150vmin,0);
 border-radius:20px 20px 0px 0px;
     background-color: #ffffff42;
     filter: invert(20%);
+	transition: all 1s;
+	opacity:0%;
 }
 
 
@@ -130,17 +132,20 @@ body {
     to   { opacity: 1; }
 }
 
-
+#established {
+transform:translate(0,150%);
+transition: all 2.5s;
+}
 
 
 </style>
 <body>
 <div style = "float:left;position:fixed;">
-<input  placeholder = "search" id = "searchbar"></input>
-<button id = "load" onclick = "audio.volume = 0.1;audio.play();setTimeout(load_yer_own_shit,500);" >
+<input  placeholder = "search" id = "searchbar" style = "transform:translate(-150%,0);"></input>
+<button id = "load" style = "transform:translate(-150%,0)" onclick = "audio.volume = 0.1;audio.play();setTimeout(load_yer_own_shit,500);" >
 <img src = "rss.png" width = "40px" ></img>
 </button>
-<iframe scrolling = "no" id = "globe" src = "../locate/globe.html"></iframe>
+<iframe scrolling = "no" id = "globe" style = "transform:scale(0)" src = "../locate/globe.html"></iframe>
 </div>
 <div id = "right">
 <div id = "established">
@@ -225,7 +230,15 @@ audio2.play();
 };
 
 window.onload = function(){
-
+input.style.transform = "translate(-60vmin,0)";
+load.style.transition = "all 1s";
+load.style.transitionDelay = "0.5s";
+load.style.transform = "translate(-60vmin,0)";
+globe.style.transition = "all 1s";
+globe.style.transitionDelay = "0.75s";
+globe.style.opacity = "100%";
+globe.style.transform = "translate(-12.5vmin,0)";
+established.style.transform = "translate(0,0)";
 setInterval(myFunction,1000);
 };
 
