@@ -1,4 +1,7 @@
 <html>
+<head>
+<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, shrink-to-fit=no">
+</head>
 <style>
 
 @font-face {
@@ -114,6 +117,7 @@ margin-top:-11px;
 }
 
 #altitude, #accuracy, #altaccuracy, #heading, #speed {
+transition: all 1s;
 font-size:0.5em;
 color:gray;
 text-align:right;
@@ -124,21 +128,44 @@ margin-top:1.5vmin;
 
 </style>
 <body>
-<div style = "margin-top:15px;border-radius:20px 0px 0px 20px;transform:translate(7.5vmin,0);width:100%;overflow:hidden;height:35%;overflow-y:auto;">
-<iframe id = "map"  src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+<div  id = "toppy" style = "transition: all 1s;margin-top:15px;border-radius:20px 0px 0px 20px;transform:translate(250%,0);width:100%;overflow:hidden;height:35%;overflow-y:auto;">
+<iframe id = "map" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 </div>
 <div id = "docky">
-<h1 id = "latlong" style = "margin-right:2.5vmin"></h1>
-<h1 id = "altitude" style = "margin-top:2.5vmin!important"></h1>
-<h1 id = "accuracy"></h1>
-<h1 id = "altaccuracy"></h1>
-<h1 id = "heading"></h1>
-<h1 id = "speed"></h1>
+<h1 id = "latlong" style = "margin-right:2.5vmin;opacity:0%;"></h1>
+<h1 id = "altitude" style = "margin-top:2.5vmin!important;transition-delay:0.25s;opacity:0%"></h1>
+<h1 id = "accuracy" style = "transition-delay:0.5s;opacity:0%"></h1>
+<h1 id = "altaccuracy" style = "transition-delay:0.75s;opacity:0%"></h1>
+<h1 id = "heading" style = "transition-delay:1s;opacity:0%"></h1>
+<h1 id = "speed"style = "transition-delay:1.25s;opacity:0%"></h1>
 </div>
-<iframe id = "weather" scrolling = "no" src = "weather.html" ></iframe>
-<iframe id = "globe" scrolling = "no" src = "globe.html" ></iframe>
+<iframe id = "weather" style = "margin-top:150%;transition:all 1s;" scrolling = "no" src = "weather.html" ></iframe>
+<iframe id = "globe" style = "margin-top:150%;transition: all 1s;transition-delay:0.5s" scrolling = "no" src = "globe.html" ></iframe>
 </body>
 <script>
+
+
+
+var latlong = document.getElementById('latlong');
+
+var blink_marker = true;
+
+var fadeinout = function(){
+latlong.style.transition = "opacity 1s";
+if (blink_marker){
+latlong.style.opacity = "50%";
+blink_marker = false;
+} else {
+latlong.style.opacity = "100%";
+blink_marker = true;
+}
+};
+
+
+
+var get_time = function(){
+setInterval(fadeinout,1000);
+};
 
 var options = {
   enableHighAccuracy: true,
@@ -151,6 +178,15 @@ function success(pos) {
 
   var latty = parseFloat(`${crd.latitude}`).toFixed(4)+ ", ";
  var longy = parseFloat(`${crd.longitude}`).toFixed(4);
+ 
+ 
+ document.getElementById("latlong").style.opacity = "100%";
+ document.getElementById("altitude").style.opacity = "100%";
+ document.getElementById("accuracy").style.opacity = "100%";
+ document.getElementById("altaccuracy").style.opacity = "100%";
+ document.getElementById("heading").style.opacity = "100%";
+  document.getElementById("speed").style.opacity = "100%";
+ 
  
   document.getElementById("latlong").innerHTML = "<span style = 'font-size:1.2em'>"+latty+"</span> <span style = 'font-size:1em;color:lightgray'>"+ longy+"</span>";
  document.getElementById("altitude").innerHTML = "alt: "+parseFloat(`${crd.altitude+0}`).toFixed(4);
@@ -170,9 +206,17 @@ function error(err) {
 
 
 }
-
-
+get_time();
+window.onload = function(){
+document.getElementById('toppy').style.transform = "translate(7.5vmin,0)";
+document.getElementById('weather').style.marginTop = "15vmin";
+document.getElementById('globe').style.marginTop = "15vmin";
 navigator.geolocation.getCurrentPosition(success, error, options);
+get_time();
+setInterval(get_time,1000);
+
+
+};
 
 </script>
 
