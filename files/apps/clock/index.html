@@ -153,14 +153,22 @@ transition: all 1s;
 }
 
 
+#clox {
+margin-top:-150%;
+opacity:0%;
+}
+
+
 
 </style>
 <body>
 
-<h1 id = "time" style = "opacity:100%;">88:88</h1>
-<iframe id = "map"width="40%" height = "30%" style = "opacity:100%;bottom:-100%;" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"  marginheight="0" marginwidth="0"></iframe>
-<h1 id = "date" style = "font-size:20px;opacity:100%;">July 24th, 2003</h1>
-<h1 id = "seconds" style = "font-size:20px;opacity:100%;">59</h1>
+<h1 id = "time" style = "opacity:100%;margin-top:-150%">88:88</h1>
+<iframe id = "map"width="40%" height = "30%" style = "opacity:0%;transform:translate(0,150%)" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"  marginheight="0" marginwidth="0"></iframe>
+<h1 id = "date" style = "font-size:20px;opacity:0%;transform:translate(0,-20%)">July 24th, 2003</h1>
+<h1 id = "seconds" style = "transform:translate(150%,0);font-size:20px;opacity:0%;">59</h1>
+
+<div id = "clox">
 
 <iframe scrolling="no" class = "clock" frameborder="no" clocktype="html5" style="
     border-radius: 100%;
@@ -221,7 +229,7 @@ margin-top:-75px;
 margin-top:-75px;
 
 "src="https://www.clocklink.com/html5embed.php?clock=001&timezone=USA_NewYork&color=gray&size=150&Title=&Message=&Target=&From=2021,1,1,0,0,0&Color=gray"></iframe>
-
+</div>
 </body>
 <script>
 
@@ -232,7 +240,7 @@ var map = document.getElementById('map');
 var time = document.getElementById('time');
 var date = document.getElementById('date');
 var seconds = document.getElementById('seconds');
-
+var clox = document.getElementById('clox');
 
 var blink_marker = true;
 
@@ -337,7 +345,21 @@ window.onload = function(){
 get_time();
 get_date();
 setInterval(get_time,1000);
-map.style.bottom = "0";
+map.style.transition = "all 0.5s";
+setTimeout(function(){
+map.style.opacity = "90%";
+map.style.transform = "translate(0,0)";
+},1000);
+date.style.transform = "translate(0,0)";
+date.style.opacity = "100%";
+seconds.style.transform = "translate(0,0)";
+seconds.style.opacity = "100%";
+time.style.opacity = "100%";
+time.style.transition = "opacity 2.5s";
+time.style.marginTop = "15vmin";
+clox.style.transition = "all 1.5s";
+clox.style.opacity = "100%";
+clox.style.marginTop = "0";
 };
 
 </script>
