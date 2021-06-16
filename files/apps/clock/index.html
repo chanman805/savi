@@ -136,13 +136,20 @@ transition: all 1s;
   100% { color: white; letter-spacing:0px;}
 }
 
-#christmas, #halloween, #valentines, #patricks, #thanksgiving, #birthday, #america {
-font-family:'mono';
-animation:none;
-letter-spacing:-0.5px;
-margin-top:13px;
-font-size:0.55em!important;
-transform:scaleX(0.9);
+
+.clock {
+    outline: none;
+    border: none;
+    background-color: black;
+    margin-top: -5vmin;
+    margin-left: -5vmin;
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1/1;
+    display: block;
+    padding: 20px;
+    padding-left: 40vmin;
+    opacity: 75%;
 }
 
 
@@ -155,15 +162,65 @@ transform:scaleX(0.9);
 <h1 id = "date" style = "font-size:20px;opacity:100%;">July 24th, 2003</h1>
 <h1 id = "seconds" style = "font-size:20px;opacity:100%;">59</h1>
 
-<div id = "top_strip" style = "margin-left:-100%">
-<p id = "christmas"><img class = "icon" src = "christmas.png"></img>      88:88:88</p>
-<p id = "halloween"><img class = "icon" src = "halloween.png"></img>      88:88:88</p>
-<p id = "valentines"> <img class = "icon" src = "valentines.png"></img>   88:88:88</p>
-<p id = "patricks"><img class = "icon" src = "patricks.png"></img>        88:88:88</p>
-<p id = "thanksgiving"><img class = "icon" src = "thanksgiving.png"></img>88:88:88</p>
-<p id = "birthday"><img class = "icon" src = "birthday.png"></img>        88:88:88</p>
-<p id = "america"> <img class = "icon" src = "america.png"></img>         88:88:88</p>
-</div>
+<iframe scrolling="no" class = "clock" frameborder="no" clocktype="html5" style="
+    border-radius: 100%;
+    padding-top: 30px;
+    filter: grayscale(100%) brightness(50%) contrast(150%);
+    overflow: hidden;
+    border: 0;
+    margin-left: 15vmin;
+    padding: 0;
+    width: 150px;
+    height: 150px;
+    transform: scale(0.3);
+	margin-top:-35px;
+
+"src="https://www.clocklink.com/html5embed.php?clock=001&timezone=USA_LosAngeles&color=gray&size=150&Title=&Message=&Target=&From=2021,1,1,0,0,0&Color=gray"></iframe>
+
+
+<iframe scrolling="no" class = "clock" frameborder="no" clocktype="html5" style="
+    border-radius: 100%;
+    filter: grayscale(100%) brightness(50%) contrast(150%);
+    overflow: hidden;
+    border: 0;
+    margin-left: 15vmin;
+    padding: 0;
+    width: 150px;
+    height: 150px;
+    transform: scale(0.3);
+margin-top:-75px;
+
+"src="https://www.clocklink.com/html5embed.php?clock=001&timezone=UnitedKingdom_London&color=gray&size=150&Title=&Message=&Target=&From=2021,1,1,0,0,0&Color=gray"></iframe>
+
+<iframe scrolling="no" class = "clock" frameborder="no" clocktype="html5" style="
+    border-radius: 100%;
+    filter: grayscale(100%) brightness(50%) contrast(150%);
+    overflow: hidden;
+    border: 0;
+    margin-left: 15vmin;
+    padding: 0;
+    width: 150px;
+    height: 150px;
+    transform: scale(0.3);
+margin-top:-75px;
+
+"src="https://www.clocklink.com/html5embed.php?clock=001&timezone=Japan_Tokyo&color=gray&size=150&Title=&Message=&Target=&From=2021,1,1,0,0,0&Color=gray
+"></iframe>
+
+
+<iframe scrolling="no" class = "clock" frameborder="no" clocktype="html5" style="
+    border-radius: 100%;
+    filter: grayscale(100%) brightness(50%) contrast(150%);
+    overflow: hidden;
+    border: 0;
+    margin-left: 15vmin;
+    padding: 0;
+    width: 150px;
+    height: 150px;
+    transform: scale(0.3);
+margin-top:-75px;
+
+"src="https://www.clocklink.com/html5embed.php?clock=001&timezone=USA_NewYork&color=gray&size=150&Title=&Message=&Target=&From=2021,1,1,0,0,0&Color=gray"></iframe>
 
 </body>
 <script>
@@ -175,15 +232,6 @@ var map = document.getElementById('map');
 var time = document.getElementById('time');
 var date = document.getElementById('date');
 var seconds = document.getElementById('seconds');
-var top_strip = document.getElementById('top_strip');
-
-var christmas = document.getElementById('christmas');
-var halloween = document.getElementById('halloween');
-var valentines = document.getElementById('valentines');
-var patricks = document.getElementById('patricks');
-var thanksgiving = document.getElementById('thanksgiving');
-var birthday = document.getElementById('birthday');
-var america = document.getElementById('america');
 
 
 var blink_marker = true;
@@ -261,22 +309,11 @@ date.innerHTML = months[month]+ " " + day + ", "+year;
 };
 
 
-var christmas_day = new Date('12/25/'+lightyear+' 12:1 AM');
-var halloween_day = new Date('10/31/'+lightyear+' 12:1 AM');
-var valentines_day = new Date('02/14/'+lightyear+' 12:1 AM');
-var patricks_day = new Date('03/16/'+lightyear+' 12:1 AM');
-var thanksgiving_day = new Date('11/25/'+lightyear+' 12:1 AM');
-var birthday_day = new Date('07/24/'+lightyear+' 12:1 AM');
-var america_day = new Date('7/04/'+lightyear+' 12:1 AM');
 
 
 
 
 
-
-</script>
-<script src = "thanksgiving_check.js"></script>
-<script>
 
 
     var _second = 1000;
@@ -289,62 +326,14 @@ var america_day = new Date('7/04/'+lightyear+' 12:1 AM');
 
 
 
-  var showRemaining = function(day,element, pic_src) {
-        var now = new Date();
-        var distance = day - now;
-        if (distance < 0) {
-            element.innerHTML = '<img class = "icon" src = "'+pic_src+'"></img>  '+'---:--:--:--';
-            element.style.opacity = "20%";
-            return;
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-		
-		if (minutes<10){
-minutes = "0"+minutes;
-}
-
-if (seconds<10){
-seconds = "0"+seconds;
-}
-
-if (hours<10){
-hours = "0"+hours;
-}
-if (days<100){
-days = "0" +days;
- if (days<10){
- days = "00"+days;
- is_close(element);
- }
-}
-
-
-        element.innerHTML = '<img class = "icon" src = "'+pic_src+'"></img>  ' + days + ":"+ hours + ":" + minutes + ":" + seconds;
-       
-    };
+ 
 
 
 
-
-var county = function(){
-    showRemaining(christmas_day,christmas, "christmas.png");
-	showRemaining(halloween_day,halloween, "halloween.png");
-	showRemaining(valentines_day,valentines, "valentines.png");
-	showRemaining(patricks_day,patricks, "patricks.png");
-	showRemaining(thanksgiving_day,thanksgiving, "thanksgiving.png");
-	showRemaining(birthday_day,birthday, "birthday.png");
-	showRemaining(america_day,america, "america.png");
-	
-	};
 
 get_date();
 get_time();
 window.onload = function(){
-setInterval(county,1000);
-top_strip.style.marginLeft = "-7.5vmin";
 get_time();
 get_date();
 setInterval(get_time,1000);
