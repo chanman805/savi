@@ -225,14 +225,6 @@ padding-top:0px;
 </div>
 
 
-<div id = "hidden_left_dock" >
-<img id = "voicemail_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/voicemail.png"></img>
-</div>
-
-
-<div id = "hidden_right_dock" >
-<img id = "radio_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/radio.png"></img>
-</div>
 
 
 <div id = "health_div">
@@ -258,153 +250,6 @@ border-radius:10px;padding-left:2.5vmin;margin-top:-3vmin">6/21/2021</p>
 <script src = "files/modules/swipe.js"></script>
 <script>
 
-var isadvance = false;
-
-var advance_mode = function(){
-face.style.transition = "filter 2.5s, all 1s";
-face.style.filter = "sepia(100%) brightness(90%) contrast(170%) hue-rotate(280deg)";
-load_left_dock();
-load_right_dock();
-setTimeout(function(){
-
-var all = document.getElementsByClassName('icon');
-for (var i = 0; i < all.length; ++i) {
-
-    var item = all[i];  
-	document.getElementById('chat_launcher').style.transition = "all 0.5s";
-	document.getElementById('clock_launcher').style.transition = "all 0.5s";
-	document.getElementById('code_launcher').style.transition = "all 0.5s";
-	document.getElementById('health_launcher').style.transition = "all 0.5s";
-	document.getElementById('internet_launcher').style.transition = "all 0.5s";
-	document.getElementById('location_launcher').style.transition = "all 0.5s";
-	document.getElementById('mail_launcher').style.transition = "all 0.5s";
-	document.getElementById('news_launcher').style.transition = "all 0.5s";
-    item.style.transform = "scale(0.8)";
-	setTimeout(function(){
-	
-	enter_woosh.play();
-	document.getElementById('chat_launcher').style.transition = "all 0.5s";
-	document.getElementById('clock_launcher').style.transition = "all 0.5s";
-	document.getElementById('code_launcher').style.transition = "all 0.5s";
-	document.getElementById('health_launcher').style.transition = "all 0.5s";
-	document.getElementById('internet_launcher').style.transition = "all 0.5s";
-	document.getElementById('location_launcher').style.transition = "all 0.5s";
-	document.getElementById('mail_launcher').style.transition = "all 0.5s";
-	document.getElementById('news_launcher').style.transition = "all 0.5s";
-	
-	
-	document.getElementById('chat_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
-	document.getElementById('clock_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
-	document.getElementById('code_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
-	document.getElementById('health_launcher').style.transform = "translate(-1500%,0) scale(0.8)";
-	document.getElementById('internet_launcher').style.transform = "translate(1500%,0) scale(0.8)";
-	document.getElementById('location_launcher').style.transform = "translate(1500%,0) scale(0.8)";
-	document.getElementById('mail_launcher').style.transform = "translate(1500%,0) scale(0.8)";
-	document.getElementById('news_launcher').style.transform = "translate(1500%,0) scale(0.8)";
-bgm.pause();
-hack.play();
-	launch_hidden();
-	},550);
-}
-
-},500);
-};
-
-var launch_hidden = function(){
-
-hidden_l.style.display = "block";
-hidden_r.style.display = "block";
-setTimeout(function(){
-hidden_l.style.opacity = "100%";
-hidden_r.style.opacity = "100%";
-
-
-document.getElementById('voicemail_launcher').style.transform = "scale(1)";
-document.getElementById('radio_launcher').style.transform = "scale(1)";
-
-hidden_l.style.marginLeft = "5vmin";
-hidden_r.style.marginRight = "5vmin";
-
-face.style.transform = "scale(0.8)";
-
-},50);
-isadvance = true;
-
-};
-
-var close_advance = function(){
-
-	hidden_l.style.opacity = "0%";
-hidden_r.style.opacity = "0%";
-setTimeout(function(){
-
-exit_woosh.play();
-bgm.play();
-hack.pause();
-hidden_l.style.display = "none";
-hidden_r.style.display = "none";
-
-document.getElementById('voicemail_launcher').style.transform = "scale(0)";
-document.getElementById('radio_launcher').style.transform = "scale(0)";
-
-hidden_l.style.marginLeft = "-1500vmin";
-hidden_r.style.marginRight = "-1500vmin";
-face.style.filter = "sepia(0%) brightness(100%) contrast(100%) hue-rotate(0deg)";
-face.style.transform = "scale(1)";
-
-},500);
-isadvance = false;
-
-
-setTimeout(function(){
-
-var all = document.getElementsByClassName('icon');
-for (var i = 0; i < all.length; ++i) {
-
-    var item = all[i];  
-	document.getElementById('chat_launcher').style.transition = "all 0.5s";
-	document.getElementById('clock_launcher').style.transition = "all 0.5s";
-	document.getElementById('code_launcher').style.transition = "all 0.5s";
-	document.getElementById('health_launcher').style.transition = "all 0.5s";
-	document.getElementById('internet_launcher').style.transition = "all 0.5s";
-	document.getElementById('location_launcher').style.transition = "all 0.5s";
-	document.getElementById('mail_launcher').style.transition = "all 0.5s";
-	document.getElementById('news_launcher').style.transition = "all 0.5s";
-    item.style.transform = "scale(1)";
-	setTimeout(function(){
-	
-	
-	document.getElementById('chat_launcher').style.transition = "all 0.5s";
-	document.getElementById('clock_launcher').style.transition = "all 0.5s";
-	document.getElementById('code_launcher').style.transition = "all 0.5s";
-	document.getElementById('health_launcher').style.transition = "all 0.5s";
-	document.getElementById('internet_launcher').style.transition = "all 0.5s";
-	document.getElementById('location_launcher').style.transition = "all 0.5s";
-	document.getElementById('mail_launcher').style.transition = "all 0.5s";
-	document.getElementById('news_launcher').style.transition = "all 0.5s";
-	
-	
-	document.getElementById('chat_launcher').style.transform = "translate(0,0) scale(1)";
-	document.getElementById('clock_launcher').style.transform = "translate(0%,0) scale(1)";
-	document.getElementById('code_launcher').style.transform = "translate(0%,0) scale(1)";
-	document.getElementById('health_launcher').style.transform = "translate(0%,0) scale(1)";
-	document.getElementById('internet_launcher').style.transform = "translate(0%,0) scale(1)";
-	document.getElementById('location_launcher').style.transform = "translate(0%,0) scale(1)";
-	document.getElementById('mail_launcher').style.transform = "translate(0%,0) scale(1)";
-	document.getElementById('news_launcher').style.transform = "translate(0%,0) scale(1)";
-	
-	
-	
-	
-	
-	},550);
-}
-
-},500);
-
-
-};
-
 
 
 
@@ -419,8 +264,6 @@ var news = document.getElementById('frame7');
 
 var health_div = document.getElementById('health_div');
 
-var hidden_l = document.getElementById('hidden_left_dock');
-var hidden_r = document.getElementById('hidden_right_dock');
 
 var app_running = false;
 var temp_mem = "";
@@ -645,17 +488,6 @@ var frame4 = document.getElementById('frame4');
 var frame5 = document.getElementById('frame5');
 var frame6 = document.getElementById('frame6');
 var frame7 = document.getElementById('frame7');
-
-document.getElementById('face').onclick = function(){
-
-if (!isadvance && verified && !app_running){
-advance_mode();
-} 
-
-if (isadvance && verified && !app_running){
-close_advance();
-}
-};
 
 
 window.onclick = function(){
