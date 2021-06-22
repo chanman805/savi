@@ -85,7 +85,7 @@ width:100%;
     padding: 20px;
     padding-left: 3px;
     padding-top: 0px;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 20px 5px 0px 0px;
     margin-left: -25vmin;
     transform: scale(0.55);
     padding-bottom: 175px;
@@ -93,7 +93,7 @@ width:100%;
 
 #globe {
 
-  width: 40%;
+     width: 20%;
     height: 85%;
     float: left;
     position: absolute;
@@ -103,12 +103,12 @@ width:100%;
     padding: 20px;
     padding-left: 0px;
     padding-top: 0px;
-	padding-right:0px;
-    border-radius: 20px 20px 0px 0px;
-    margin-left: 70vmin;
+    padding-right: 0px;
+    border-radius: 5px 20px 0px 0px;
+    margin-left: 92.5vmin;
     transform: scale(0.8);
     padding-bottom: 0px;
-	border:none;
+    border: none;
 }
 
 #docky {
@@ -142,7 +142,7 @@ padding:2.5px;
 <h1 id = "speed"style = "transition-delay:1.25s;opacity:0%"></h1>
 </div>
 <iframe id = "weather" style = "margin-top:150%;transition:all 1s;" scrolling = "no" src = "weather.html" ></iframe>
-<iframe id = "globe" style = "display:none;margin-top:150%;transition: all 1s;transition-delay:0.5s" scrolling = "no" src = "globe.html" ></iframe>
+<iframe id = "globe" style = "margin-top:150%;transition: all 1s;transition-delay:0.5s" scrolling = "no" src = "globe.html" ></iframe>
 </body>
 <script>
 
@@ -194,11 +194,11 @@ function success(pos) {
  
  
   document.getElementById("latlong").innerHTML = "<span style = 'font-size:1.2em'>"+latty+"</span> <span style = 'font-size:1em;color:lightgray'>"+ longy+"</span>";
- document.getElementById("altitude").innerHTML = "a: "+parseFloat(`${crd.altitude+0}`).toFixed(4);
- document.getElementById("accuracy").innerHTML = "ac: "+parseFloat(`${crd.accuracy+0}`).toFixed(1);
- document.getElementById("altaccuracy").innerHTML = "a/ac: "+parseFloat(`${crd.altitudeAccuracy+0}`).toFixed(1);
- document.getElementById("heading").innerHTML ="h: "+ parseFloat(`${crd.heading+0}`).toFixed(3);
-  document.getElementById("speed").innerHTML = "s: "+parseFloat(`${crd.speed+0}`).toFixed(2);
+ document.getElementById("altitude").innerHTML = "a: <span style = 'color:lightgray'>"+parseFloat(`${crd.altitude+0}`).toFixed(4)+"</span>";
+ document.getElementById("accuracy").innerHTML = "ac: <span style = 'color:lightgray'>"+parseFloat(`${crd.accuracy+0}`).toFixed(1)+"</span>";
+ document.getElementById("altaccuracy").innerHTML = "a/c: <span style = 'color:lightgray'>"+parseFloat(`${crd.altitudeAccuracy+0}`).toFixed(1)+"</span>";
+ document.getElementById("heading").innerHTML ="h: <span style = 'color:lightgray'>"+ parseFloat(`${crd.heading+0}`).toFixed(3)+"</span>";
+  document.getElementById("speed").innerHTML = "s: <span style = 'color:lightgray'>"+parseFloat(`${crd.speed+0}`).toFixed(2)+"</span>";
   
  
   
@@ -215,7 +215,7 @@ get_time();
 window.onload = function(){
 document.getElementById('toppy').style.transform = "translate(7.5vmin,0)";
 document.getElementById('weather').style.marginTop = "-5vmin";
-document.getElementById('globe').style.marginTop = "15vmin";
+document.getElementById('globe').style.marginTop = "13vmin";
 
 
 navigator.geolocation.getCurrentPosition(success, error, options);
