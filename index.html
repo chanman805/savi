@@ -262,6 +262,8 @@ var locate = document.getElementById('frame5');
 var mail = document.getElementById('frame6');
 var news = document.getElementById('frame7');
 
+var ticky;
+
 var health_div = document.getElementById('health_div');
 
 
@@ -287,7 +289,7 @@ right_dock.style.opacity = "0%";
 
 enter_woosh.play();
 
-} else if (app === locate){
+} else if (app === locate || app === internet){
 
 bgm.volume = 1;
 ping.volume = 0.5;
@@ -309,6 +311,29 @@ face.style.opacity = "20%";
 face.style.filter = "grayscale(50%)";
 left_dock.style.opacity = "0%";
 right_dock.style.opacity = "0%";
+
+
+
+} else if (app === clock){
+
+bgm.volume = 1;
+tick.volume = 0.5;
+ticky = setInterval(function(){tick.play();},1000);
+face.style.transform = "scale(1.5)";
+face.style.marginLeft = "-50vmin";
+face.style.marginTop = "60vmin";
+app_on = app;
+app.style.opacity = "100%";
+app_on_src = app.src;
+app.src = app_src;
+app.style.top = "0";
+app_running = true;
+enter_woosh.play();
+face.style.opacity = "20%";
+face.style.filter = "grayscale(50%)";
+left_dock.style.opacity = "0%";
+right_dock.style.opacity = "0%";
+
 
 
 } else {
@@ -336,6 +361,7 @@ var reset = function(app){
 bgm.volume = 1;
 crowd.pause();
 ping.pause();
+clearInterval(ticky);
 if (app_running){
 health_div.style.top = "150%";
 face.style.transition = "transform 1s, opacity 1s";
@@ -383,6 +409,8 @@ var crowd = new Audio("files/audio/bgm/crowd.mp3");
 var ping = new Audio("files/audio/sfx/ping.mp3");
 var enter_woosh = new Audio("files/audio/sfx/enter_woosh.mp3");
 var exit_woosh = new Audio("files/audio/sfx/exit_woosh.mp3");
+var tick = new Audio("files/audio/sfx/tick.mp3");
+
 
 var init_bgm = function(){
 enter_woosh.volume = 0.5;
