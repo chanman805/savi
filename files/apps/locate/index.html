@@ -75,8 +75,8 @@ width:100%;
 }
 
 #weather {
-    width: 40%;
-    height: 40%;
+     width: 80%;
+    height: 65%;
     float: left;
     position: absolute;
     margin-top: 15vmin;
@@ -86,9 +86,9 @@ width:100%;
     padding-left: 3px;
     padding-top: 0px;
     border-radius: 20px 20px 0px 0px;
-    margin-left: 0vmin;
-    transform: scale(0.8);
-    padding-bottom: 150px;
+    margin-left: -25vmin;
+    transform: scale(0.55);
+    padding-bottom: 175px;
 }
 
 #globe {
@@ -142,7 +142,7 @@ padding:2.5px;
 <h1 id = "speed"style = "transition-delay:1.25s;opacity:0%"></h1>
 </div>
 <iframe id = "weather" style = "margin-top:150%;transition:all 1s;" scrolling = "no" src = "weather.html" ></iframe>
-<iframe id = "globe" style = "margin-top:150%;transition: all 1s;transition-delay:0.5s" scrolling = "no" src = "globe.html" ></iframe>
+<iframe id = "globe" style = "display:none;margin-top:150%;transition: all 1s;transition-delay:0.5s" scrolling = "no" src = "globe.html" ></iframe>
 </body>
 <script>
 
@@ -214,7 +214,7 @@ function error(err) {
 get_time();
 window.onload = function(){
 document.getElementById('toppy').style.transform = "translate(7.5vmin,0)";
-document.getElementById('weather').style.marginTop = "15vmin";
+document.getElementById('weather').style.marginTop = "-5vmin";
 document.getElementById('globe').style.marginTop = "15vmin";
 
 
