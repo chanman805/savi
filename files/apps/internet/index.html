@@ -113,7 +113,7 @@ width:100%;
 <img id = "vis2" style = "opacity:0%;position:fixed;top:26vmin;left:5%" src = "images/vis3.gif"></img>
 <img id = "vis3" style = "opacity:0%;position:fixed;top:42vmin;left:5%" src = "images/vis3.gif"></img>
 
-<iframe id = "ip" scrolling = "no"style = "padding:10px;background-color:black;opacity:100%;border:none;position:absolute;top:-5.5%;left:2.5vmin;" width = "100%" height = "20%"src = "frame/ip.html"></iframe>
+<iframe id = "ip" scrolling = "no"style = "padding:10px;background-color:black;opacity:0%;border:none;position:absolute;top:-5.5%;left:2.5vmin;transition: opacity 3.5s" width = "100%" height = "20%"src = "frame/ip.html"></iframe>
 <iframe id = "ping" scrolling = "no"style = "    border-radius: 10px;
     opacity: 100%;
     border: none;
@@ -133,8 +133,8 @@ width:100%;
     position: absolute;
     top: 50%;
     left: 72%;
-	margin-top:100%;
-	transition: all 1.5s;
+	opacity:0%;
+	transition: all 1s;
 	transition-delay: 1.5s" width = "25%" height = "35%"src = "frame/cputest.html"></iframe>
 	
 <iframe id = "cpu2" scrolling = "no"style = "
@@ -145,9 +145,9 @@ width:100%;
     position: absolute;
     top: 42%;
     left: 92%;
-	margin-top:100%;
+	opacity:0%;
 	transition: all 1.5s;
-	transition-delay: 1s;
+	transition-delay: 0.5s;
 " width = "15%" height = "35%"src = "frame/cputest2.html"></iframe>
 
 <iframe id = "resource" scrolling = "yes"style = "    overflow-y: scroll;
@@ -350,10 +350,11 @@ document.getElementById("vis3").style.opacity = "100%";
 
 window.onload = function(){
 document.getElementById('ping').style.marginTop = "0%";
+document.getElementById('ip').style.opacity = "100%";
 document.getElementById('resource').style.marginTop = "0%";
 
-document.getElementById('cpu').style.marginTop = "0%";
-document.getElementById('cpu2').style.marginTop = "0%";
+document.getElementById('cpu').style.opacity = "100%";
+document.getElementById('cpu2').style.opacity = "100%";
 };
 
 </script>
