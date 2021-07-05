@@ -167,6 +167,18 @@ transition: all 1s;
 	<a href="https://time.is/Eureka,_California" id="time_is_link" rel="nofollow" style=""></a>
 <span id="Eureka__California_z14e" style="font-size:1em;color:gray;background:black"></span>
 </div>
+
+<button style = "    position: absolute;
+    top: 23vmax;
+    left: 25vmin;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    background-color: gray;
+    color: white;
+    width: 25vmin;n"><img width = "100%" src = "timer.png" ></img></button>
 <script>
 var time_is_widget=new time_is_widget()
 function time_is_widget(){var ca=0,tD=0,tout=0,updint=1000,tl="",U="undefined",i,j,rd
@@ -241,7 +253,11 @@ function l0(n){return n>9?n:"0"+n}}
 
 </script>
 <script>
-time_is_widget.init({Eureka__California_z14e:{template:"SUN", sun_format:"<img width = '20px'src = 'rise.png'></img> srhour:srminute<br><br> <img width = '20px' src = 'set.png'></img> sshour:ssminute<br><br><img width = '20px' src = 'day.png'></img> dlhoursh dlminutesm", coords:"40.8020700,-124.1636700"}});
+time_is_widget.init({
+Eureka__California_z14e:{template:"SUN", sun_format:"<img width = '20px'src = 'rise.png'></img> srhour:srminute<br><br> <img width = '20px' src = 'set.png'></img> sshour:ssminute<br><br><img width = '20px' style = 'margin-bottom:-0.5vmax' src = 'day.png'></img> dlhours"+"<span style = 'font-size:0.75em'>h</span>"+" dlminutes"+"<span style = 'font-size:0.75em'>m</span>", coords:"40.8020700,-124.1636700"
+
+},
+});
 </script>
 
 	
