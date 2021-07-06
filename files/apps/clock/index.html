@@ -168,17 +168,21 @@ transition: all 1s;
 <span id="Eureka__California_z14e" style="font-size:1em;color:gray;background:black"></span>
 </div>
 
-<button style = "    position: absolute;
-    top: 23vmax;
-    left: 25vmin;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 20px;
-    outline: none;
+<iframe id = "covid" style = "    position: absolute;
+    top: 27vmax;
+    left: -150vmin;
     border: none;
-    background-color: gray;
-    color: white;
-    width: 25vmin;n"><img width = "100%" src = "timer.png" ></img></button>
+    filter: invert(100%) grayscale(75%) hue-rotate(360deg);
+    width: 60vmin;
+    height: 45vmin;
+    overflow-y: scroll;
+    outline: none;
+    border-radius: 20px;
+    padding-left: 11vmin;
+    background-color: #cccccc;" src="https://covid-19.dataflowkit.com/assets/widget/covid-19.html" 
+ scrolling="no"
+>
+</iframe>
 <script>
 var time_is_widget=new time_is_widget()
 function time_is_widget(){var ca=0,tD=0,tout=0,updint=1000,tl="",U="undefined",i,j,rd
@@ -372,6 +376,8 @@ date.innerHTML = months[month]+ " " + day + ", "+year;
 get_date();
 get_time();
 window.onload = function(){
+document.getElementById('covid').style.transition = "all 1s";
+document.getElementById('covid').style.left = "-10vmin";
 get_time();
 get_date();
 setInterval(get_time,1000);
