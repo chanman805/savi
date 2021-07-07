@@ -5,68 +5,23 @@ background-color:black;
 color:white;
 }
 
+	@font-face {
+  font-family: "default";
+  src: url("../clock/font.ttf");
+
+}
+
+@font-face {
+  font-family: "mono";
+  src: url("../clock/mono2.ttf");
+
+}
+
 body { 
   margin: 0;
-  font-family: "UniversLTPro-Ex";
-  font-size: 30px;
+  font-family: 'default';
 }
 
-a {
-    text-decoration: none;
-    color: #000;
-}
-
-.marquee {
-  height: 35px;
-  width: 100%;
-
-  overflow: hidden;
-  position: relative;
-  background-color: Transparent;  
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  padding: 8px 0 4px 0;
-  opacity:50%;
-}
-
-
-/* would need to be adjusted depending on time */
-.marquee .marqueeone{
-  animation: marquee 60s linear infinite
-}
-
-.marquee .marqueetwo{
-  animation: marquee 60s linear 2.5s infinite 
-}
-
-.marquee .marqueethree{
-  animation: marquee 60s linear 5s infinite
-}
-
-.marquee .marqueefour{
-  animation: marquee 60s linear 7.5s infinite
-}
-
-/* even out the elements */
-.marquee div {
-  position: absolute;
-  width: 100%;
-  left: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.marquee:hover div {
-  animation-play-state: paused;
-}
-
-/* add delay at the end of animation so you dont start while another div is going */
-@keyframes marquee {
-  0% { left: 100%; }
-  50% { left: -100%; }
-  100% {left: -100%}
-}
 
 .icon {
 width:50px;
@@ -81,18 +36,17 @@ opacity:75%;
 </style>
 <body>
 <div style = "padding:30px" >
-
 <img class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
 <img class = "icon" onclick = "launch('part_app')" src = "part.png" ></img>
-<img class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
-<img class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
-<img class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
+<img class = "icon" onclick = "launch('beak_app')" src = "beak.png" ></img>
                </div>
    
 
 <iframe style = "border:none;position:absolute;top:150vmax;width:100vmax;height:100vmin;" src = "https://eyes.nasa.gov/apps/orrery/#/earth" id = "nasa_app"></iframe>
 
 <iframe style = "border:none;position:absolute;top:150vmax;width:100vmax;height:100vmin;" src = "resources/part.html" id = "part_app"></iframe>
+
+<iframe style = "border:none;position:absolute;top:150vmax;width:100vmax;height:100vmin;" src = "resources/beak.html" id = "beak_app"></iframe>
 </body>
 <script>
 var launch = function(app){

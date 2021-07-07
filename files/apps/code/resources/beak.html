@@ -1,12 +1,45 @@
 
 <style>
+
+	@font-face {
+  font-family: "default";
+  src: url("../../clock/font.ttf");
+
+}
+
+@font-face {
+  font-family: "mono";
+  src: url("../../clock/mono2.ttf");
+
+}
+
 html, body {
 overflow:hidden;
-background-color:white;
+background-color:black;
+filter:invert(100%);
+}
+canvas {
+    transform: scale(0.5);
+    position: absolute;
+    top: -35vmin;
+    left: 0vmax;
 }
 </style>
 <div id="player">
-  <input id = "inertiainput"type = "text" value = "4" style = "width:100px"></input>
+  <input id = "inertiainput"type = "text" value = "4" style = "position:absolute;    background-color: #ffffff42;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: 'default';
+    margin-left: -2.5vmin;
+    width: 100vmin;
+    text-align: right;
+    transform: translate(-60vmin,10vmin);
+    transition: all 1s;
+    font-size: 1.5em;
+    outline: none;
+    display: block;"></input>
 <!--   <input id="gravity" type="range" min="-1.5" max="1.5" step=".25" value="1" /> -->
 </div>
 <script>
@@ -29,8 +62,10 @@ var Bounds = _dereq_('../geometry/Bounds');
 var Axes = _dereq_('../geometry/Axes');
 
 (function() {
-
+setInterval(function(){
     Body._inertiaScale = document.getElementById("inertiainput").value;
+	},50);
+	 Body._inertiaScale = document.getElementById("inertiainput").value;
     Body._nextCollidingGroupId = 1;
     Body._nextNonCollidingGroupId = -1;
     Body._nextCategory = 0x0001;
