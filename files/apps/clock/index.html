@@ -162,7 +162,7 @@ transition: all 1s;
 <iframe id = "map"width="40%" height = "30%" style = "opacity:0%;transform:translate(0,150%)" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"  marginheight="0" marginwidth="0"></iframe>
 <h1 id = "date" style = "font-size:20px;opacity:0%;transform:translate(0,-20%)">July 24th, 2003</h1>
 <h1 id = "seconds" style = "transform:translate(150%,0);font-size:20px;opacity:0%;">59</h1>
-	<div style = "padding:20px;position:absolute;top:1vmax;left:0;">
+	<div id = "top" style = "padding:20px;position:absolute;top:1vmax;left:-100vmin;">
 	
 	<a href="https://time.is/Eureka,_California" id="time_is_link" rel="nofollow" style=""></a>
 <span id="Eureka__California_z14e" style="font-size:1em;color:gray;background:black"></span>
@@ -179,7 +179,7 @@ transition: all 1s;
     outline: none;
     border-radius: 20px;
     padding-left: 11vmin;
-    background-color: #cccccc;" src="words.html" 
+    background-color: Transparent;" src="words.html" 
  scrolling="no"
 >
 </iframe>
@@ -377,7 +377,11 @@ get_date();
 get_time();
 window.onload = function(){
 document.getElementById('covid').style.transition = "all 1s";
+document.getElementById('covid').style.transitionDelay = "0.5s";
 document.getElementById('covid').style.left = "-10vmin";
+
+document.getElementById('top').style.transition = "all 1s";
+document.getElementById('top').style.left = "0vmin";
 get_time();
 get_date();
 setInterval(get_time,1000);
