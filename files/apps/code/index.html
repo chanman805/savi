@@ -68,24 +68,31 @@ a {
   100% {left: -100%}
 }
 
+.icon {
+width:50px;
+object-fit:cover;
+display:inline-block;
+margin:10px;
+background-color:#333;
+padding:10px;
+border-radius:20px;
+opacity:75%;
+}
 </style>
 <body>
-<div class="marquee">
-    <div class="marqueeone">
+<div style = "padding:30px" >
+
+<img class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
+<img class = "icon" onclick = "launch('part_app')" src = "part.png" ></img>
+<img class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
+<img class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
 <img class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
                </div>
-    <div class="marqueetwo">
-	
-			   </div>
-         <div class="marqueethree">
-		 
-			   </div>
-                   <div class="marqueefour">
-          
-      </div>
-</div>
+   
 
 <iframe style = "border:none;position:absolute;top:150vmax;width:100vmax;height:100vmin;" src = "https://eyes.nasa.gov/apps/orrery/#/earth" id = "nasa_app"></iframe>
+
+<iframe style = "border:none;position:absolute;top:150vmax;width:100vmax;height:100vmin;" src = "resources/part.html" id = "part_app"></iframe>
 </body>
 <script>
 var launch = function(app){
