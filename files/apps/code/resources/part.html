@@ -4,7 +4,7 @@
 		<title>Gravitational Particle Simulator</title>
 		<script>
 function init(){var t=document.getElementById("canvas"),e=document.getElementById("controlbox")
-t.width=window.innerWidth-30,t.height=window.innerHeight-20,width=t.width,height=t.height,context=t.getContext("2d"),window.addEventListener("click",mouseDownListener,!1),e.onmouseover=function(){onControlBox=!0},e.onmouseout=function(){onControlBox=!1}}function main(){starttime=Date.now(),integrate(),draw(),frametime=Date.now()-starttime}function mouseDownListener(t){onControlBox||(shiftDown=t.shiftKey,startCoords[0]=t.clientX,startCoords[1]=t.clientY,endCoords[0]=t.clientX,endCoords[1]=t.clientY,window.addEventListener("mousemove",mouseMoveListener,!1),window.addEventListener("mouseup",mouseUpListener,!1))}function mouseMoveListener(t){endCoords[0]=t.clientX,endCoords[1]=t.clientY}function mouseUpListener(t){if(window.removeEventListener("mousemove",mouseMoveListener),window.removeEventListener("mouseup",mouseUpListener),!t.shiftKey&&!shiftDown){var e=new Particle(newMass,startCoords[0],startCoords[1],endCoords[0]-startCoords[0],endCoords[1]-startCoords[1])
+t.width=window.innerWidth-30,t.height=window.innerHeight-20,width=t.width,height=t.height,context=t.getContext("2d"),window.addEventListener("mousedown",mouseDownListener,!1),e.onmouseover=function(){onControlBox=!0},e.onmouseout=function(){onControlBox=!1}}function main(){starttime=Date.now(),integrate(),draw(),frametime=Date.now()-starttime}function mouseDownListener(t){onControlBox||(shiftDown=t.shiftKey,startCoords[0]=t.clientX,startCoords[1]=t.clientY,endCoords[0]=t.clientX,endCoords[1]=t.clientY,window.addEventListener("mousemove",mouseMoveListener,!1),window.addEventListener("mouseup",mouseUpListener,!1))}function mouseMoveListener(t){endCoords[0]=t.clientX,endCoords[1]=t.clientY}function mouseUpListener(t){if(window.removeEventListener("mousemove",mouseMoveListener),window.removeEventListener("mouseup",mouseUpListener),!t.shiftKey&&!shiftDown){var e=new Particle(newMass,startCoords[0],startCoords[1],endCoords[0]-startCoords[0],endCoords[1]-startCoords[1])
 particleList.push(e)}t.shiftKey&&shiftDown&&(particleShift=[endCoords[0]-startCoords[0],endCoords[1]-startCoords[1]]),startCoords=[-1,-1],endCoords=[-1,-1]}function setNewMass(t){console.log(t),newMass=t}function integrate(){for(var t=new Array,e=0;e<particleList.length;e++){for(var o=particleList[e],r=0,i=0,s=0;s<particleList.length;s++)if(otherParticle=particleList[s],o!=otherParticle&&!o.collided&&!otherParticle.collided){var a=otherParticle.x-o.x,n=otherParticle.y-o.y,c=Math.sqrt(a*a+n*n)
 if(c<o.radius/1.5+otherParticle.radius/1.5){o.collided=!0,otherParticle.collided=!0
 var l=o.mass+otherParticle.mass,d=new Particle(l,(o.x*o.mass+otherParticle.x*otherParticle.mass)/l,(o.y*o.mass+otherParticle.y*otherParticle.mass)/l,(o.vx*o.mass+otherParticle.vx*otherParticle.mass)/l,(o.vy*o.mass+otherParticle.vy*otherParticle.mass)/l)
@@ -82,6 +82,7 @@ function Particle(t,s,h,i,o){this.mass=t,this.x=s,this.y=h,this.px=s,this.py=h,t
     border-radius: 20px 0px 0px 20px;
     background-color: #cccccc50;
 	border:none;
+	height:100vmin;
 				
 			}
 			
@@ -135,7 +136,7 @@ function Particle(t,s,h,i,o){this.mass=t,this.x=s,this.y=h,this.px=s,this.py=h,t
 				<table>
 				<input type="text" value="1.0e3" class="txt" style="width:0px;display:none!important" id="mass">
 					<tr><button style = "display:none" onclick="setSize(100)">Tiny</button></tr></br>
-					<tr><button touchstart="setSize(1000)">1.0<span style = "font-family:'arial'">e</span>3</button></tr></br>
+					<tr><button onclick="setSize(1000)">1.0<span style = "font-family:'arial'">e</span>3</button></tr></br>
 					<tr><button onclick="setSize(10000)">1.0<span style = "font-family:'arial'">e</span>4</button></tr></br>
 					<tr><button onclick="setSize(100000)">1.0<span style = "font-family:'arial'">e</span>5</button></tr></br>
 					<tr><button onclick="setSize(10000000)">1.0<span style = "font-family:'arial'">e</span>7</button></tr>
