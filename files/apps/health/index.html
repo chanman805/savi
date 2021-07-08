@@ -8,6 +8,46 @@ color:white;
 
 </style>
 <body>
-<img src = "heart.png"></img>
+
+<div id = "hidden" style = "z-index:100;background-color:#ffffff10;padding:100%;position:absolute;top:0;left:160vmin;"></div>
+<iframe id = "world_cases" src="https://public.domo.com/cards/bWxVg" style = "    border: none;
+    width: 90vmin;
+    height: 100vmax;
+    filter: invert(100%) hue-rotate(180deg);
+    position: absolute;
+    top: 0;
+    left: 90vmin;
+	opacity:100%;
+	transition:all 1s;
+"></iframe>
+
+<iframe id = "world_vax" src="https://public.domo.com/cards/31O7r" style = "    border: none;
+    width: 90vmin;
+    height: 100vmax;
+    filter: invert(100%) hue-rotate(180deg);
+    position: absolute;
+    top: 0;
+    left: 90vmin;
+	opacity:0%;
+	transition: all 1s;
+"></iframe>
+
+
+
+
+
+
+
 </body>
+<script src = "../../../files/modules/swipe.js"></script>
+<script>
+
+
+
+document.getElementById('hidden').addEventListener("swiped-left", function(){
+document.getElementById('world_cases').style.opacity = "0%";
+document.getElementById('world_vax').style.opacity = "100%";
+});
+
+</script>
 </html>
