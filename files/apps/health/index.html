@@ -21,15 +21,16 @@ color:white;
 	transition:all 1s;
 "></iframe>
 
-<iframe id = "world_vax" src="https://public.domo.com/cards/31O7r" style = "    border: none;
-    width: 90vmin;
+<iframe id = "world_vax" src="vax.html" style = "     border: none;
+    width: 120vmin;
     height: 100vmax;
     filter: invert(100%) hue-rotate(180deg);
     position: absolute;
-    top: 0;
-    left: 90vmin;
-	opacity:0%;
-	transition: all 1s;
+    top: 2vmin;
+    left: 69vmin;
+    opacity: 0%;
+    transition: all 1s ease 0s;
+	transform:scale(1.01);
 "></iframe>
 
 
@@ -47,6 +48,11 @@ color:white;
 document.getElementById('hidden').addEventListener("swiped-left", function(){
 document.getElementById('world_cases').style.opacity = "0%";
 document.getElementById('world_vax').style.opacity = "100%";
+});
+
+document.getElementById('hidden').addEventListener("swiped-right", function(){
+document.getElementById('world_cases').style.opacity = "100%";
+document.getElementById('world_vax').style.opacity = "0%";
 });
 
 </script>
