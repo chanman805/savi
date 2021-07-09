@@ -27,7 +27,7 @@ color:white;
     filter: invert(100%) hue-rotate(180deg);
     position: absolute;
     top: 2vmin;
-    left: 69vmin;
+    left: 65vmin;
     opacity: 0%;
     transition: all 1s ease 0s;
 	transform:scale(1.01);
@@ -48,11 +48,13 @@ color:white;
 document.getElementById('hidden').addEventListener("swiped-left", function(){
 document.getElementById('world_cases').style.opacity = "0%";
 document.getElementById('world_vax').style.opacity = "100%";
+document.getElementById('hidden').style.left = "140vmin";
 });
 
 document.getElementById('hidden').addEventListener("swiped-right", function(){
 document.getElementById('world_cases').style.opacity = "100%";
 document.getElementById('world_vax').style.opacity = "0%";
+document.getElementById('hidden').style.left = "160vmin";
 });
 
 </script>
