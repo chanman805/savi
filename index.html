@@ -65,7 +65,7 @@ overflow:hidden;
     margin:auto;
 	width:75vmin;
 opacity:0%;
-transition:opacity 2.5s, transform 1s, all 1s;
+transition:opacity 2.5s, transform 1s;
 transform:scale(0.9);
 z-index:150;
 }
@@ -89,7 +89,7 @@ padding:20px;
 #left_dock {
 float:left;
 margin-top:-95vmin;
-margin-left:-30vmin;
+margin-left:-20vmin;
 width: 25vmin;
 transition: all 1s;
 z-index:100;
@@ -99,7 +99,7 @@ padding-right:70%;
 #right_dock {
 float:right;
 margin-top:-95vmin;
-margin-right:-30vmin;
+margin-right:-25vmin;
 width: 25vmin;
 transition: all 1s;
 z-index:100;
@@ -181,14 +181,6 @@ border:none;
 opacity:0%;
 }
 
- .border-left {
-margin-left:13vmin!important;
-}
-
- .border-right {
-margin-left:-1vmin!important;
-}
-
 
 </style>
 </head>
@@ -206,18 +198,18 @@ margin-left:-1vmin!important;
 </div>
 
 <div id = "left_dock" >
-<img id = "chat_launcher" onclick = "launch(chat, 'files/apps/chat/index.html')"class = "icon border-left" src = "files/images/docks/chat.png"></img>
+<img id = "chat_launcher" onclick = "launch(chat, 'files/apps/chat/index.html')"class = "icon" src = "files/images/docks/chat.png"></img>
 <img id = "clock_launcher" onclick = "launch(clock, 'files/apps/clock/index.html')"class = "icon" src = "files/images/docks/clock.gif"></img>
 <img id = "code_launcher" onclick = "launch(code, 'files/apps/code/index.html')"class = "icon" src = "files/images/docks/code.png"></img>
-<img id = "health_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon border-left" src = "files/images/docks/health.png"></img>
+<img id = "health_launcher" onclick = "launch(health, 'files/apps/health/index.html')"class = "icon" src = "files/images/docks/health.png"></img>
 </div>
 
 
 <div id = "right_dock" >
-<img id = "internet_launcher" onclick = "launch(internet, 'files/apps/internet/index.html')"class = "icon border-right" src = "files/images/docks/internet.png"></img>
+<img id = "internet_launcher" onclick = "launch(internet, 'files/apps/internet/index.html')"class = "icon" src = "files/images/docks/internet.png"></img>
 <img id = "location_launcher" onclick = "launch(locate, 'files/apps/locate/index.html')"class = "icon" src = "files/images/docks/location.png"></img>
 <img id = "stock_launcher" onclick = "launch(stock, 'files/apps/stock/index.html')"class = "icon" src = "files/images/docks/stock.gif"></img>
-<img id = "news_launcher" onclick = "launch(news, 'files/apps/news/index.html')"class = "icon border-right" src = "files/images/docks/news.png"></img>
+<img id = "news_launcher" onclick = "launch(news, 'files/apps/news/index.html')"class = "icon" src = "files/images/docks/news.png"></img>
 </div>
 
 
