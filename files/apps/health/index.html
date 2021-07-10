@@ -18,7 +18,8 @@ color:white;
     top: 0;
     left: 90vmin;
 	opacity:100%;
-	transition:all 1s;
+	transition:all 0.7s;
+		z-index:90!important;
 "></iframe>
 
 <iframe id = "world_vax" src="vax.html" style = "     border: none;
@@ -26,18 +27,41 @@ color:white;
     height: 100vmax;
     filter: invert(100%) hue-rotate(180deg);
     position: absolute;
-    top: 2vmin;
-    left: 65vmin;
+    top:1vmin;
+    left: 150vmin;
     opacity: 0%;
-    transition: all 1s ease 0s;
+    transition: all 0.7s ease 0s;
 	transform:scale(1.01);
+z-index:90!important;
 "></iframe>
 
 
 
+<iframe id = "us_cases" scrolling = "no" src="https://public.domo.com/cards/axpDJ" style = "    width: 93vmin;
+    height: 120vmin;
+    border: none;
+    position: absolute;
+    top: -30vmin;
+    left: 5vmin;
+    filter: hue-rotate(180deg) invert(100%);
+    background-color: Transparent;
+	transition: all 0.7s;
+	"></iframe>
 
 
 
+<iframe id = "us_vax" src="https://public.domo.com/cards/YE040"  scrolling = "no" style = "    width: 65vmin;
+    height: 98vmin;
+    border: none;
+    position: absolute;
+    top: -19vmin;
+    left: 5vmin;
+    filter: hue-rotate(180deg) invert(100%);
+    background-color: Transparent;
+    transition: all 0.7s;
+	opacity:0%;
+
+	" ></iframe>
 
 </body>
 <script src = "../../../files/modules/swipe.js"></script>
@@ -47,13 +71,24 @@ color:white;
 
 document.getElementById('hidden').addEventListener("swiped-left", function(){
 document.getElementById('world_cases').style.opacity = "0%";
+setTimeout(function(){
+document.getElementById('us_cases').style.left = "-100vmin";
 document.getElementById('world_vax').style.opacity = "100%";
+document.getElementById('world_vax').style.left = "65vmin";
 document.getElementById('hidden').style.left = "140vmin";
+document.getElementById('us_vax').style.opacity = "100%";
+},500);
+
 });
 
 document.getElementById('hidden').addEventListener("swiped-right", function(){
+setTimeout(function(){
 document.getElementById('world_cases').style.opacity = "100%";
+},500);
 document.getElementById('world_vax').style.opacity = "0%";
+document.getElementById('us_cases').style.left = "5vmin";
+document.getElementById('us_vax').style.opacity = "0%";
+document.getElementById('world_vax').style.left = "150vmin";
 document.getElementById('hidden').style.left = "160vmin";
 });
 
