@@ -62,13 +62,17 @@ m=widget_new&utm_campaign=chart&utm_term=NASDAQ%3AAAPL"></iframe>
 <script src = "../../../files/modules/swipe.js"></script>
 <script>
 
+var success1= new Audio("../../audio/sfx/success.mp3");
+var success2= new Audio("../../audio/sfx/success3.mp3");
+
 document.getElementById('hidden').addEventListener("swiped-up", function(){
 document.getElementById('main').style = "    transform: scale(0.44);border: 10px solid rgb(170, 170, 170);border-radius: 0px 0px 0px 30px;top: -22.5vmin;left: 40vmin";
 document.getElementById('feed').style.left = "3.5vmin";
 document.getElementById('feed').style.opacity = "80%";
 document.getElementById('mc').style.top = "265px";
 document.getElementById('mc').style.opacity = "75%";
-
+document.getElementById('hidden').style.top = "35vmin";
+success1.play();
 });
 
 
@@ -78,6 +82,8 @@ document.getElementById('mc').style.top = "150vmin";
 document.getElementById('mc').style.opacity = "0%";
 document.getElementById('feed').style.left = "-150vmin";
 document.getElementById('feed').style.opacity = "0%";
+document.getElementById('hidden').style.top = "45vmin";
+success2.play();
 
 });
 

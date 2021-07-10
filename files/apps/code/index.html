@@ -46,15 +46,15 @@ margin-left:150vmin;
     width: 100%;
     padding: 10vmin;" >
 	
-<img style = "transition-delay:0.25s"class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
+<img  style = "transition-delay:0.25s"class = "icon" onclick = "launch('nasa_app')" src = "globe.png" ></img>
 <img style = "transition-delay:0.5s"class = "icon" onclick = "launch('part_app')" src = "part.png" ></img>
 <img style = "transition-delay:0.75s"class = "icon" onclick = "launch('beak_app')" src = "beak.png" ></img>
 
-<img style = "transition-delay:1s"class = "icon" src = "blank.png" ></img>
-<img style = "transition-delay:1.25s"class = "icon" src = "blank.png" ></img>
-<img style = "transition-delay:1.5s"class = "icon" src = "blank.png" ></img>
-<img style = "transition-delay:1.75s"class = "icon" src = "blank.png" ></img>
-<img style = "transition-delay:2s"class = "icon" src = "blank.png" ></img>
+<img onclick = "error.play()" style = "transition-delay:1s"class = "icon" src = "blank.png" ></img>
+<img onclick = "error.play()"style = "transition-delay:1.25s"class = "icon" src = "blank.png" ></img>
+<img onclick = "error.play()"style = "transition-delay:1.5s"class = "icon" src = "blank.png" ></img>
+<img onclick = "error.play()"style = "transition-delay:1.75s"class = "icon" src = "blank.png" ></img>
+<img onclick = "error.play()"style = "transition-delay:2s"class = "icon" src = "blank.png" ></img>
 
 
 
@@ -75,8 +75,14 @@ document.getElementById("bar").addEventListener("swiped-down", function(){
 hide(active_app);
 });
 
+var success1= new Audio("../../audio/sfx/stock.mp3");
+var success2= new Audio("../../audio/sfx/exit_woosh.mp3");
+
+var error = new Audio("../../audio/sfx/error.mp3");
+
 var launch = function(app){
 
+success1.play();
 document.getElementById(app).style.transition = "all 1s";
 document.getElementById(app).style.top = "0";
 document.getElementById(app).style.opacity = "100%";
@@ -84,6 +90,7 @@ active_app = app;
 };
 
 var hide = function(app){
+success2.play();
 document.getElementById(app).style.opacity = "0%";
 document.getElementById(app).style.top = "150vmax";
 };

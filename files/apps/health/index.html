@@ -69,7 +69,8 @@ z-index:90!important;
 <script src = "../../../files/modules/swipe.js"></script>
 <script>
 
-
+var success1= new Audio("../../audio/sfx/success.mp3");
+var success2= new Audio("../../audio/sfx/success2.mp3");
 
 document.getElementById('hidden').addEventListener("swiped-left", function(){
 document.getElementById('world_cases').style.opacity = "0%";
@@ -80,6 +81,7 @@ document.getElementById('world_vax').style.left = "65vmin";
 document.getElementById('us_vax').style.top = "-13.5vmin";
 document.getElementById('hidden').style.left = "140vmin";
 document.getElementById('us_vax').style.opacity = "100%";
+success1.play();
 },500);
 
 });
@@ -94,6 +96,7 @@ document.getElementById('us_vax').style.opacity = "0%";
 document.getElementById('world_vax').style.left = "150vmin";
 document.getElementById('us_vax').style.top = "-150vmin";
 document.getElementById('hidden').style.left = "160vmin";
+success2.play();
 });
 
 </script>
