@@ -1,0 +1,77 @@
+<html>
+<head>
+<style>
+body, html {
+background-color:black;
+color:white;
+}
+
+#main {
+margin:0;
+position:absolute;
+top:0;
+left:0;
+width:100vmax;
+height:100vmin;
+border:none;
+transition: all 0.5s;
+filter:invert(100%) hue-rotate(180deg);
+border:0px solid Transparent;
+}
+
+#mc {
+margin:0;
+position:absolute;
+top:-50vmin;
+left:-50vmin;
+width:260vmin;
+height:100vmin;
+border:none;
+transition: all 0.5s;
+filter: invert(100%) hue-rotate(180deg) contrast(250%);
+opacity:0%;
+}
+</style>
+</head>
+<body>
+
+<div id = "hidden"style = "background-color:#ff000050;padding:100%;position:absolute;top:50vmax;left:0;z-index:100;"></div>
+<iframe id = "main"src = "https
+://www.tradingview.com/widgetem
+bed/?frameElementId=tradingview_f66
+67&symbol=NASDAQ%3AAAPL&interval=D&symbo
+ledit=1&saveimage=1&toolbarbg=f1f3f6&studi
+es=%5B%5D&hideideas=1&theme=light&style=1&time
+zone=Etc%2FUTC&studies_overrides=%7B%7D&overrides
+=%7B%7D&enabled_features=%5B%5D&disabled_features=%5
+B%5D&locale=en&utm_source=www.tradingview.com&utm_mediu
+m=widget_new&utm_campaign=chart&utm_term=NASDAQ%3AAAPL"></iframe>
+
+<iframe id = "mc" src = "mc.html" ></iframe>
+</body>
+<script src = "../../../files/modules/swipe.js"></script>
+<script>
+
+document.getElementById('hidden').addEventListener("swiped-up", function(){
+document.getElementById('main').style.transform = "scale(0.6)";
+document.getElementById('main').style.border = "2.5px solid #aaaaaa";
+document.getElementById('main').style.borderRadius = "30px";
+document.getElementById('mc').style.top = "0";
+document.getElementById('mc').style.opacity = "75%";
+
+});
+
+
+document.getElementById('hidden').addEventListener("swiped-down", function(){
+document.getElementById('main').style.transform = "scale(1)";
+document.getElementById('main').style.border = "0px solid Transparent";
+document.getElementById('main').style.borderRadius = "0px";
+document.getElementById('mc').style.top = "-50vmin";
+document.getElementById('mc').style.opacity = "0%";
+
+});
+
+  
+</script>
+
+</html>
