@@ -15,7 +15,7 @@ color:white;
     height: 100vmax;
     filter: invert(100%) hue-rotate(180deg);
     position: absolute;
-    top: 0;
+    top: -2vmin;
     left: 90vmin;
 	opacity:100%;
 	transition:all 0.7s;
@@ -50,16 +50,18 @@ z-index:90!important;
 
 
 
-<iframe id = "us_vax" src="https://public.domo.com/cards/YE040"  scrolling = "no" style = "    width: 65vmin;
+<iframe id = "us_vax" src="https://public.domo.com/cards/YE040"  scrolling = "no" style = "  
+     width: 65vmin;
     height: 98vmin;
     border: none;
     position: absolute;
-    top: -19vmin;
-    left: 5vmin;
+    top: -150vmin;
+    left: 9vmin;
     filter: hue-rotate(180deg) invert(100%);
-    background-color: Transparent;
-    transition: all 0.7s;
-	opacity:0%;
+    background-color: transparent;
+    transition: all 0.7s ease 0s;
+    transform: scale(1.2);
+	
 
 	" ></iframe>
 
@@ -75,6 +77,7 @@ setTimeout(function(){
 document.getElementById('us_cases').style.left = "-100vmin";
 document.getElementById('world_vax').style.opacity = "100%";
 document.getElementById('world_vax').style.left = "65vmin";
+document.getElementById('us_vax').style.top = "-13.5vmin";
 document.getElementById('hidden').style.left = "140vmin";
 document.getElementById('us_vax').style.opacity = "100%";
 },500);
@@ -89,6 +92,7 @@ document.getElementById('world_vax').style.opacity = "0%";
 document.getElementById('us_cases').style.left = "5vmin";
 document.getElementById('us_vax').style.opacity = "0%";
 document.getElementById('world_vax').style.left = "150vmin";
+document.getElementById('us_vax').style.top = "-150vmin";
 document.getElementById('hidden').style.left = "160vmin";
 });
 
