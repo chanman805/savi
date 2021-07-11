@@ -150,6 +150,16 @@ width:100%;
 	transition-delay: 0.5s;
 " width = "15%" height = "35%"src = "frame/cputest2.html"></iframe>
 
+<div id = "resource_div" style = "    padding: 10%;
+    background-color: Transparent;
+    position: absolute;
+    width: 10vmin;
+    height: 100vmin;
+    top: 68vmin;
+    left: 50vmin;
+    z-index: 100;
+	transition: all 1s"></div>
+
 <iframe id = "resource" scrolling = "yes"style = "    overflow-y: scroll;
     overflow-x: hidden;
     border-radius: 10px;
@@ -160,9 +170,11 @@ width:100%;
     left: 25%;
     transform: scale(0.9);
 	transition: all 1s;
-	transition-delay:1s;
-	margin-top:150%;" width = "34%" height = "23%"src = "frame/resource.html"></iframe>
+	transition-delay:0s!important;
+	margin-top:150%;
+	border:2.5px solid #666666" width = "34%" height = "23%"src = "frame/resource.html"></iframe>
 </body>
+<script src = "../../../files/modules/swipe.js"></script>
 <script>
 
 var success1 = new Audio("../../audio/sfx/success.mp3");
@@ -359,6 +371,19 @@ success3.play();
         ]);
     }
 }
+
+
+document.getElementById('resource_div').addEventListener("click",function(){
+document.getElementById('resource').style = "border:2.5px solid #000000; transition-delay:0s!important;   overflow: hidden scroll;opacity: 1;position: absolute;top: -1vmin;left: -70vmin;padding: 0;transform: scale(0.85);transition: all 1s ease 1s;width: 75vmax;height: 100vmin;z-index: 100;background-color: black;padding-right: 100%;padding-left: 50%";
+document.getElementById('resource_div').style = "    padding: 10%;background-color: Transparent;position: absolute;width: 125vmin;height: 100vmin;left: 6vmin;z-index: 101;top: 75vmin";
+});
+
+
+
+document.getElementById('resource_div').addEventListener("swiped-up", function(){
+document.getElementById('resource').style = " border:2.5px solid #666666!important;    overflow-y: scroll;overflow-x: hidden;border-radius: 10px;opacity: 100%;border: none;position: absolute;top: 70%;left: 25%;transform: scale(0.9);transition: all 1s;transition-delay:0s;margin-top:0%";
+document.getElementById('resource_div').style = "     padding: 10%;background-color: Transparent;position: absolute;width: 10vmin;height: 100vmin;top: 68vmin;left: 50vmin;z-index: 100";
+});
 
 
 window.onload = function(){
