@@ -85,10 +85,11 @@ width:100%;
     padding: 20px;
     padding-left: 3px;
     padding-top: 0px;
-    border-radius: 20px 5px 0px 0px;
+    border-radius: 50px 0px 0px 0px;
     margin-left: -25vmin;
     transform: scale(0.55);
     padding-bottom: 175px;
+	transition: all 0.5s;
 }
 
 #globe {
@@ -104,12 +105,14 @@ width:100%;
     padding-left: 0px;
     padding-top: 0px;
     padding-right: 0px;
-    border-radius: 5px 20px 0px 0px;
+    border-radius: 0px 50px 0px 0px;
     margin-left: 92.5vmin;
     transform: scale(0.8);
     padding-bottom: 0px;
     border: none;
+	transition: all 1s;
 }
+
 
 #docky {
 float:right;
@@ -141,9 +144,32 @@ padding:2.5px;
 <h1 id = "heading" style = "transition-delay:1s;opacity:0%"></h1>
 <h1 id = "speed"style = "transition-delay:1.25s;opacity:0%"></h1>
 </div>
+
+<div id = "weather_div"style = "position:absolute;padding:50%;    position: absolute;
+    padding: 18%;
+    top: 60vmin;
+    left: 8vmax;
+    background-color: Transparent;
+    width: 10vmin;
+    z-index: 100;">
+</div>
+
+
+<div id = "globe_div"style = "    position: absolute;
+    padding: 50%;
+    position: absolute;
+    padding: 10%;
+    top: 60vmin;
+    left: 55vmax;
+    background-color: Transparent;
+    width: 1vmin;
+    z-index: 100;">
+</div>
+
 <iframe id = "weather" style = "margin-top:150%;transition:all 1s;" scrolling = "no" src = "weather.html" ></iframe>
 <iframe id = "globe" style = "margin-top:150%;transition: all 1s;transition-delay:0.5s" scrolling = "no" src = "globe.html" ></iframe>
 </body>
+<script src = "../../../files/modules/swipe.js"></script>
 <script>
 var success_sound = new Audio("../../audio/sfx/success.mp3");
 
@@ -214,6 +240,64 @@ function error(err) {
 error_sound.play();
 
 }
+
+document.getElementById('weather_div').addEventListener("click",function(){
+document.getElementById('weather').style = "    width: 180vmin;height: 150vmax;float: left;position: absolute;margin-top: 15vmin;background-color: #ffffff42;filter: invert(20%);padding: 20px;padding-left: 33vmin;padding-top: 0px;border-radius: 50px 0px 0px 0px;margin-left: -28vmin;margin-top: -22vmin;transform: scale(1.1);padding-bottom: 175px;transition: all 1s;";
+document.getElementById('weather_div').style = "    background-color:Transparent;position: absolute; padding: 50%;position: absolute;padding: 18%;top: 70vmin;left: -10vmax;width: 150vmin;z-index: 100;";
+setTimeout(function(){
+document.getElementById('globe').style.display = "none";
+document.getElementById('globe_div').style.display = "none";
+},250);
+document.getElementById('globe').style.transition = "all 1s";
+document.getElementById('globe').style.opacity = "0%";
+});
+
+
+document.getElementById('globe_div').addEventListener("click",function(){
+document.getElementById('globe').style = "     width: 185vmin;height: 100vmax;float: left;position: absolute;margin-top: 15vmin; background-color: #ffffff42; filter: invert(20%); padding: 20px; padding-left: 0px; padding-top: 0px; padding-right: 0px; border-radius: 0px 0px 0px 0px;margin-left: -5vmin;transform: scale(1);padding-bottom: 0px;border: none;margin-top: -38vmin;background-color: black;";
+document.getElementById('globe_div').style = "    background-color:Transparent;position: absolute; padding: 50%;position: absolute;padding: 18%;top: 70vmin;left: -10vmax;width: 150vmin;z-index: 100;";
+setTimeout(function(){
+document.getElementById('weather').style.display = "none";
+document.getElementById('weather_div').style.display = "none";
+},250);
+
+document.getElementById('weather').style.transition = "all 1s";
+document.getElementById('weather').style.opacity = "0%";
+});
+
+
+document.getElementById('globe_div').addEventListener("swiped-up",function(){
+document.getElementById('globe').style = "width: 20%;height: 85%;float: left;position: absolute;margin-top: 13.5vmin;background-color: #ffffff42;filter: invert(20%);padding: 20px;padding-left: 0px;padding-top: 0px;padding-right: 0px;border-radius: 0px 50px 0px 0px;margin-left: 92.5vmin;transform: scale(0.8);padding-bottom: 0px;border: none;transition: all 1s;";
+document.getElementById('globe_div').style = "    position: absolute;padding: 50%;position: absolute;padding: 10%;top: 60vmin;left: 55vmax;background-color: Transparent; width: 1vmin; z-index: 100;  ";
+document.getElementById('weather').style.display = "block";
+document.getElementById('weather_div').style.display = "block";
+
+setTimeout(function(){
+document.getElementById('weather').style.transition = "all 1s";
+document.getElementById('weather').style.opacity = "100%";
+},250);
+
+});
+
+
+
+
+
+document.getElementById('weather_div').addEventListener("swiped-up", function(){
+document.getElementById('weather').style = "  width: 80%;height: 65%;float: left;position: absolute; margin-top: 15vmin;background-color: #ffffff42;filter: invert(20%);padding: 20px;padding-left: 3px;padding-top: 0px;border-radius: 50px 0px 0px 0px;margin-top:-5vmin;margin-left: -25vmin;transform: scale(0.55);padding-bottom: 175px;transition: all 1s;";
+document.getElementById('weather_div').style = " position:absolute;padding:50%;    position: absolute;padding: 18%;top: 60vmin;left: 8vmax;background-color: Transparent;width: 10vmin;z-index: 100;  ";
+setTimeout(function(){
+document.getElementById('globe').style.display = "block";
+document.getElementById('globe_div').style.display = "block";
+document.getElementById('globe').style.transition = "all 1s";
+document.getElementById('globe').style.opacity = "0%";
+
+setTimeout(function(){
+document.getElementById('globe').style.opacity = "100%";
+},100);
+},750);
+});
+
 
 get_time();
 window.onload = function(){
