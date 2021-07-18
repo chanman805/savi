@@ -499,6 +499,8 @@ document.getElementById('keypad').style.transformOrigin = "34vmin 100%";
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
 load_left_dock();
 load_right_dock();
+
+face.style.filter = "hue-rotate(0deg)";
 });
 
 
@@ -511,6 +513,8 @@ document.getElementById('keypad').style.transformOrigin = "34vmin 0%";
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
 load_left_dock();
 load_right_dock();
+
+face.style.filter = "hue-rotate(0deg)";
 });
 
 document.getElementById('keypad').addEventListener('swiped-left', function(){
@@ -521,6 +525,8 @@ document.getElementById('keypad').style.transformOrigin = "0vmin 50%";
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
 load_left_dock();
 load_right_dock();
+
+face.style.filter = "hue-rotate(0deg)";
 });
 
 
@@ -532,6 +538,8 @@ document.getElementById('keypad').style.transformOrigin = "100vmin 50%";
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
 load_left_dock();
 load_right_dock();
+
+face.style.filter = "hue-rotate(0deg)";
 });
 
 
@@ -594,6 +602,7 @@ show_keypad();
 
 var show_keypad = function(){
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(1)";
+face.style.filter = "hue-rotate(170deg) sepia(75%) grayscale(25%)";
 };
 
 var show_hidden_docks = function(){
