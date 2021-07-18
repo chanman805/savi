@@ -181,11 +181,53 @@ border:none;
 opacity:0%;
 }
 
+#keypad {
+    position: absolute;
+    z-index: 10000000000000;
+    width: 90vmin;
+    top: 50%;
+    left: 50%;
+    transform: translate(-34vmin, -50%) scale(0);
+	transition: all 1s;
+	transition-delay:0.5s;
+	transform-origin: 34vmin 50%;
+}
+
+#keypad button {
+border-radius: 50%;
+width: 50px;
+height:50px;
+display:inline-block;
+border:none;
+margin:10px;
+background-color:gray;
+opacity:70%;
+}
+
+#keypad button:active {
+opacity:100%;
+}
 
 </style>
 </head>
 <body>
+
+<div id = "keypad">
+
+<button></button>
+<button></button>
+<button></button>
+<button></button>
+<button></button>
+<button></button>
+<button></button>
+<button></button>
+<button></button>
+
+</div>
+
 <div id = "mid">
+
 <img id = "face"   src = "files/images/system/face.gif"></img>
 </div>
 
@@ -487,9 +529,34 @@ if (!verified){
 giggle.volume = 0.2;
 giggle.play();
 welcome();
+
+setTimeout(function(){
+load_left_dock();
+load_right_dock();
+},950);
 verified = true;
 } else {
 }
+};
+
+document.getElementById('face').addEventListener("click",function(){
+if (verified){
+show_hidden_docks();
+show_keypad();
+}
+});
+
+var show_keypad = function(){
+document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(1)";
+};
+
+var show_hidden_docks = function(){
+left_dock.style.marginLeft = "-50%";
+right_dock.style.marginRight = "-50%";
+left_dock.style.opacity = "0%";
+right_dock.style.opacity = "0%";
+face.style.transition = "all 1s, transform 2.5s";
+face.style.transform = "scale(2.25)";
 };
 
 window.addEventListener("orientationchange", function() {
