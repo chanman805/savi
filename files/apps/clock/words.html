@@ -1,0 +1,129 @@
+<html>
+<head>
+<style>
+canvas
+{
+    transform: rotate(-90deg) scale(0.5);
+    background-image: url('https://docs.zoho.com/viewembeddoc.do?docId=34tnzdaf04f4666624ebea695e8902684d2ee&ftype=image&imgWidth=770&imgHeight=515&version=1.0');
+    background-size: 103% 109%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: -1px;
+    background-position-y: -16px;
+    /* width: 40vmin; */
+    /* height: 14vmax; */
+    position: absolute;
+    left: -75vmin;
+    top: -90vmin;
+}
+div b
+{
+	font-size:20px;
+	font-family: sans-serif;
+}
+div b:nth-child(1)
+{
+	color:#6C7A89;
+}
+div b:nth-child(1):after,div b:nth-child(2):after
+{
+	content:" : ";
+}
+div b:nth-child(3):after
+{
+	content:"  ";
+}
+div b:nth-child(2)
+{
+	color:#4ECDC4;
+}
+div b:nth-child(3)
+{
+	color:#87D37C;
+}
+div b:nth-child(4)
+{
+	font-weight: 400;
+}
+
+body, html {
+background-color:black;
+}
+
+
+</style>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<center>
+		<canvas width = "400" height = "400">
+		
+		</canvas>
+
+	</center>
+</body>
+<script>
+$(document).ready(function ()
+{
+	clock()
+})
+function clock()
+{
+	set=1
+	setInterval(function (){
+	var dt=new Date()
+	var hrs=dt.getHours()
+	var tz="AM"
+	if (hrs>12)
+	{
+		hrs=hrs-12
+		tz="PM"
+	}
+	var min=dt.getMinutes()
+	var sec=dt.getSeconds()
+	$("div b:nth-child(1)").text(hrs)
+	$("div b:nth-child(2)").text(min)
+	$("div b:nth-child(3)").text(sec)
+	$("div b:nth-child(4)").text(tz)
+	if (sec==0 && set%2!=0)
+	{
+		sec=60
+	}
+	drawClock(hrs*30+(min/2),min*6,sec*6)
+	if (sec==60 ||sec==0)
+	{
+		set++
+	}
+	},1000)
+}
+function drawClock(hd,md,sd)
+{
+	var canvasTag=$("canvas")[0]
+	var canvas = canvasTag.getContext("2d");
+	canvas.clearRect(0,0,400,400)
+	canvas.lineWidth=15;
+	//canvas.lineCap="round";
+	canvas.strokeStyle="#87D37C";
+	canvas.beginPath();
+	if (set%2==0)
+	{
+		canvas.arc(200, 200, 120, 0, sd * Math.PI/180,true);
+	}
+	else
+	{
+		canvas.arc(200, 200, 120, 0, sd * Math.PI/180);
+	}
+	canvas.stroke();
+	canvas.closePath();
+	canvas.strokeStyle="#4ECDC4";
+	canvas.beginPath();
+	canvas.arc(200, 200, 100, 0, md * Math.PI/180);
+	canvas.stroke();
+	canvas.closePath();
+	canvas.strokeStyle="#6C7A89";
+	canvas.beginPath();
+	canvas.arc(200, 200, 80, 0, hd * Math.PI/180);
+	canvas.stroke();
+}
+</script>
+</html>
