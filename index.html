@@ -609,8 +609,11 @@ window.addEventListener("orientationchange", function() {
   
   if ( window.orientation == 0 || window.orientation == 180) {
    reset(app_on);
+   
+   if (app_running){
     left_dock.style.opacity = "0%";
 	 right_dock.style.opacity = "0%";
+	 }
   } else {
 
      left_dock.style.opacity = "100%";
