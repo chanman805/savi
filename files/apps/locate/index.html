@@ -145,6 +145,18 @@ padding:2.5px;
 <h1 id = "speed"style = "transition-delay:1.25s;opacity:0%"></h1>
 </div>
 
+<iframe id = "news_feed"style = "    position: absolute;
+    border: none;
+    top: -3vmin;
+    left: -200vmin;
+    width: 52vmax;
+    height: 100vmin;
+    z-index: 100;
+    padding: 20px;
+    background-color: black;
+	opacity:0;
+	transition: all 1s;" src = "news.html"></iframe>
+
 <div id = "weather_div"style = "position:absolute;padding:50%;    position: absolute;
     padding: 18%;
     top: 60vmin;
@@ -242,7 +254,9 @@ error_sound.play();
 }
 
 document.getElementById('weather_div').addEventListener("click",function(){
-document.getElementById('weather').style = "    width: 180vmin;height: 150vmax;float: left;position: absolute;margin-top: 15vmin;background-color: #ffffff42;filter: invert(20%);padding: 20px;padding-left: 33vmin;padding-top: 0px;border-radius: 50px 0px 0px 0px;margin-left: -28vmin;margin-top: -22vmin;transform: scale(1.1);padding-bottom: 175px;transition: all 1s;";
+document.getElementById('weather').style = "      width: 75vmin; height: 90vmax; float: left; position: absolute; background-color: #010101;filter: invert(20%);padding: 0px 100px 175px 33vmin;border-radius: 50px 0px 0px;margin-left: 65vmin;margin-top: -86vmin;transform: scale(0.75); transition: all 1s ease 0s;";
+document.getElementById('news_feed').style.left = "-2vmin";
+document.getElementById('news_feed').style.opacity = "100%";
 document.getElementById('weather_div').style = "    background-color:Transparent;position: absolute; padding: 50%;position: absolute;padding: 18%;top: 70vmin;left: -10vmax;width: 150vmin;z-index: 100;";
 setTimeout(function(){
 document.getElementById('globe').style.display = "none";
@@ -286,6 +300,8 @@ document.getElementById('weather').style.opacity = "100%";
 document.getElementById('weather_div').addEventListener("swiped-up", function(){
 document.getElementById('weather').style = "  width: 80%;height: 65%;float: left;position: absolute; margin-top: 15vmin;background-color: #ffffff42;filter: invert(20%);padding: 20px;padding-left: 3px;padding-top: 0px;border-radius: 50px 0px 0px 0px;margin-top:-5vmin;margin-left: -25vmin;transform: scale(0.55);padding-bottom: 175px;transition: all 1s;";
 document.getElementById('weather_div').style = " position:absolute;padding:50%;    position: absolute;padding: 18%;top: 60vmin;left: 8vmax;background-color: Transparent;width: 10vmin;z-index: 100;  ";
+document.getElementById('news_feed').style.left = "-200vmin";
+document.getElementById('news_feed').style.opacity = "0%";
 setTimeout(function(){
 document.getElementById('globe').style.display = "block";
 document.getElementById('globe_div').style.display = "block";
