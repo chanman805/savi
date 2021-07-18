@@ -71,7 +71,7 @@ h1 {
 font-size:150px;
 }
 #map {
-transition: all 1.5s, opacity 4s;
+transition: all 0s;
 float:right;
 position:absolute;
 right:5vmin;
@@ -168,6 +168,14 @@ transition: all 1s;
 <span id="Eureka__California_z14e" style="font-size:1em;color:gray;background:black"></span>
 </div>
 
+<div id = "map_div" style = "    position: absolute;
+    background-color: Transparent;
+    top: 47vmin;
+    left: 37vmax;
+    padding: 13%;
+    width: 85vmin;">
+</div>
+
 <iframe id = "covid" style = "    position: absolute;
     top: 27vmax;
     left: -150vmin;
@@ -183,6 +191,7 @@ transition: all 1s;
  scrolling="no"
 >
 </iframe>
+<script src = "../../../files/modules/swipe.js"></script>
 <script>
 var time_is_widget=new time_is_widget()
 function time_is_widget(){var ca=0,tD=0,tout=0,updint=1000,tl="",U="undefined",i,j,rd
@@ -351,6 +360,22 @@ date.innerHTML = months[month]+ " " + day + ", "+year;
 };
 
 
+document.getElementById('map_div').addEventListener("click", function(){
+document.getElementById('map').style = "z-index:10000;transition: all 0.5s, opacity 4s;float:right;position:absolute;top:47.5vmin;border-radius:20px;background-color:black;width:60%;height:45%;";
+setTimeout(function(){
+document.getElementById('map').style = "transition: all 0s;opacity: 100%;width: 100%;height: 100%;top: 0;left: 0;right:0vmin;z-index: 100;border-radius: 0px;";
+},50);
+document.getElementById('map_div').style = " z-index:1000;   position: absolute;background-color: Transparent;top: 75vmin;left: -2vmax;padding: 13%;width: 150vmin;";
+});
+
+
+document.getElementById('map_div').addEventListener("swiped-up", function(){
+document.getElementById('map').style = "z-index:10000;transition: all 0.5s, opacity 4s;float:right;position:absolute;top:47.5vmin;border-radius:20px;background-color:black;width:60%;height:45%;";
+document.getElementById('map_div').style = " z-index:1000;   position: absolute;background-color: Transparent;top: 47vmin;left: 37vmax;padding: 13%;width: 85vmin;";
+setTimeout(function(){
+document.getElementById('map').style.zIndex = "100";
+},50);
+});
 
 
 
