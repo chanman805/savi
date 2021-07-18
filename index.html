@@ -202,9 +202,11 @@ border:none;
 margin:10px;
 background-color:gray;
 opacity:70%;
+transition: all 0.25s;
 }
 
 #keypad button:active {
+transition: all 0s;
 opacity:100%;
 }
 
@@ -431,11 +433,13 @@ bgm.play();
 
 var load_right_dock = function(){
 right_dock.style.marginRight = "5vmin";
+right_dock.style.opacity = "100%";
 r_out=true;
 };
 
 var load_left_dock = function(){
 left_dock.style.marginLeft = "5vmin";
+left_dock.style.opacity = "100%";
 l_out=true;
 };
 
@@ -487,6 +491,48 @@ right_dock.style.marginRight = "-50%";
 }
 });
 
+document.getElementById('keypad').addEventListener('swiped-down', function(){
+
+face.style.transform = "scale(1)";
+document.getElementById('keypad').style.transition = "all 1s";
+document.getElementById('keypad').style.transformOrigin = "34vmin 100%";
+document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
+load_left_dock();
+load_right_dock();
+});
+
+
+
+document.getElementById('keypad').addEventListener('swiped-up', function(){
+
+face.style.transform = "scale(1)";
+document.getElementById('keypad').style.transition = "all 1s";
+document.getElementById('keypad').style.transformOrigin = "34vmin 0%";
+document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
+load_left_dock();
+load_right_dock();
+});
+
+document.getElementById('keypad').addEventListener('swiped-left', function(){
+
+face.style.transform = "scale(1)";
+document.getElementById('keypad').style.transition = "all 1s";
+document.getElementById('keypad').style.transformOrigin = "0vmin 50%";
+document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
+load_left_dock();
+load_right_dock();
+});
+
+
+document.getElementById('keypad').addEventListener('swiped-right', function(){
+
+face.style.transform = "scale(1)";
+document.getElementById('keypad').style.transition = "all 1s";
+document.getElementById('keypad').style.transformOrigin = "100vmin 50%";
+document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
+load_left_dock();
+load_right_dock();
+});
 
 
 left_dock.addEventListener("swiped-down", function(){
@@ -540,7 +586,7 @@ verified = true;
 };
 
 document.getElementById('face').addEventListener("click",function(){
-if (verified){
+if (verified && !app_running){
 show_hidden_docks();
 show_keypad();
 }
