@@ -97,14 +97,14 @@ width:100%;
 #vis1, #vis2, #vis3 {
        padding: 2.5%;
     padding-bottom: 0.1%;
-    width: 60vmin;
+    width: 70vmin;
     height: 1vmax;
     transform: translate(0, 15vmin);
     background-color: #00ff0050;
     position: absolute;
     top: 50vmin;
     border-radius: 50px;
-    left: -5vmin;
+    left: -17.5vmin;
 	opacity:0;
 }
 
@@ -117,8 +117,8 @@ width:100%;
 <p id = "wifiword2"> - mb/s</p>
 
 
-<div id = "vis1" style = "top:8vmin"></div>
-<div id = "vis2" style = "top:23.5vmin"></div>
+<div id = "vis1" style = "top:8vmin;left:-5vmin"></div>
+<div id = "vis2" style = "top:23.5vmin;left:-12vmin"></div>
 <div id = "vis3" style = "top:39vmin"></div>
 
 
@@ -197,6 +197,14 @@ const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
 const connectTime = perfData.responseEnd - perfData.requestStart;
 const renderTime = perfData.domComplete - perfData.domLoading;
 
+var refresh = function(){
+ const perfData = window.performance.timing;
+ const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+ const connectTime = perfData.responseEnd - perfData.requestStart;
+ const renderTime = perfData.domComplete - perfData.domLoading;
+};
+
+setInterval(refresh,1000);
 if (connectTime>0&&connectTime<5){
 document.getElementById("vis1").style.filter = "hue-rotate(310deg)";
 } else if (connectTime>5&&connectTime<10) {
