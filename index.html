@@ -494,9 +494,10 @@ right_dock.style.marginRight = "-50%";
 document.getElementById('keypad').addEventListener('swiped-down', function(){
 
 face.style.transform = "scale(1)";
-document.getElementById('keypad').style.transition = "all 1s";
+document.getElementById('keypad').style.transition = "all 0.5s";
 document.getElementById('keypad').style.transformOrigin = "34vmin 100%";
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
+document.getElementById('keypad').style.opacity = "0%";
 load_left_dock();
 load_right_dock();
 face.style.transition = "all 1s";
@@ -508,9 +509,10 @@ face.style.filter = "hue-rotate(0deg)";
 document.getElementById('keypad').addEventListener('swiped-up', function(){
 
 face.style.transform = "scale(1)";
-document.getElementById('keypad').style.transition = "all 1s";
+document.getElementById('keypad').style.transition = "all 0.5s";
 document.getElementById('keypad').style.transformOrigin = "34vmin 0%";
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
+document.getElementById('keypad').style.opacity = "0%";
 load_left_dock();
 load_right_dock();
 face.style.transition = "all 1s";
@@ -520,9 +522,10 @@ face.style.filter = "hue-rotate(0deg)";
 document.getElementById('keypad').addEventListener('swiped-left', function(){
 
 face.style.transform = "scale(1)";
-document.getElementById('keypad').style.transition = "all 1s";
+document.getElementById('keypad').style.transition = "all 0.5s";
 document.getElementById('keypad').style.transformOrigin = "0vmin 50%";
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
+document.getElementById('keypad').style.opacity = "0%";
 load_left_dock();
 load_right_dock();
 face.style.transition = "all 1s";
@@ -533,9 +536,10 @@ face.style.filter = "hue-rotate(0deg)";
 document.getElementById('keypad').addEventListener('swiped-right', function(){
 
 face.style.transform = "scale(1)";
-document.getElementById('keypad').style.transition = "all 1s";
+document.getElementById('keypad').style.transition = "all 0.5s";
 document.getElementById('keypad').style.transformOrigin = "100vmin 50%";
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
+document.getElementById('keypad').style.opacity = "0%";
 load_left_dock();
 load_right_dock();
 face.style.transition = "all 1s";
@@ -599,7 +603,10 @@ verified = true;
 document.getElementById('face').addEventListener("click",function(){
 if (verified && !app_running){
 show_hidden_docks();
+document.getElementById('keypad').style.opacity = "100%";
+document.getElementById('keypad').style.transition = "all 1.5s";
 show_keypad();
+
 }
 });
 
