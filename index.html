@@ -216,15 +216,15 @@ opacity:100%;
 
 <div id = "keypad">
 
-<button></button>
-<button></button>
-<button></button>
-<button></button>
-<button></button>
-<button></button>
-<button></button>
-<button></button>
-<button></button>
+<button onclick = "tap7.play()"></button>
+<button onclick = "tap5.play()"></button>
+<button onclick = "tap1.play()"></button>
+<button onclick = "tap3.play()"></button>
+<button onclick = "tap4.play()"></button>
+<button onclick = "tap2.play()"></button>
+<button onclick = "tap6.play()"></button>
+<button onclick = "tap1.play()"></button>
+<button onclick = "tap5.play()"></button>
 
 </div>
 
@@ -368,7 +368,6 @@ right_dock.style.opacity = "0%";
 
 var reset = function(app){
 bgm.volume = 1;
-crowd.pause();
 ping.pause();
 clearInterval(ticky);
 if (app_running){
@@ -412,9 +411,14 @@ var verified = false;
 var face = document.getElementById("face");
 var giggle = new Audio("files/audio/voice/giggle.mp3");
 var bgm = new Audio("files/audio/bgm/bgm.mp3");
-var hack = new Audio("files/audio/bgm/hack.mp3");
-var crowd = new Audio("files/audio/bgm/crowd.mp3");
 var ping = new Audio("files/audio/sfx/ping.mp3");
+var tap1 = new Audio("files/audio/sfx/tap1.mp3");
+var tap2 = new Audio("files/audio/sfx/tap2.mp3");
+var tap3 = new Audio("files/audio/sfx/tap3.mp3");
+var tap4 = new Audio("files/audio/sfx/tap4.mp3");
+var tap5 = new Audio("files/audio/sfx/tap5.mp3");
+var tap6 = new Audio("files/audio/sfx/tap6.mp3");
+var tap7 = new Audio("files/audio/sfx/tap7.mp3");
 var enter_woosh = new Audio("files/audio/sfx/enter_woosh.mp3");
 var exit_woosh = new Audio("files/audio/sfx/exit_woosh.mp3");
 var tick = new Audio("files/audio/sfx/tick.mp3");
@@ -424,7 +428,6 @@ var init_bgm = function(){
 enter_woosh.volume = 0.5;
 exit_woosh.volume = 0.5;
 bgm.volume = 1;
-hack.volume = 0.5;
 bgm.play();
 bgm.onended = function(){
 bgm.play();
@@ -502,6 +505,8 @@ load_left_dock();
 load_right_dock();
 face.style.transition = "all 1s";
 face.style.filter = "hue-rotate(0deg)";
+exit_woosh.play();
+
 });
 
 
@@ -517,6 +522,7 @@ load_left_dock();
 load_right_dock();
 face.style.transition = "all 1s";
 face.style.filter = "hue-rotate(0deg)";
+exit_woosh.play();
 });
 
 document.getElementById('keypad').addEventListener('swiped-left', function(){
@@ -530,6 +536,7 @@ load_left_dock();
 load_right_dock();
 face.style.transition = "all 1s";
 face.style.filter = "hue-rotate(0deg)";
+exit_woosh.play();
 });
 
 
@@ -544,6 +551,7 @@ load_left_dock();
 load_right_dock();
 face.style.transition = "all 1s";
 face.style.filter = "hue-rotate(0deg)";
+exit_woosh.play();
 });
 
 
@@ -606,6 +614,7 @@ show_hidden_docks();
 document.getElementById('keypad').style.opacity = "100%";
 document.getElementById('keypad').style.transition = "all 1.5s";
 show_keypad();
+enter_woosh.play();
 
 }
 });
