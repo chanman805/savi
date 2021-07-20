@@ -362,7 +362,7 @@ date.innerHTML = months[month]+ " " + day + ", "+year;
 
 
 document.getElementById('map_div').addEventListener("click", function(){
-document.getElementById('map').style = "direction:rtl;z-index:10000;transition: all 0.5s, opacity 4s;float:right;position:absolute;top:47.5vmin;left:0vmin;border-radius:20px;background-color:black;width:60%;height:45%;";
+document.getElementById('map').style = "direction:rtl;z-index:10000;transition: all 0.5s 0s, opacity 4s 0s,left 0.7s 0.00s;float:right;position:absolute;top:47.5vmin;left:0vmin;border-radius:20px;background-color:black;width:60%;height:45%;";
 setTimeout(function(){
 document.getElementById('map').style = "transition: all 0.25s;opacity: 100%;width: 100%;height: 100%;top: 0;left: 0;right:0vmin;z-index: 100;border-radius: 0px;";
 },50);
