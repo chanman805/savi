@@ -160,7 +160,7 @@ transition: all 1s;
 <body>
 
 <h1 id = "time" style = "opacity:100%;margin-top:-150%">88:88</h1>
-<iframe id = "map"width="40%" height = "30%" style = "opacity:0%;transform:translate(0,150%)" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"  marginheight="0" marginwidth="0"></iframe>
+<iframe id = "map"width="40%" height = "30%" style = "transform-origin:bottom right;opacity:0%;transform:translate(0,150%)" src="https://maps.google.com/maps?q=my%20location&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"  marginheight="0" marginwidth="0"></iframe>
 <h1 id = "date" style = "font-size:20px;opacity:0%;transform:translate(0,-20%)">July 24th, 2003</h1>
 <h1 id = "seconds" style = "transform:translate(150%,0);font-size:20px;opacity:0%;">59</h1>
 	<div id = "top" style = "padding:20px;position:absolute;top:1vmax;left:-100vmin;">
@@ -365,17 +365,14 @@ var enter_woosh = new Audio("../../audio/sfx/enter_woosh.mp3");
 
 
 document.getElementById('map_div').addEventListener("click", function(){
-document.getElementById('map').style = "direction:rtl;z-index:10000;transition: all 0.5s 0s, opacity 4s 0s,left 0.7s 0.00s;float:right;position:absolute;top:47.5vmin;left:0vmin;border-radius:20px;background-color:black;width:60%;height:45%;";
+document.getElementById('map').style = "    transform-origin: right bottom;direction: rtl;z-index: 100;transition: all 0.5s ease 0s, opacity 4s ease 0s;position: absolute;top: 41vmin;left: 73vmin;border-radius: 0px;background-color: black;width: 59vmax;height: 59vmin;transform: scale(1.7);";
 enter_woosh.play();
-setTimeout(function(){
-document.getElementById('map').style = "transition: all 0.25s;opacity: 100%;width: 100%;height: 100%;top: 0;left: 0;right:0vmin;z-index: 100;border-radius: 0px;";
-},50);
 document.getElementById('map_div').style = " z-index:1000;   position: absolute;background-color: Transparent;top: 75vmin;left: -2vmax;padding: 13%;width: 150vmin;";
 });
 
 
 document.getElementById('map_div').addEventListener("swiped-up", function(){
-document.getElementById('map').style = "direction:rtl;z-index:10000;transition: all 0.5s, opacity 4s;float:right;position:absolute;top:47.5vmin;left:65vmin;border-radius:20px;background-color:black;width:60%;height:45%;";
+document.getElementById('map').style = "transform-origin: bottom right;direction:rtl;z-index:10000;transition: all 0.5s, opacity 4s;float:right;position:absolute;top:47.5vmin;left:65vmin;border-radius:20px;background-color:black;width:60%;height:45%;";
 document.getElementById('map_div').style = " z-index:1000;   position: absolute;background-color: Transparent;top: 47vmin;left: 37vmax;padding: 13%;width: 85vmin;";
 exit_woosh.play();
 setTimeout(function(){
