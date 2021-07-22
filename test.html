@@ -1,0 +1,55 @@
+Number of characters:<br>
+<input type="text" id="quantidade" value="2"><br>
+Dictionary<br>
+<input type="text" id="dicionario" value="abcdefghijklmnopqrstuwvxyzw1234567890,.;<>:!@#$%¨&*()_+-="><br>
+Output<br>
+<textarea id="senhas"></textarea><br>
+<button onclick="botao()">Test</button>
+<b id="tempo"></b>
+
+<script>
+
+
+//criar fors[d=dicionario de caracteres,q=quantidade de caracteres da seha,cb=função callback]
+function createFor(d,q,cb){ 
+	
+	var a = d.split('');
+	var f='';//inicio dos fors
+	var f1='';//parte final dos fors 
+	var ni='';//n contadores
+	var fc='';//fors completos
+
+
+	for (var i = 0; i < q; i++) {
+		f +=  'for(var i'+i+' = 0; i'+i+' < a.length; i'+i+'++){';
+		if(i>0){ ni += '+';}
+		ni += 'a[i'+i+']';
+		f1 += '}';
+	}
+	fc = f+cb+'('+ni+')'+f1;
+	eval(fc);
+}
+
+function testar(s){
+	console.log(s);
+}
+
+
+function testar2(s){
+	document.querySelector('#senhas').innerHTML += s+' ';
+}
+
+
+
+function botao(){
+	var dic = document.querySelector('#dicionario').value;//dicionario de caracterres
+  	var qc = document.querySelector('#quantidade').value;//quantidade de caracterres da senha
+
+  	var start = new Date();//para testar o tempo que demora
+  	
+  	createFor(dic,qc,'testar2');
+  	
+  	var time = new Date() - start;
+	document.querySelector('#tempo').innerHTML = 'Pronto em '+time+'ms';
+}
+</script>

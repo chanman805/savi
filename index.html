@@ -122,15 +122,15 @@ padding-left:70%;
 }
 
 #hidden_left_dock {
-float:left;
-margin-top:-95vmin;
-margin-left:-20vmin;
-width: 25vmin;
-transition: all 1s;
-z-index:100;
-padding-right:70%;
-opacity:0%;
-display:none;
+    position: absolute;
+    top: 0;
+    left: 2vmin;
+    padding: 3vmin;
+    opacity: 0%;
+    pointer-events: none;
+    width: 25vmin;
+	transition: all 1s;
+	
 }
 
 #hidden_right_dock {
@@ -267,6 +267,12 @@ opacity:100%;
 </div>
 
 
+<div id = "hidden_left_dock" >
+<img id = "ip_launcher" onclick = "launch(ip, 'files/apps/ip/index.html')"class = "icon" src = "files/images/docks/ip.png"></img>
+<img id = "radio_launcher" onclick = "launch(radio, 'files/apps/radio/index.html')"class = "icon" src = "files/images/docks/radio.png"></img>
+</div>
+
+
 <div id = "right_dock" >
 <img id = "internet_launcher" onclick = "launch(internet, 'files/apps/internet/index.html')"class = "icon" src = "files/images/docks/internet.png"></img>
 <img id = "location_launcher" onclick = "launch(locate, 'files/apps/locate/index.html')"class = "icon" src = "files/images/docks/location.png"></img>
@@ -306,6 +312,7 @@ var news = document.getElementById('frame7');
 var ticky;
 var isflipped = false;
 var pass = 0;
+var ishack = false;
 
 var app_running = false;
 var temp_mem = "";
@@ -432,6 +439,7 @@ console.log(pass);
 var hack = new Audio("files/audio/bgm/hack.mp3");
 
 var show_hidden_frame = function(){
+impact.currentTime = 0;
 impact.play();
 face.style.transform = "scale(1)";
 face.style.opacity = "100%";
@@ -445,6 +453,14 @@ document.getElementById('topper').style.transitionDelay = "2s";
 document.getElementById('topper').style.opacity = "25%";
 bgm.pause();
 hack.play();
+
+setTimeout(function(){
+show_hidden_divs();
+},2000);
+};
+
+var show_hidden_divs = function(){
+document.getElementById('hidden_left_dock').style.opacity = "100%";
 
 };
 
@@ -515,9 +531,16 @@ face.style.transform = "scale(1)";
 var welcome = function(){
 init_face();
 init_bgm();
-
+hack.pause();
+hide_hidden_docks();
 };
 
+
+var hide_hidden_docks = function(){
+face.style.filter = "none";
+document.getElementById('topper').style.transition = "all 0.5s";
+document.getElementById('topper').style.opacity = "0%";
+};
 
 
 invis_right.addEventListener("swiped-left", function(){
@@ -567,6 +590,7 @@ face.style.transition = "all 1s";
 face.style.opacity = "100%";
 face.style.filter = "hue-rotate(0deg)";
 exit_woosh.play();
+ishack = false;
 
 });
 
@@ -585,6 +609,7 @@ face.style.transition = "all 1s";
 face.style.opacity = "100%";
 face.style.filter = "hue-rotate(0deg)";
 exit_woosh.play();
+ishack = false;
 });
 
 document.getElementById('keypad').addEventListener('swiped-left', function(){
@@ -600,6 +625,7 @@ face.style.transition = "all 1s";
 face.style.opacity = "100%";
 face.style.filter = "hue-rotate(0deg)";
 exit_woosh.play();
+ishack = false;
 });
 
 
@@ -616,6 +642,7 @@ face.style.transition = "all 1s";
 face.style.opacity = "100%";
 face.style.filter = "hue-rotate(0deg)";
 exit_woosh.play();
+ishack = false;
 });
 
 
@@ -672,15 +699,29 @@ verified = true;
 }
 };
 
+var reset_everything = function(){
+welcome();
+
+load_left_dock();
+load_right_dock();
+ishack=false;
+};
+
+
 document.getElementById('face').addEventListener("click",function(){
-if (verified && !app_running &&!isflipped){
+if (verified && !app_running &&!isflipped && !ishack){
 show_hidden_docks();
 document.getElementById('keypad').style.opacity = "100%";
 document.getElementById('keypad').style.transition = "all 1.5s";
 face.style.opacity = "30%";
 show_keypad();
 enter_woosh.play();
-
+ishack = true;
+} else if (ishack){
+document.getElementById('hidden_left_dock').style.opacity = "0%";
+setTimeout(function(){
+reset_everything();
+},150);
 }
 });
 
