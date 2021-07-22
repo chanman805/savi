@@ -235,7 +235,7 @@ opacity:100%;
 <button  scrolling = "no"onclick = "tap7.play();pass=pass+334;verify();"></button>
 <button onclick = "tap3.play();pass=pass+27;verify();"></button>
 <button  scrolling = "no" onclick = "tap5.play();pass=pass*2;verify();"></button>
-<button   scrolling = "no"onclick = "tap1.play();pass=pass*3;verify();"></button>
+<button   scrolling = "no"onclick = "pass=pass*3;verify();"></button>
 <button onclick = "tap4.play();pass=pass-173;verify();"></button>
 <button onclick = "tap2.play();pass=pass-160;verify();"></button>
 <button onclick = "tap6.play();pass=pass/500;verify();"></button>
@@ -429,18 +429,22 @@ console.log(pass);
 }
 };
 
+var hack = new Audio("files/audio/bgm/hack.mp3");
+
 var show_hidden_frame = function(){
+impact.play();
 face.style.transform = "scale(1)";
 face.style.opacity = "100%";
 document.getElementById('keypad').style.transition = "transform 1s, opacity 0.4s";
 document.getElementById('keypad').style.transitionDelay = "0.2s";
 document.getElementById('face').style.transitionDelay = "0.5s";
-document.getElementById('face').style.filter = "hue-rotate(180deg) sepia(0%) grayscale(100%) saturate(100%)";
 document.getElementById('keypad').style.opacity = "0%";
 document.getElementById('keypad').style.transform = "translate(-34vmin, -50%) scale(0)";
 document.getElementById('topper').style.transition = "all 1s";
 document.getElementById('topper').style.transitionDelay = "2s";
 document.getElementById('topper').style.opacity = "25%";
+bgm.pause();
+hack.play();
 
 };
 
@@ -473,9 +477,14 @@ var tap7 = new Audio("files/audio/sfx/tap7.mp3");
 var enter_woosh = new Audio("files/audio/sfx/enter_woosh.mp3");
 var exit_woosh = new Audio("files/audio/sfx/exit_woosh.mp3");
 var tick = new Audio("files/audio/sfx/tick.mp3");
+var impact = new Audio("files/audio/sfx/impact.mp3");
 
 
 var init_bgm = function(){
+hack.volume = 1;
+hack.onended = function(){
+hack.play();
+};
 enter_woosh.volume = 0.5;
 exit_woosh.volume = 0.5;
 bgm.volume = 1;
